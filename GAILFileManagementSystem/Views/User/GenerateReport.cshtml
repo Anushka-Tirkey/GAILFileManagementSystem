@@ -1,0 +1,24 @@
+﻿@model IEnumerable<FILESMGMT.Models.Files>
+@{
+    ViewData["Title"] = "GenerateReport";
+}
+
+<h2>Generate Report</h2>
+
+<table class="table">
+<tbody>
+    @foreach (var file in Model)
+    {
+        <h2>FILE ID: @file.FileId</h2>
+        <h2>FILE NAME: @file.FileName</h2>
+        <h2>FILE TYPE: @file.FileType</h2>
+        @* <!-- Uncomment and add columns for additional properties as needed
+        <td>@file.FileSize</td>
+        <td>@file.UploadDate</td>
+        <td>@file.EmployeeId</td>
+        <td>@file.ApprovalStatus</td>
+        <td>@file.FilePath</td>
+        --> *@
+    }
+    </tbody>
+ </table>
