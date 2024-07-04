@@ -25,8 +25,8 @@ namespace FILESMGMT.Models
             FileName = "";
             FileSize = 0;
             UploadDate = DateTime.Now;
-            EmployeeId = 0;
-            ApprovalStatus = "Pending";
+            //EmployeeId = 0;
+            //ApprovalStatus = "Pending";
         }
 
     }

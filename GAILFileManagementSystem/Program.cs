@@ -42,7 +42,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "GAILRanchi/{controller=User}/{action=Index}/{id?}");
 
-
 //app.MapControllerRoute(
 //    name: "EnterFiles",
 //    pattern: "{controller=User}/{action=Index/Files}/{id?}");
