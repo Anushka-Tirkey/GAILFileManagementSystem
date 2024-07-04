@@ -17,6 +17,11 @@ namespace GAILFileManagementSystem.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult EnterFiles(Files f)
+        {
+            return "File Type: " + f.File_type + "File Description: "+ f.Description + "File Open Date: "+ f.OpenDate + "File Close Date: "+ f.CloseDate + " Status: "+ f.Status+ " Contract Number : "+ f.Contract_No +" Vendor_NAme: "+ f.Vemdor_Name + " Vendor Address "+ f.Vendor_Address ;
+        }
 
         //public IActionResult Demo()
         //{
