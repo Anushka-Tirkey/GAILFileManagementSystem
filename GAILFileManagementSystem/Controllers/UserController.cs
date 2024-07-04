@@ -35,19 +35,25 @@ namespace GAILFileManagementSystem.Controllers
         }
 
         [HttpPost]
-        public string ContractDetails(Contract c)   //Model binder; will be executed before the action method
+        public IActionResult ContractDetails(Contract c)   //Model binder; will be executed before the action method
         {
             //model binder also validates the input using Model Validator
-            return "Contract number = " + c.ContractNumber +
+            if (!ModelState.IsValid)    //if the model binding and validation succeeded, i.e. if the fields confothen it will return.
+            {
+                return View(c);
+            }
+
+            return RedirectToAction("Index");   
+                /*"Contract number = " + c.ContractNumber +
                 "Contract Subject = " + c.ContractSubject +
                 "Contract Description = " + c.ContractDescription +
                 "Start Date = " + c.StartDate +
                 "End Date= " + c.EndDate +
-                "Contract Type= " + c.ContractType;
+                "Contract Type= " + c.ContractType;*/
         }
 
         //Data, GET request se yaha pe aayega jb hm apna application phli baar run krenge
-        public IActionResult VendorDetails()
+        public IActionResult VendorDetails()    //GET
         {
             return View();
         }
@@ -55,13 +61,16 @@ namespace GAILFileManagementSystem.Controllers
         //When the form is submitted, this form., which contains HTTPPost request will be run
         //then its data will be stored in the object 'v' of this VendorDetails function
         [HttpPost]
-        public string VendorDetails(Vendor v) //an object 'v' of the Vendor model class Contract
-        {
-            return "Vendor name = " + v.VendorName + 
-                "Vendor Address = " + v.VendorAddress + 
-                "Contact Person = " + v.ContactPerson + 
-                "Contact Number = " + v.ContactNumber + 
-                "Contact Email ID = " + v.ContactEmailId;
+        public IActionResult VendorDetails(Vendor v) //an object 'v' of the Vendor model class Contract
+        {   //POST
+            if (!ModelState.IsValid)    //indicates whether the model binding and validation succeeded.
+            {
+                return View(v);
+            }
+
+            // Process the valid model
+            return RedirectToAction("Index");
+            //return View();
             // Model validation is applied on the properties mentioned above through attributes
         }
 

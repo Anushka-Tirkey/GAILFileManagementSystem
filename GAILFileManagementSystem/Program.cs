@@ -8,15 +8,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 
-var provider = builder.Services.BuildServiceProvider();
-//creating a service/service provider
+var provider = builder.Services.BuildServiceProvider(); //creating a service/service provider
 var config = provider.GetRequiredService<IConfiguration>();
 // ‘GetRequiredService’ is a generic method of ‘IConfiguration’ type
-//Hence, line 1-> service create krna chha rhe hain; line 2-> wo service IConfiguration ki service hogi
+// Hence, line 1-> service create krna chha rhe hain;
+// line 2-> wo service IConfiguration ki service hogi
 builder.Services.AddDbContext<VendorDBContext>(item => item.UseSqlServer(config.GetConnectionString("dbcs")));
 //we’re adding the dbcontext which is of the VendorDBContext type
 //two namespaces will be added too 
-//DB Service provider -> UseSqlServer
+//UseSqlServer -> Used to denote that we're using the SQL database provider
 //dbcs-> name of the connection string
 //GetConnectionString("dbcs") -> isse dbcs key ka value retrieve ho rha h; hence we have registered in it
 

@@ -204,21 +204,21 @@
                         <tr>
                             <th>Contract No.</th>
                             <td>
-                                <input asp-for="ContractNumber" placeholder="Enter Contract Number" />
-                                <span asp-validation-for="ContractNumber" class="text-danger" style="color:red;"></span>
+                                <input asp-for="ContractNumber" class="form-control" placeholder="Enter Contract Number" />
+                                <span asp-validation-for="ContractNumber" style="color:red;"></span>
                             </td>
                         </tr>
                         <tr>
                             <th>Contract Subject</th>
                             <td>
-                                <input asp-for="ContractSubject" placeholder="Enter Contract Subject" />
+                                <input asp-for="ContractSubject" class="form-control" placeholder="Enter Contract Subject" />
                                 <span asp-validation-for="ContractSubject" style="color:red;"></span>
                             </td>
                         </tr>
                         <tr>
                             <th>Contract Description</th>
                             <td>
-                                <textarea asp-for="ContractDescription" placeholder="Enter Contract Description"></textarea>
+                                <textarea asp-for="ContractDescription" class="form-control" placeholder="Enter Contract Description"></textarea>
                             </td>
                         </tr>
                         <tr>
@@ -243,7 +243,7 @@
                             <th>Contract Type</th>
                             <td>
                                 <select asp-for="ContractType" class="form-control" asp-items="Html.GetEnumSelectList<CType>()">
-                                    <option value="">Select Contract Type</option>
+                                    <option value="">--Select Contract Type--</option>
                                 </select>
                             </td>
                         </tr>
@@ -258,8 +258,8 @@
     </div>
 </body>
 </html>
-@section Scripts {
+@* @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-}
+} *@
