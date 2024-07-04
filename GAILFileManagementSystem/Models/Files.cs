@@ -11,8 +11,9 @@ namespace FILESMGMT.Models
         public string? Description { get; set; }
         public long FileSize { get; set; } // Size of the file in bytes
         public DateTime UploadDate { get; set; } // Date and time when the file was uploaded
-        public int EmployeeId { get; set; } // Employee ID of the user who uploaded the file
-        public string ApprovalStatus { get; set; } // Approval status of the file (e.g., pending, approved, rejected)
+        public int Contract_No { get; set; } 
+        public string Vendor_name { get; set; }
+        public string Vendor_address { get; set; }
         public string? FilePath { get; set; } // Add this property
         public string Status { get; set; }
 
