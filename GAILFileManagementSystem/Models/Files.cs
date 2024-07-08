@@ -6,10 +6,14 @@ namespace FILESMGMT.Models
 {
     public class Files
     {
+        [Key]
         public int FileId { get; set; }
         public string FileName { get; set; }
+
+        [Column("File Type", TypeName = "varchar(20)")]
         public File_type File_type { get; set; }
 
+        [Column("File Type", TypeName = "varchar(100)")]
         [Required(ErrorMessage = "File description is required.")]
         public string Description { get; set; }
 
@@ -31,6 +35,7 @@ namespace FILESMGMT.Models
         public string FilePath { get; set; }
 
         [Required(ErrorMessage = "Status is required.")]
+        [Column("Status", TypeName = "varchar(100)")]
         public string Status { get; set; }
     }
 
