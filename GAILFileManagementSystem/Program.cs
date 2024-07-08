@@ -20,6 +20,9 @@ builder.Services.AddDbContext<VendorDBContext>(options =>
     options.UseSqlServer(config.GetConnectionString("dbcs")));
 builder.Services.AddDbContext<FileDBContext>(options =>
     options.UseSqlServer(config.GetConnectionString("dbcs")));
+builder.Services.AddDbContext<ContractDBContext>(options =>
+    options.UseSqlServer(config.GetConnectionString("dbcs")));
+
 
 var app = builder.Build();
 

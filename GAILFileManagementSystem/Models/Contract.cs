@@ -6,6 +6,9 @@ namespace GAILFileManagementSystem.Models
 {
     public class Contract
     {
+        [Key]
+        public int sno { get; set; }
+
         [Required(ErrorMessage = "Contract Number is required.")]
         public string ContractNumber { get; set; }
 

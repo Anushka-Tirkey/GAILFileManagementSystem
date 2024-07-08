@@ -1,11 +1,14 @@
 ﻿using FILESMGMT.Models;
 using GAILFileManagementSystem.Models; //Files Model is defined in this namespace
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace GAILFileManagementSystem.Controllers
 {
     public class UserController : Controller
     {
+        private readonly VendorDBContext vendorDB;
+
         //VALIDATION NHI HO PA RHA KISI V PAGE M
         [Route("")]
         public IActionResult Index()
@@ -67,6 +70,7 @@ namespace GAILFileManagementSystem.Controllers
         //Data, GET request se yaha pe aayega jb hm apna application phli baar run krenge
         public IActionResult VendorDetails()    //GET
         {
+            var stdData = vendorDB.Vendors.ToList();
             return View();
         }
 
@@ -96,5 +100,10 @@ namespace GAILFileManagementSystem.Controllers
         //    };
         //    return View(myFiles);
         //}
+
+        public UserController(VendorDBContext vendorDB)
+        {
+                this.vendorDB = vendorDB;
+        }
     }
 }
