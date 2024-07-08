@@ -1,6 +1,7 @@
 using GAILFileManagementSystem.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Linq;
 
 namespace GAILFileManagementSystem.Controllers
 {
@@ -29,7 +30,8 @@ namespace GAILFileManagementSystem.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var fileData = fileDB.File.ToList();
+            return View(fileData);
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

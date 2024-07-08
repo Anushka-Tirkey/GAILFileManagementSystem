@@ -1,0 +1,95 @@
+﻿@model IEnumerable<FILESMGMT.Models.Files>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FileName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.File_type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FileSize)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Open_Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Closed_Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contract_No)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vendor_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vendor_address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FilePath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.File_type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Open_Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Closed_Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contract_No)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vendor_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vendor_address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FilePath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.FileId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.FileId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.FileId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
