@@ -6,23 +6,31 @@ namespace GAILFileManagementSystem.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly FileDBContext fileDB;
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+        //private readonly ILogger<HomeController> _logger;
 
-        //public IActionResult Index()
+        //public HomeController(ILogger<HomeController> logger)
         //{
-        //    return View();
+        //    _logger = logger;
         //}
+
+        
 
         //public IActionResult privacy()
         //{
         //    return view();
         //}
 
+        
+        public HomeController(FileDBContext fileDB)
+        {
+            this.fileDB = fileDB;
+        }
+        public IActionResult Index()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
