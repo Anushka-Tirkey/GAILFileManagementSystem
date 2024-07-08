@@ -13,7 +13,7 @@ namespace FILESMGMT.Models
         [Column("File Type", TypeName = "varchar(20)")]
         public File_type File_type { get; set; }
 
-        [Column("File Type", TypeName = "varchar(100)")]
+        [Column("Description", TypeName = "varchar(100)")]
         [Required(ErrorMessage = "File description is required.")]
         public string Description { get; set; }
 
