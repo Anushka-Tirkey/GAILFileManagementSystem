@@ -4,23 +4,20 @@
 
 namespace GAILFileManagementSystem.Migrations
 {
-    /// <inheritdoc />
     public partial class GAILFMSVendorCreateDB : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Vendors",    //name of the table = Vendors
+                name: "Vendors",
                 columns: table => new
                 {
-                    //defining all the contracts
                     VendorId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     vendorname = table.Column<string>(type: "varchar(100)", nullable: false),
                     vendoraddress = table.Column<string>(type: "varchar(200)", nullable: true),
                     contactperson = table.Column<string>(type: "varchar(100)", nullable: true),
-                    contactno = table.Column<string>(type: "varchar(100)", maxLength: 10, nullable: false),
+                    contactno = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: false),
                     contactemail = table.Column<string>(type: "varchar(100)", nullable: false)
                 },
                 constraints: table =>
@@ -29,8 +26,7 @@ namespace GAILFileManagementSystem.Migrations
                 });
         }
 
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder) //when you want to drop your table
+        protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "Vendors");

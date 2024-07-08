@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GAILFileManagementSystem.Migrations
 {
     [DbContext(typeof(VendorDBContext))]
-    [Migration("20240708055606_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240708061058_GAILFMSVendorCreateDB")]
+    partial class GAILFMSVendorCreateDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
