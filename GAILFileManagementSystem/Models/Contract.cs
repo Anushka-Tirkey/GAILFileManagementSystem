@@ -12,9 +12,9 @@ namespace GAILFileManagementSystem.Models
         [Required(ErrorMessage = "Contract Number is required.")]
         public string ContractNumber { get; set; }
 
-        public string? ContractSubject { get; set; }    //? -> It may contain null values
+        public string ContractSubject { get; set; }    //? -> It may contain null values
 
-        public string? ContractDescription { get; set; }
+        public string ContractDescription { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public CType ContractType { get; set; }

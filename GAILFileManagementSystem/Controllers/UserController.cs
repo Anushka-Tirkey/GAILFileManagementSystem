@@ -1,15 +1,15 @@
 ﻿using FILESMGMT.Models;
 using GAILFileManagementSystem.Models; //Files Model is defined in this namespace
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace GAILFileManagementSystem.Controllers
 {
     public class UserController : Controller
     {
-        private readonly VendorDBContext vendorDB;
-
-        //VALIDATION NHI HO PA RHA KISI V PAGE M
+        
         [Route("")]
         public IActionResult Index()
         {
@@ -59,12 +59,6 @@ namespace GAILFileManagementSystem.Controllers
             }
 
             return RedirectToAction("Index");   
-                /*"Contract number = " + c.ContractNumber +
-                "Contract Subject = " + c.ContractSubject +
-                "Contract Description = " + c.ContractDescription +
-                "Start Date = " + c.StartDate +
-                "End Date= " + c.EndDate +
-                "Contract Type= " + c.ContractType;*/
         }
 
         //Data, GET request se yaha pe aayega jb hm apna application phli baar run krenge
@@ -92,18 +86,57 @@ namespace GAILFileManagementSystem.Controllers
 
         //public IActionResult GenerateReport()
         //{
-        //    var myFiles = new List<Files>
-        //    {
-        //        new Files() { FileId = 1, FileName = "Contract1", FileType = "AMC" /*, FileSize = ..., UploadDate = ..., EmployeeId = ..., ApprovalStatus = ..., FilePath = ... */ },
-        //        new Files() { FileId = 2, FileName = "ContractForLaptop", FileType = "Contract" },
-        //        new Files() { FileId = 3, FileName = "Employee Details ", FileType = "Contract" }
-        //    };
-        //    return View(myFiles);
+        //    var vendorData = vendorDB.Vendors.ToList();
+        //    var contractData = contractDB.Contracts.ToList();  
+        //    return View(vendorData);
         //}
 
-        public UserController(VendorDBContext vendorDB)
+        //public IActionResult GenerateReport2()
+        //{
+        //    var vendorData = vendorDB.Vendors.ToList();
+        //    var contractData = contractDB.Contracts.ToList();
+        //    return View(contractData);
+        //}
+        public ActionResult GenerateReport()
         {
-                this.vendorDB = vendorDB;
+            var model = new CombinedModel
+            {
+                Vendors = vendorDB.Vendors.ToList(), // Assuming you have a database context 'db'
+                Contracts = contractDB.Contracts.ToList(),
+                //Files= FileDB.File.ToList(),
+            };
+
+            return View(model);
         }
+
+        //public IActionResult Create()
+        //{
+        //    return View();
+        //}
+
+        //public async Task<IActionResult> Details (int id)
+        //{
+        //    if(id == 0 || id==null || vendorDB.Vendors == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    var comdata = await vendorDB.Vendors.FirstOrDefaultAsync(x => x.VendorId == id);
+        //    if(comdata == null)
+        //        return NotFound();
+        //    return View(comdata);
+        //}
+
+        //Vid #40; displaying data from the database
+        private readonly VendorDBContext vendorDB;
+        private readonly ContractDBContext contractDB;
+        //private readonly FileDBContext FileDB;
+
+        public UserController(VendorDBContext vendorDB, ContractDBContext contractDB /*FileDBContext fileDB*/)
+        {
+            this.vendorDB = vendorDB;
+            this.contractDB = contractDB;
+            //this.FileDB = fileDB;
+        }
+
     }
 }

@@ -1,24 +1,168 @@
-﻿@model IEnumerable<FILESMGMT.Models.Files>
+﻿@model GAILFileManagementSystem.Models.CombinedModel
+
 @{
     ViewData["Title"] = "GenerateReport";
 }
 
-<h2>Generate Report</h2>
+<div style="background-color: #BDE3FF; height: 50px; display: flex; justify-content: center; align-items: center; border-radius: 8px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+    <p style="text-align: center; font-size: 30px; margin: 0;">Generate Report</p>
+</div>
 
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<h2>Vendors</h2>
 <table class="table">
-<tbody>
-    @foreach (var file in Model)
-    {
-        <h2>FILE ID: @file.FileId</h2>
-        <h2>FILE NAME: @file.FileName</h2>
-        <h2>FILE TYPE: @file.File_type</h2>
-        @* <!-- Uncomment and add columns for additional properties as needed
-        <td>@file.FileSize</td>
-        <td>@file.UploadDate</td>
-        <td>@file.EmployeeId</td>
-        <td>@file.ApprovalStatus</td>
-        <td>@file.FilePath</td>
-        --> *@
-    }
+    <thead>
+        <tr>
+            @* <th>
+                @Html.DisplayNameFor(model => model.Files.First().FileId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Files.First().FileName)
+            </th> *@
+            <th>
+                @Html.DisplayNameFor(model => model.Vendors.First().VendorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vendors.First().VendorAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vendors.First().ContactPerson)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vendors.First().ContactNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vendors.First().ContactEmailId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contracts.First().sno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contracts.First().ContractNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contracts.First().ContractSubject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contracts.First().ContractDescription)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @* @foreach (var file in Model.Files)
+            {
+                <td>
+                    @Html.DisplayNameFor(model => model.Files.First().FileId)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Files.First().FileName)
+                </td>
+            } *@
+        @foreach (var vendor in Model.Vendors)
+        {
+                <td>
+                    @Html.DisplayFor(modelItem => vendor.VendorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => vendor.VendorAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => vendor.ContactPerson)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => vendor.ContactNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => vendor.ContactEmailId)
+                </td>
+        }
+        @foreach (var contract in Model.Contracts)
+        {
+                <td>
+                    @Html.DisplayFor(modelItem => contract.ContractNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => contract.ContractSubject)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => contract.ContractDescription)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@contract.sno">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@contract.sno">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@contract.sno">Delete</a>
+                </td>
+        }
+        </tr>
     </tbody>
- </table>
+</table>
+
+@* @model IEnumerable<FILESMGMT.Models.Vendor>
+@model IEnumerable<GAILFileManagementSystem.Models.Contract>
+ *@
+
+@* @model GAILFileManagementSystem.Models.CombinedModel
+
+@{
+    ViewData["Title"] = "GenerateReport";
+}
+ *@
+@* <h1>GenerateReport</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Vendors.First().VendorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vendors.First().VendorAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vendors.First().ContactPerson)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vendors.First().ContactNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vendors.First().ContactEmailId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.VendorName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VendorAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactPerson)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactEmailId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.VendorId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.VendorId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.VendorId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+ *@

@@ -17,7 +17,7 @@ namespace FILESMGMT.Models
         [Required(ErrorMessage = "File description is required.")]
         public string Description { get; set; }
 
-        public long FileSize { get; set; }
+        //public long? FileSize { get; set; }
 
         [Required(ErrorMessage = "Open Date is required.")]
         public DateTime Open_Date { get; set; }
@@ -32,7 +32,7 @@ namespace FILESMGMT.Models
         public string Vendor_name { get; set; }
 
         public string Vendor_address { get; set; }
-        public string FilePath { get; set; }
+        //public string FilePath { get; set; }
 
         [Required(ErrorMessage = "Status is required.")]
         [Column("Status", TypeName = "varchar(100)")]
