@@ -1,21 +1,15 @@
-﻿@using static FILESMGMT.Models.Contract;
-@model FILESMGMT.Models.Contract;
-
-@* [Required] WALA VALIDATION NHI HO PA RHA H *@
+﻿@using FILESMGMT.Models
+@model FILESMGMT.Models.Location;
 
 @{
-    ViewData["Title"] = "ContractDetails";
+    ViewData["Title"] = "EnterLocation";
 }
 
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"]</title>
     <style>
         body {
-            margin: 0;
+            margin: 0px;
             font-family: Arial, Helvetica, sans-serif;
             background-image: url('https://gailebank.gail.co.in/GSUICBG/images/About-img.jpg');
             color: black;
@@ -64,7 +58,11 @@
             text-align: center;
         }
 
-        .vendor-details {
+        .file-details {
+            margin-top: 20px;
+        }
+
+        .contract-details, .vendor-details, .Location-details {
             margin-top: 20px;
         }
 
@@ -143,12 +141,12 @@
 
         .input-container {
             position: relative;
-            width: 300px;
+            width: 300px; /* Adjust the width as needed */
         }
 
             .input-container input[type="date"] {
                 width: 100%;
-                padding-right: 30px;
+                padding-right: 30px; /* Space for the icon */
                 box-sizing: border-box;
             }
 
@@ -157,7 +155,7 @@
                 right: 30px;
                 top: 50%;
                 transform: translateY(-50%);
-                pointer-events: none;
+                pointer-events: none; /* Makes sure the icon does not block input clicks */
             }
 
         .user-info {
@@ -186,7 +184,8 @@
           border-radius: 100% ; " />
             <h2 style="margin-top: -35px;">GAIL (India) Ltd.</h2>
         </nav>
-        <div class="light"></div>
+        <div class="light">
+        </div>
 
         <div class="user-info">
             <img src="data:image/jpeg;base64,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"
@@ -194,73 +193,55 @@
           border-radius: 50%; " />
             <h4 style="padding-left: 10px;">Phill Wills<br>Ranchi, Jharkhand</h4>
         </div>
-
         <fieldset>
-            <legend>Contract-Details</legend>
-            <div class="contract-details">
-                <form asp-action="ContractDetails" asp-controller="User" method="post">
-                    @Html.AntiForgeryToken()
+            <legend>Location-Details</legend>
+            <div class="Location-details">
+                <form asp-controller="User" asp-action="LocationDetails" method="post">
                     <table class="table-form">
                         <tr>
-                            <th>Contract No.</th>
+                            <th>Location ID</th>
                             <td>
-                                <input asp-for="ContractNumber" class="form-control" placeholder="Enter Contract Number" />
-                                <span asp-validation-for="ContractNumber" style="color:red;"></span>
+                                <input asp-for="LocationId" class="form-control" placeholder="Enter Location ID">
+                                <span asp-validation-for="LocationId" style="color:red;"></span>
                             </td>
                         </tr>
                         <tr>
-                            <th>Contract Subject</th>
+                            <th>Location Name</th>
                             <td>
-                                <input asp-for="ContractSubject" class="form-control" placeholder="Enter Contract Subject" />
-                                <span asp-validation-for="ContractSubject" style="color:red;"></span>
+                                <input asp-for="LocationName" class="form-control" placeholder="Enter Location Name" />
+                                <span asp-validation-for="LocationName" style="color:red;"></span> @* To display the error message just below the textbox *@
                             </td>
                         </tr>
                         <tr>
-                            <th>Contract Description</th>
+                            <th>SubLocation ID</th>
                             <td>
-                                <textarea asp-for="ContractDescription" class="form-control" placeholder="Enter Contract Description"></textarea>
+                                <input asp-for="SubLocationID" class="form-control" placeholder="Enter SubLocation ID">
+                                <span asp-validation-for="SubLocationID" style="color:red;"></span>
                             </td>
                         </tr>
                         <tr>
-                            <th>Contract Start Date</th>
+                            <th>SubLocation Name</th>
                             <td>
-                                <div class="input-container">
-                                    <input asp-for="StartDate" type="date" class="form-control" />
-                                    <i class="icon">📅</i>
-                                </div>
+                                <input asp-for="SubLocationName" class="form-control" placeholder="Enter SubLocation Name" />
+                                <span asp-validation-for="SubLocationName" style="color:red;"></span> @* To display the error message just below the textbox *@
                             </td>
                         </tr>
                         <tr>
-                            <th>Contract End date</th>
+                            <th>GSTN Number</th>
                             <td>
-                                <div class="input-container">
-                                    <input asp-for="EndDate" type="date" class="form-control" />
-                                    <i class="icon">📅</i>
-                                </div>
+                                <input asp-for="GSTN_No" class="form-control" placeholder="Enter GSTN No.">
+                                <span asp-validation-for="GSTN_No" style="color:red;"></span>
                             </td>
                         </tr>
-                        <tr>
-                            <th>Contract Type</th>
-                            <td>
-                                <select asp-for="ContractType" class="form-control" asp-items="Html.GetEnumSelectList<CType>()">
-                                    <option value="">--Select Contract Type--</option>
-                                </select>
-                            </td>
-                        </tr>
+                        
+                      
                     </table>
                     <div class="button-container">
                         <button type="submit" class="submit"><strong>SUBMIT</strong></button>
                         <button type="reset" class="clear"><strong>CLEAR</strong></button>
                     </div>
-
                 </form>
             </div>
         </fieldset>
     </div>
 </body>
-</html>
-@* @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-} *@

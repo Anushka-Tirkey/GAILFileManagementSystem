@@ -1,11 +1,10 @@
-﻿using FILESMGMT.Models;
-using GAILFileManagementSystem.Models; //Files Model is defined in this namespace
+﻿using FILESMGMT.Models; //Files Model is defined in this namespace
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GAILFileManagementSystem.Controllers
+namespace FILESMGMT.Controllers
 {
     public class UserController : Controller
     {
@@ -29,7 +28,19 @@ namespace GAILFileManagementSystem.Controllers
                 return View(f);
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Filess");
+
+        }
+        [HttpPost]
+        public IActionResult EnterLocation(Location l)
+        {
+            //return "File Type: " + f.File_type + "File Description: "+ f.Description + "File Open Date: "+ f.OpenDate + "File Close Date: "+ f.CloseDate + " Status: "+ f.Status+ " Contract Number : "+ f.Contract_No +" Vendor_NAme: "+ f.Vendor_name + " Vendor Address "+ f.Vendor_address ;
+            if (!ModelState.IsValid)    //if the model binding and validation succeeded, i.e. if the fields confo then it will return.
+            {
+                return View(l);
+            }
+
+            return RedirectToAction("Locationss");
 
         }
 
@@ -97,17 +108,7 @@ namespace GAILFileManagementSystem.Controllers
         //    var contractData = contractDB.Contracts.ToList();
         //    return View(contractData);
         //}
-        public ActionResult GenerateReport()
-        {
-            var model = new CombinedModel
-            {
-                Vendors = vendorDB.Vendors.ToList(), // Assuming you have a database context 'db'
-                Contracts = contractDB.Contracts.ToList(),
-                //Files= FileDB.File.ToList(),
-            };
-
-            return View(model);
-        }
+       
 
         public ActionResult ApplyFilters()
         {
@@ -140,13 +141,41 @@ namespace GAILFileManagementSystem.Controllers
         //Vid #40; displaying data from the database
         private readonly VendorDBContext vendorDB;
         private readonly ContractDBContext contractDB;
+        private readonly FileDBContext fileDB;
+        private readonly LocationDBContext locationDB;
+
+
+
         //private readonly FileDBContext FileDB;
 
-        public UserController(VendorDBContext vendorDB, ContractDBContext contractDB /*FileDBContext fileDB*/)
+        public UserController(VendorDBContext vendorDB, ContractDBContext contractDB, FileDBContext fileDB, LocationDBContext locationDB)
         {
             this.vendorDB = vendorDB;
             this.contractDB = contractDB;
-            //this.FileDB = fileDB;
+            this.fileDB = fileDB;
+            this.locationDB = locationDB;
+        }
+        public IActionResult Filess()
+        {
+            var files = fileDB.File.ToList();
+            return View(files);
+        }
+
+        public IActionResult Locationss()
+        {
+            var locations = locationDB.Locations.ToList();
+            return View(locations);
+        }
+        public ActionResult GenerateReport()
+        {
+            var model = new CombinedModel
+            {
+                Vendors = vendorDB.Vendors.ToList(), // Assuming you have a database context 'db'
+                Contracts = contractDB.Contracts.ToList(),
+                Files = fileDB.File.ToList(),
+            };
+
+            return View(model);
         }
 
     }

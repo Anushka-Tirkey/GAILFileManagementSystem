@@ -1,4 +1,4 @@
-namespace GAILFileManagementSystem.Models
+namespace FILESMGMT.Models
 {
     public class ErrorViewModel
     {

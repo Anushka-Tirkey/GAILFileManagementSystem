@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 
-namespace GAILFileManagementSystem.Models
+namespace FILESMGMT.Models
 {
     public class Contract
     {

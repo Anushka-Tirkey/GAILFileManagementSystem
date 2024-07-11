@@ -1,7 +1,7 @@
 ﻿using FILESMGMT.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace GAILFileManagementSystem.Models
+namespace FILESMGMT.Models
 {
     public class ContractDBContext: DbContext
     {

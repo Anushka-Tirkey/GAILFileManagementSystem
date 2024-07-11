@@ -1,4 +1,4 @@
-using GAILFileManagementSystem.Models;
+using FILESMGMT.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,6 +21,8 @@ builder.Services.AddDbContext<VendorDBContext>(options =>
 builder.Services.AddDbContext<FileDBContext>(options =>
     options.UseSqlServer(config.GetConnectionString("dbcs")));
 builder.Services.AddDbContext<ContractDBContext>(options =>
+    options.UseSqlServer(config.GetConnectionString("dbcs")));
+builder.Services.AddDbContext<LocationDBContext>(options =>
     options.UseSqlServer(config.GetConnectionString("dbcs")));
 
 

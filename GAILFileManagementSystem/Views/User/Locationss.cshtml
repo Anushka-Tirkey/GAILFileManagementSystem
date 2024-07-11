@@ -1,0 +1,53 @@
+﻿@model IEnumerable<FILESMGMT.Models.Location>
+
+@{
+    ViewData["Title"] = "Locationss";
+}
+
+<h1>Locationss</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LocationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubLocationID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubLocationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GSTN_No)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubLocationID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubLocationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GSTN_No)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.LocationId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.LocationId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.LocationId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

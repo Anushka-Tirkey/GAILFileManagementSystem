@@ -1,11 +1,11 @@
 ﻿using FILESMGMT.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace GAILFileManagementSystem.Models
+namespace FILESMGMT.Models
 {
     public class FileDBContext : DbContext
     {
-        public FileDBContext(DbContextOptions options) : base(options)
+        public FileDBContext(DbContextOptions<FileDBContext> options) : base(options)
         {
                 
         }

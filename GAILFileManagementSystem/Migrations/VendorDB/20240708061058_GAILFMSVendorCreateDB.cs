@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace GAILFileManagementSystem.Migrations
+namespace FILESMGMT.Migrations
 {
     public partial class GAILFMSVendorCreateDB : Migration
     {

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace GAILFileManagementSystem.Migrations.ContractDB
+namespace FILESMGMT.Migrations.ContractDB
 {
     public partial class GAILFMSContractCreateDB : Migration
     {

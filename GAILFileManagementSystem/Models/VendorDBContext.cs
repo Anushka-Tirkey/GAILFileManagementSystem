@@ -19,7 +19,7 @@ namespace GAILFileManagementSystem.Models
 using FILESMGMT.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace GAILFileManagementSystem.Models
+namespace FILESMGMT.Models
 {
     public class VendorDBContext : DbContext  //DbContext class -> Used to interact with our data and the database
     {
