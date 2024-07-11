@@ -242,9 +242,29 @@
                         <tr>
                             <th>Contract Type</th>
                             <td>
+                                @* @Html.DropDownList(
+                                         "ContractType",
+                                         Html.GetEnumSelectList<CType>(),
+                                         "Select Contract Type",
+                                         new { @class = "form-control" }
+                                         ) *@
+                                @* GetEnumSelectList method directly returns a SelectList that you can use without needing to specify "Value" and "Text" fields: *@
+
+                                @* @Html.DropDownList(
+                                         "ContractType",
+                                         new SelectList(Html.GetEnumSelectList<CType>(), "Value", "Text"),
+                                         "--Select Contract Type--",
+                                         new { @class = "form-control" }
+                                         ) *@
+                                @* new SelectList(Html.GetEnumSelectList<CType>(), "Value", "Text"): This converts the enum list to a SelectList, specifying the value and text fields. *@
+                                <tr>
+                                <th>Contract Type</th>
+                                <td>
                                 <select asp-for="ContractType" class="form-control" asp-items="Html.GetEnumSelectList<CType>()">
-                                    <option value="">--Select Contract Type--</option>
+                                <option value="">--Select Contract Type--</option>
                                 </select>
+                                </td>
+                                </tr> 
                             </td>
                         </tr>
                     </table>

@@ -76,7 +76,7 @@ namespace FILESMGMT.Migrations.FileDB
 
                     b.HasKey("FileId");
 
-                    b.ToTable("File");
+                    b.ToTable("File", (string)null);
                 });
 #pragma warning restore 612, 618
         }

@@ -14,7 +14,13 @@ namespace FILESMGMT.Controllers
         {
             return View();
         }
-
+        public enum File_type
+        {
+            Miscellaneous=0, 
+            Approval=1, 
+            Warranty=2, 
+            AMC=3
+        }
         public IActionResult EnterFiles()
         {
             return View();
@@ -55,6 +61,11 @@ namespace FILESMGMT.Controllers
         //    return "Contract number = " + c.ContractNumber;
         //}
 
+        public enum  CType
+        {
+            Local =0, 
+            Centralised = 1
+        }
         public IActionResult ContractDetails()
         {
                 return View();
@@ -144,8 +155,6 @@ namespace FILESMGMT.Controllers
         private readonly FileDBContext fileDB;
         private readonly LocationDBContext locationDB;
 
-
-
         //private readonly FileDBContext FileDB;
 
         public UserController(VendorDBContext vendorDB, ContractDBContext contractDB, FileDBContext fileDB, LocationDBContext locationDB)
@@ -173,6 +182,18 @@ namespace FILESMGMT.Controllers
                 Vendors = vendorDB.Vendors.ToList(), // Assuming you have a database context 'db'
                 Contracts = contractDB.Contracts.ToList(),
                 Files = fileDB.File.ToList(),
+            };
+
+            return View(model);
+        }
+
+        public async Task<IActionResult> Details(string vendorName, string vendorAddress, string contractNo) //if we've clicked on the second vendor's name, then that vendor's name will be passed here
+        {
+            var model = new CombinedModel
+            {
+                Vendors = await vendorDB.Vendors.Where(x => x.VendorName == vendorName && x.VendorAddress == vendorAddress).ToListAsync(),  //x-> refers to the concerned model
+                Contracts = await contractDB.Contracts.Where(x => x.ContractNumber == contractNo).ToListAsync(),
+                Files = await fileDB.File.ToListAsync(),
             };
 
             return View(model);

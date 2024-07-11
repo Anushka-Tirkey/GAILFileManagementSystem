@@ -196,9 +196,15 @@
                         <tr>
                             <th>File Type</th>
                             <td>
-                                <select asp-for="File_type" class="form-control" asp-items="Html.GetEnumSelectList<File_type>()">
-                                    <option value="--select--">--select--</option>
-                                </select>
+                                @Html.DropDownList(
+                                         "FileType",
+                                         Html.GetEnumSelectList<File_type>(),
+                                         "--SELECT--",
+                                         new { @class = "form-control" }
+                                )
+                                 @* <select asp-for="File_type" class="form-control" asp-items="Html.GetEnumSelectList<File_type>()">
+                                     <option value="--select--">--select--</option>
+                                 </select> *@
                             </td>
                         </tr>
                         <tr>

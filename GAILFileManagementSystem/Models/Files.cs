@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Linq;
 
 namespace FILESMGMT.Models
 {
@@ -8,7 +9,9 @@ namespace FILESMGMT.Models
     {
         [Key]
         public int FileId { get; set; }
-        public string FileName { get; set; }
+
+        //public string FileName { get; set; }
+        public string FileName => $"{File_type} - {Open_Date} - {Vendor_name} - {Contract_No} - {FileId}";
 
         [Column("File Type", TypeName = "varchar(20)")]
         public File_type File_type { get; set; }
@@ -24,7 +27,7 @@ namespace FILESMGMT.Models
 
         [Required(ErrorMessage = "Closed Date is required.")]
         public DateTime Closed_Date { get; set; }
-
+        
         [Required(ErrorMessage = "Contract number is required.")]
         public int Contract_No { get; set; }
 
@@ -37,6 +40,7 @@ namespace FILESMGMT.Models
         [Required(ErrorMessage = "Status is required.")]
         [Column("Status", TypeName = "varchar(100)")]
         public string Status { get; set; }
+
     }
 
     public enum File_type
