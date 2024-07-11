@@ -109,6 +109,17 @@ namespace GAILFileManagementSystem.Controllers
             return View(model);
         }
 
+        public ActionResult ApplyFilters()
+        {
+            var model = new CombinedModel
+            {
+                Vendors = vendorDB.Vendors.ToList(), // Assuming you have a database context 'db'
+                Contracts = contractDB.Contracts.ToList(),
+                //Files= FileDB.File.ToList(),
+            };
+
+            return View(model);
+        }
         //public IActionResult Create()
         //{
         //    return View();

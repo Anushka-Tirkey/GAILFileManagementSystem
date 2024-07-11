@@ -188,8 +188,12 @@
         }
         function redirectToGenerateReports() {
             // Replace 'destination.html' with the URL of the webpage you want to redirect to
-            window.location.href = '';
-            // https://localhost:7060/GAILRanchi/User/ApplyFiltersToGenerateReport
+            window.location.href = 'https://localhost:7060/GAILRanchi/User/GenerateReport';
+        }
+
+        function redirectToApplyFilters() {
+            // Replace 'destination.html' with the URL of the webpage you want to redirect to
+            window.location.href = 'https://localhost:7060/GAILRanchi/User/GenerateReport';
         }
     </script>
 </head>
@@ -241,6 +245,12 @@
                     print
                 </span>
                 <br><br>Generate Report
+            </div>
+            <div id="enter" class="generate-report" onclick="redirectToApplyFilters()">
+                <br><span class="material-symbols-outlined">
+                    print
+                </span>
+                <br><br>Apply Filters
             </div>
         </div>
     </div>

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<FILESMGMT.Models.Vendor>
+
+@{
+    ViewData["Title"] = "ApplyFilters";
+}
+
+<h1>ApplyFilters</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.VendorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VendorAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactPerson)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactEmailId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.VendorName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VendorAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactPerson)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactEmailId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.VendorId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.VendorId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.VendorId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+s
