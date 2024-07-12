@@ -6,8 +6,15 @@
 <h1>ApplyFilter</h1>
 
 
-<label>Select Vendor name</label>
 
-<select asp-for="Id" class="form-control" asp-items="@(new SelectList(Model.VendorList,"Value","Text"))">        @* Model.VendorList-> accessing VendorList that exists in the ApplyFilter.cs model *@
-    @* Second parameter -> value, third parameter -> text *@
-</select>
+<table>
+    <tr>
+        <td>Select Vendor name</td>
+        <td>
+            <select asp-for="Id" class="form-control" asp-items="@(new SelectList(Model.VendorList,"Value","Text"))">
+                @* Model.VendorList-> accessing VendorList that exists in the ApplyFilter.cs model *@
+                @* Second parameter -> value, third parameter -> text *@
+            </select>
+        </td>
+    </tr>
+</table>

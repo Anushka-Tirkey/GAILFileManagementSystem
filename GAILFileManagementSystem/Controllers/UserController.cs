@@ -117,7 +117,7 @@ namespace FILESMGMT.Controllers
         //}
        
 
-        public ActionResult ApplyFilters()
+        /*public ActionResult ApplyFilters()
         {
             var model = new CombinedModel
             {
@@ -127,7 +127,7 @@ namespace FILESMGMT.Controllers
             };
 
             return View(model);
-        }
+        }*/
         
         //public async Task<IActionResult> Details (int id)
         //{
@@ -186,13 +186,11 @@ namespace FILESMGMT.Controllers
             return View(model);
         }
 
-        public IActionResult ApplyFilter()
+        public IActionResult ApplyFilters()
         {
             VendorModel VendorModel = new VendorModel();
             VendorModel.VendorList = new List<SelectListItem>();
-
             var data = vendorDB.Vendors.ToList();   //Vendors: from this code in VendorDBContext: public DbSet<Vendor> Vendors { get; set; }
-
             VendorModel.VendorList.Add(new SelectListItem /*first value*/
             {
                 Text = "Select Vendor Name",
@@ -222,6 +220,5 @@ namespace FILESMGMT.Controllers
 
             return View(model);
         }
-
     }
 }
