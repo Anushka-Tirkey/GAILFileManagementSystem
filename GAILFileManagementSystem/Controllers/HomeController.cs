@@ -30,7 +30,7 @@ namespace FILESMGMT.Controllers
         }
         public IActionResult Index()
         {
-            var fileData = fileDB.File.ToList();
+            var fileData = fileDB.Files.ToList();
             return View(fileData);
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

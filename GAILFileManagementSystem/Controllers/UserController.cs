@@ -1,6 +1,7 @@
 ﻿using FILESMGMT.Models; //Files Model is defined in this namespace
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -35,8 +36,8 @@ namespace FILESMGMT.Controllers
             }
 
             return RedirectToAction("Filess");
-
         }
+
         [HttpPost]
         public IActionResult EnterLocation(Location l)
         {
@@ -164,9 +165,14 @@ namespace FILESMGMT.Controllers
             this.fileDB = fileDB;
             this.locationDB = locationDB;
         }
-        public IActionResult Filess()
+
+        //public UserController(FileDBContext fileDB)
+        //{
+        //    this.fileDB = fileDB;
+        //}
+        public IActionResult Filesss()
         {
-            var files = fileDB.File.ToList();
+            var files = fileDB.Files.ToList();
             return View(files);
         }
 
@@ -181,19 +187,19 @@ namespace FILESMGMT.Controllers
             {
                 Vendors = vendorDB.Vendors.ToList(), // Assuming you have a database context 'db'
                 Contracts = contractDB.Contracts.ToList(),
-                Files = fileDB.File.ToList(),
+                Files = fileDB.Files.ToList(),
             };
 
             return View(model);
         }
 
-        public async Task<IActionResult> Details(string vendorName, string vendorAddress, string contractNo) //if we've clicked on the second vendor's name, then that vendor's name will be passed here
+        public IActionResult Details(string vendorName, string vendorAddress, string contractNo, DateTime fopendate, DateTime fclosedate)
         {
             var model = new CombinedModel
             {
-                Vendors = await vendorDB.Vendors.Where(x => x.VendorName == vendorName && x.VendorAddress == vendorAddress).ToListAsync(),  //x-> refers to the concerned model
-                Contracts = await contractDB.Contracts.Where(x => x.ContractNumber == contractNo).ToListAsync(),
-                Files = await fileDB.File.ToListAsync(),
+                Vendors = vendorDB.Vendors.Where(x => x.VendorName == vendorName && x.VendorAddress == vendorAddress).ToList(),
+                Contracts = contractDB.Contracts.Where(x => x.ContractNumber == contractNo).ToList(),
+                Files = fileDB.Files.Where(x => x.Open_Date == fopendate && x.Closed_Date == fclosedate).ToList(),
             };
 
             return View(model);
