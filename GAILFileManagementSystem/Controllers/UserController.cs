@@ -30,24 +30,27 @@ namespace FILESMGMT.Controllers
         public IActionResult EnterFiles(Files f)
         {
             //return "File Type: " + f.File_type + "File Description: "+ f.Description + "File Open Date: "+ f.OpenDate + "File Close Date: "+ f.CloseDate + " Status: "+ f.Status+ " Contract Number : "+ f.Contract_No +" Vendor_NAme: "+ f.Vendor_name + " Vendor Address "+ f.Vendor_address ;
-            if (!ModelState.IsValid)    //if the model binding and validation succeeded, i.e. if the fields confo then it will return.
+            if (ModelState.IsValid)    //if the model binding and validation succeeded, i.e. if the fields confo then it will return.
             {
-                return View(f);
+                fileDB.Files.Add(f);
+                fileDB.SaveChanges();
+                return RedirectToAction("EnterFiles");
             }
-
-            return RedirectToAction("Filesss");
+            return View();
+            
         }
 
         [HttpPost]
         public IActionResult EnterLocation(Location l)
         {
             //return "File Type: " + f.File_type + "File Description: "+ f.Description + "File Open Date: "+ f.OpenDate + "File Close Date: "+ f.CloseDate + " Status: "+ f.Status+ " Contract Number : "+ f.Contract_No +" Vendor_NAme: "+ f.Vendor_name + " Vendor Address "+ f.Vendor_address ;
-            if (!ModelState.IsValid)    //if the model binding and validation succeeded, i.e. if the fields confo then it will return.
+            if (ModelState.IsValid)    //if the model binding and validation succeeded, i.e. if the fields confo then it will return.
             {
-                return View(l);
+                locationDB.Locations.Add(l);
+                locationDB.SaveChanges();
+                return RedirectToAction("Locationss");
             }
-
-            return RedirectToAction("Locationss");
+            return View();
 
         }
 
@@ -149,28 +152,30 @@ namespace FILESMGMT.Controllers
         //Vid #40; displaying data from the database
         private readonly VendorDBContext vendorDB;
         private readonly ContractDBContext contractDB;
-        private readonly FileDBContext fileDB;
+        
         private readonly LocationDBContext locationDB;
+        private readonly FileDBContext fileDB;
 
         //private readonly FileDBContext FileDB;
 
-        public UserController(VendorDBContext vendorDB, ContractDBContext contractDB, FileDBContext fileDB, LocationDBContext locationDB)
+        public UserController(VendorDBContext vendorDB, ContractDBContext contractDB, LocationDBContext locationDB,FileDBContext fileDB)
         {
             this.vendorDB = vendorDB;
             this.contractDB = contractDB;
-            this.fileDB = fileDB;
             this.locationDB = locationDB;
+            this.fileDB = fileDB;
+        }
+        public IActionResult Filesss()
+        {
+            var filesdata = fileDB.Files.ToList();
+            return View(filesdata);
         }
 
         //public UserController(FileDBContext fileDB)
         //{
         //    this.fileDB = fileDB;
         //}
-        public IActionResult Filesss()
-        {
-            var files = fileDB.Files.ToList();
-            return View(files);
-        }
+
 
         public IActionResult Locationss()
         {

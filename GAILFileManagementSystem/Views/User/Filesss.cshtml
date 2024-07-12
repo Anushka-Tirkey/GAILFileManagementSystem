@@ -4,7 +4,7 @@
     ViewData["Title"] = "Filesss";
 }
 
-<h1>Generate Report</h1>
+<h1>Filesss</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -12,12 +12,6 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FileId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FileName)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.File_type)
             </th>
@@ -48,12 +42,6 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FileId)
-                </td>
-             <td>
-                @Html.DisplayFor(modelItem => item.FileName)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.File_type)
             </td>

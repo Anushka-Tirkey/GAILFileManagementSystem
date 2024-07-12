@@ -19,19 +19,20 @@ namespace FILESMGMT.Models
         [Column("Description", TypeName = "varchar(100)")]
         [Required(ErrorMessage = "File description is required.")]
         public string Description { get; set; }
-
+        [Column("Open_Date", TypeName = "varchar(100)")]
         [Required(ErrorMessage = "Open Date is required.")]
         public DateTime Open_Date { get; set; }
-
+        [Column("Closed_Date", TypeName = "varchar(100)")]
         [Required(ErrorMessage = "Closed Date is required.")]
         public DateTime Closed_Date { get; set; }
-
+        [Column("Contract_No", TypeName = "int")]
         [Required(ErrorMessage = "Contract number is required.")]
         public int Contract_No { get; set; }
-
+        [Column("Vendor_name", TypeName = "varchar(100)")]
         [StringLength(15, MinimumLength = 3, ErrorMessage = "Vendor name must be between 3 and 15 characters.")]
         public string Vendor_name { get; set; }
-
+        [Column("Vendor_address", TypeName = "varchar(100)")]
+        [Required]
         public string Vendor_address { get; set; }
 
         [Required(ErrorMessage = "Status is required.")]
