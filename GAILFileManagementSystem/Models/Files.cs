@@ -10,7 +10,8 @@ namespace FILESMGMT.Models
         public int FileId { get; set; }
 
         [NotMapped]
-        public string FileName => $"{File_type.ToString().Substring(0, 3)} - {Open_Date:yyyy-MM-dd} - {Vendor_name} - {Contract_No} - {FileId}";
+        public string FileName => $"{File_type.ToString().Substring(0, 3)}/{Open_Date:yyyy-MM-dd}/{Vendor_name}/{Contract_No}";
+        //public string FileName => $"{File_type.ToString().Substring(0, 3)}/{Open_Date:yyyy-MM-dd}/{Vendor_name}/{Contract_No}/{FileId}";
 
         [Column("File Type", TypeName = "varchar(20)")]
         public File_type File_type { get; set; }

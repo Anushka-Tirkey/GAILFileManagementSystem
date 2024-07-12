@@ -35,7 +35,7 @@ namespace FILESMGMT.Controllers
                 return View(f);
             }
 
-            return RedirectToAction("Filess");
+            return RedirectToAction("Filesss");
         }
 
         [HttpPost]
@@ -133,11 +133,7 @@ namespace FILESMGMT.Controllers
 
             return View(model);
         }
-        //public IActionResult Create()
-        //{
-        //    return View();
-        //}
-
+        
         //public async Task<IActionResult> Details (int id)
         //{
         //    if(id == 0 || id==null || vendorDB.Vendors == null)
