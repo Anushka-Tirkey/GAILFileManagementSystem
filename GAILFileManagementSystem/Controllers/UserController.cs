@@ -1,7 +1,10 @@
 ﻿using FILESMGMT.Models; //Files Model is defined in this namespace
+using GAILFileManagementSystem.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -53,17 +56,6 @@ namespace FILESMGMT.Controllers
             return View();
 
         }
-
-        //public IActionResult Demo()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public string Demo(Contract c)   
-        //{
-        //    return "Contract number = " + c.ContractNumber;
-        //}
 
         public enum  CType
         {
@@ -157,7 +149,7 @@ namespace FILESMGMT.Controllers
         private readonly FileDBContext fileDB;
 
         //private readonly FileDBContext FileDB;
-
+        //CONSTRUCTOR
         public UserController(VendorDBContext vendorDB, ContractDBContext contractDB, LocationDBContext locationDB,FileDBContext fileDB)
         {
             this.vendorDB = vendorDB;
@@ -193,6 +185,31 @@ namespace FILESMGMT.Controllers
 
             return View(model);
         }
+
+        public IActionResult ApplyFilter()
+        {
+            VendorModel VendorModel = new VendorModel();
+            VendorModel.VendorList = new List<SelectListItem>();
+
+            var data = vendorDB.Vendors.ToList();   //Vendors: from this code in VendorDBContext: public DbSet<Vendor> Vendors { get; set; }
+
+            VendorModel.VendorList.Add(new SelectListItem /*first value*/
+            {
+                Text = "Select Vendor Name",
+                Value = ""
+            });
+
+            foreach (var item in data)  /*The rest of the values*/
+            {
+                VendorModel.VendorList.Add(new SelectListItem
+                {
+                    Text = item.VendorName,
+                    Value = item.VendorId.ToString()
+                });
+            }
+            return View(VendorModel);
+        }
+
 
         public IActionResult Details(string vendorName, string vendorAddress, string contractNo, DateTime fopendate, DateTime fclosedate)
         {

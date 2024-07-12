@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using GAILFileManagementSystem.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,8 @@ var provider = builder.Services.BuildServiceProvider();
 var config = provider.GetRequiredService<IConfiguration>();
 
 // Add the DbContext with the connection string from the configuration
+//builder.Services.AddDbContext<myDbContext>(options =>
+//    options.UseSqlServer(config.GetConnectionString("dbcs")));
 builder.Services.AddDbContext<VendorDBContext>(options =>
     options.UseSqlServer(config.GetConnectionString("dbcs")));
 builder.Services.AddDbContext<FileDBContext>(options =>
