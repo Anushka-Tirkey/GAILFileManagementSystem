@@ -186,7 +186,7 @@ namespace FILESMGMT.Controllers
             return View(model);
         }
 
-        public IActionResult ApplyFilters()
+        public IActionResult ApplyFilter()
         {
             VendorModel VendorModel = new VendorModel();
             VendorModel.VendorList = new List<SelectListItem>();
