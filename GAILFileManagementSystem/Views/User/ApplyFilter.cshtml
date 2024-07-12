@@ -1,4 +1,4 @@
-﻿@model GAILFileManagementSystem.Models.VendorModel
+﻿@* @model GAILFileManagementSystem.Models.VendorModel
 @{
     ViewData["Title"] = "ApplyFilter";
 }
@@ -13,6 +13,35 @@
         <td>
             <select asp-for="Id" class="form-control" asp-items="@(new SelectList(Model.VendorList,"Value","Text"))">
                 @* Model.VendorList-> accessing VendorList that exists in the ApplyFilter.cs model *@
+                @* Second parameter -> value, third parameter -> text *@
+            @*</select>
+        </td>
+    </tr>
+</table>
+ *@
+
+ @model GAILFileManagementSystem.Models.VendorModel
+@{
+    ViewData["Title"] = "ApplyFilter";
+}
+
+<h1>ApplyFilter</h1>
+
+<table>
+    <tr>
+        <td>Select Vendor name</td>
+        <td>
+            <select asp-for="SelectedVendorName" class="form-control" asp-items="@(new SelectList(Model.VendorNameList, "Value", "Text"))">
+                @* Model.VendorNameList -> accessing VendorNameList that exists in the ApplyFilter.cs model *@
+                @* Second parameter -> value, third parameter -> text *@
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>Select Vendor address</td>
+        <td>
+            <select asp-for="SelectedVendorAddress" class="form-control" asp-items="@(new SelectList(Model.VendorAddressList, "Value", "Text"))">
+                @* Model.VendorAddressList -> accessing VendorAddressList that exists in the ApplyFilter.cs model *@
                 @* Second parameter -> value, third parameter -> text *@
             </select>
         </td>

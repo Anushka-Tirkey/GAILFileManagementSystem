@@ -186,25 +186,67 @@ namespace FILESMGMT.Controllers
             return View(model);
         }
 
-        public IActionResult ApplyFilter()
+        /*public IActionResult ApplyFilter()
         {
             VendorModel VendorModel = new VendorModel();
             VendorModel.VendorList = new List<SelectListItem>();
             var data = vendorDB.Vendors.ToList();   //Vendors: from this code in VendorDBContext: public DbSet<Vendor> Vendors { get; set; }
             VendorModel.VendorList.Add(new SelectListItem /*first value*/
+        /*{
+            Text = "Select Vendor Name",
+            Value = ""
+        });
+
+        VendorModel.VendorAddressList.Add(new SelectListItem
+        {
+            Text = "Select Vendor Address",
+            Value = ""
+        });
+
+        foreach (var item in data)  /*The rest of the values*/
+        /*{
+            VendorModel.VendorList.Add(new SelectListItem
+            {
+                Text = item.VendorName,
+                Value = item.VendorId.ToString()
+            });
+        }
+        return View(VendorModel);
+    }*/
+
+        public IActionResult ApplyFilter()
+        {
+            VendorModel VendorModel = new VendorModel();
+
+            var data = vendorDB.Vendors.ToList(); // Vendors: from this code in VendorDBContext: public DbSet<Vendor> Vendors { get; set; }
+
+            VendorModel.VendorNameList.Add(new SelectListItem
             {
                 Text = "Select Vendor Name",
                 Value = ""
             });
 
-            foreach (var item in data)  /*The rest of the values*/
+            VendorModel.VendorAddressList.Add(new SelectListItem
             {
-                VendorModel.VendorList.Add(new SelectListItem
+                Text = "Select Vendor Address",
+                Value = ""
+            });
+
+            foreach (var item in data)
+            {
+                VendorModel.VendorNameList.Add(new SelectListItem
                 {
                     Text = item.VendorName,
                     Value = item.VendorId.ToString()
                 });
+
+                VendorModel.VendorAddressList.Add(new SelectListItem
+                {
+                    Text = item.VendorAddress,
+                    Value = item.VendorId.ToString()
+                });
             }
+
             return View(VendorModel);
         }
 
