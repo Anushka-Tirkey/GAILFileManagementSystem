@@ -30,30 +30,43 @@ namespace FILESMGMT.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult EnterFiles(Files f)
+        public async Task<IActionResult> EnterFiles(Files f)
         {
             //return "File Type: " + f.File_type + "File Description: "+ f.Description + "File Open Date: "+ f.OpenDate + "File Close Date: "+ f.CloseDate + " Status: "+ f.Status+ " Contract Number : "+ f.Contract_No +" Vendor_NAme: "+ f.Vendor_name + " Vendor Address "+ f.Vendor_address ;
             if (ModelState.IsValid)    //if the model binding and validation succeeded, i.e. if the fields confo then it will return.
             {
-                fileDB.Files.Add(f);
-                fileDB.SaveChanges();
-                return RedirectToAction("EnterFiles");
+                await fileDB.Files.AddAsync(f);
+                await fileDB.SaveChangesAsync();
+                var addedUser = await fileDB.Files.FindAsync(f.FileId);
+                if (addedUser != null)
+                {
+                    Console.WriteLine("User added successfully!");
+                }
+                else
+                {
+                    Console.WriteLine("User not added.");
+                }
+                return RedirectToAction("Filesss","User");
             }
-            return View();
+            
+            return View(f);
             
         }
-
+        public IActionResult EnterLocation()
+        {
+            return View();
+        }
         [HttpPost]
-        public IActionResult EnterLocation(Location l)
+        public async Task<IActionResult> EnterLocation(Location l)
         {
             //return "File Type: " + f.File_type + "File Description: "+ f.Description + "File Open Date: "+ f.OpenDate + "File Close Date: "+ f.CloseDate + " Status: "+ f.Status+ " Contract Number : "+ f.Contract_No +" Vendor_NAme: "+ f.Vendor_name + " Vendor Address "+ f.Vendor_address ;
             if (ModelState.IsValid)    //if the model binding and validation succeeded, i.e. if the fields confo then it will return.
             {
-                locationDB.Locations.Add(l);
-                locationDB.SaveChanges();
-                return RedirectToAction("Locationss");
+                await locationDB.Locations.AddAsync(l);
+                await locationDB.SaveChangesAsync();
+                return RedirectToAction("EnterLocation","User");
             }
-            return View();
+            return View(l);
 
         }
 
@@ -68,15 +81,18 @@ namespace FILESMGMT.Controllers
         }
 
         [HttpPost]
-        public IActionResult ContractDetails(Contract c)   //Model binder; will be executed before the action method
+        public async Task<IActionResult> ContractDetails(Contract c)   //Model binder; will be executed before the action method
         {
             //model binder also validates the input using Model Validator
-            if (!ModelState.IsValid)    //if the model binding and validation succeeded, i.e. if the fields confothen it will return.
+            if (ModelState.IsValid)    //if the model binding and validation succeeded, i.e. if the fields confothen it will return.
             {
-                return View(c);
+                await contractDB.Contracts.AddAsync(c);
+                await contractDB.SaveChangesAsync();
+                return RedirectToAction("ContractDetails", "User");
+                
             }
 
-            return RedirectToAction("Index");   
+            return View(c);
         }
 
         //Data, GET request se yaha pe aayega jb hm apna application phli baar run krenge
@@ -89,15 +105,16 @@ namespace FILESMGMT.Controllers
         //When the form is submitted, this form., which contains HTTPPost request will be run
         //then its data will be stored in the object 'v' of this VendorDetails function
         [HttpPost]
-        public IActionResult VendorDetails(Vendor v) //an object 'v' of the Vendor model class Contract
+        public async Task<IActionResult> VendorDetails(Vendor v) //an object 'v' of the Vendor model class Contract
         {   //POST
-            if (!ModelState.IsValid)    //indicates whether the model binding and validation succeeded.
+            if (ModelState.IsValid)    //indicates whether the model binding and validation succeeded.
             {
-                return View(v);
+                await vendorDB.Vendors.AddAsync(v);
+                await vendorDB.SaveChangesAsync();
+                return RedirectToAction("VendorDetails", "User");
+                
             }
-
-            // Process the valid model
-            return RedirectToAction("Index");
+            return View(v);
             //return View();
             // Model validation is applied on the properties mentioned above through attributes
         }

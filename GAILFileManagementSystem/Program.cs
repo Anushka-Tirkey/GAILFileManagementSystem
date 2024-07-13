@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using GAILFileManagementSystem.Models;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +23,8 @@ var config = provider.GetRequiredService<IConfiguration>();
 builder.Services.AddDbContext<VendorDBContext>(options =>
     options.UseSqlServer(config.GetConnectionString("dbcs")));
 builder.Services.AddDbContext<FileDBContext>(options =>
-    options.UseSqlServer(config.GetConnectionString("dbcs")));
+    options.UseSqlServer(config.GetConnectionString("dbcs")).EnableSensitiveDataLogging()
+               .LogTo(Console.WriteLine));
 builder.Services.AddDbContext<ContractDBContext>(options =>
     options.UseSqlServer(config.GetConnectionString("dbcs")));
 builder.Services.AddDbContext<LocationDBContext>(options =>

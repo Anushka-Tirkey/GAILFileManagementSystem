@@ -1,4 +1,8 @@
-﻿namespace FILESMGMT.Models
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace FILESMGMT.Models
 {
     public class Location
     {
