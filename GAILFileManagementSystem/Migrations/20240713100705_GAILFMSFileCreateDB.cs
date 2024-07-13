@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -14,10 +15,11 @@ namespace GAILFileManagementSystem.Migrations
                 {
                     FileId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    FileName = table.Column<string>(type: "varchar(255)", nullable: true),
                     FileType = table.Column<string>(name: "File Type", type: "varchar(20)", nullable: false),
                     Description = table.Column<string>(type: "varchar(100)", nullable: false),
-                    Open_Date = table.Column<string>(type: "varchar(100)", nullable: false),
-                    Closed_Date = table.Column<string>(type: "varchar(100)", nullable: false),
+                    Open_Date = table.Column<DateTime>(type: "datetime", nullable: false),
+                    Closed_Date = table.Column<DateTime>(type: "datetime", nullable: false),
                     Contract_No = table.Column<int>(type: "int", nullable: false),
                     Vendor_name = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: true),
                     Vendor_address = table.Column<string>(type: "varchar(100)", nullable: false),

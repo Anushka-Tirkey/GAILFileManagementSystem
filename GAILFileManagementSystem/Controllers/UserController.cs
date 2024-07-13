@@ -39,15 +39,6 @@ namespace FILESMGMT.Controllers
             {
                 await fileDB.Files.AddAsync(f);
                 await fileDB.SaveChangesAsync();
-                var addedUser = await fileDB.Files.FindAsync(f.FileId);
-                if (addedUser != null)
-                {
-                    Console.WriteLine("User added successfully!");
-                }
-                else
-                {
-                    Console.WriteLine("User not added.");
-                }
                 return RedirectToAction("EnterFiles","User");
             }
             
@@ -91,21 +82,14 @@ namespace FILESMGMT.Controllers
                 await contractDB.Contracts.AddAsync(c);
                 await contractDB.SaveChangesAsync();
                 return RedirectToAction("ContractDetails", "User");
-                
             }
-
             return View(c);
         }
-
-        //Data, GET request se yaha pe aayega jb hm apna application phli baar run krenge
         public IActionResult VendorDetails()    //GET
         {
             var stdData = vendorDB.Vendors.ToList();
             return View();
         }
-
-        //When the form is submitted, this form., which contains HTTPPost request will be run
-        //then its data will be stored in the object 'v' of this VendorDetails function
         [HttpPost]
         public async Task<IActionResult> VendorDetails(Vendor v) //an object 'v' of the Vendor model class Contract
         {   //POST
@@ -117,59 +101,18 @@ namespace FILESMGMT.Controllers
                 
             }
             return View(v);
-            //return View();
-            // Model validation is applied on the properties mentioned above through attributes
+
         }
-
-        //public IActionResult GenerateReport()
-        //{
-        //    var vendorData = vendorDB.Vendors.ToList();
-        //    var contractData = contractDB.Contracts.ToList();  
-        //    return View(vendorData);
-        //}
-
-        //public IActionResult GenerateReport2()
-        //{
-        //    var vendorData = vendorDB.Vendors.ToList();
-        //    var contractData = contractDB.Contracts.ToList();
-        //    return View(contractData);
-        //}
-       
-
-        /*public ActionResult ApplyFilters()
-        {
-            var model = new CombinedModel
-            {
-                Vendors = vendorDB.Vendors.ToList(), // Assuming you have a database context 'db'
-                Contracts = contractDB.Contracts.ToList(),
-                //Files= FileDB.File.ToList(),
-            };
-
-            return View(model);
-        }*/
-        
-        //public async Task<IActionResult> Details (int id)
-        //{
-        //    if(id == 0 || id==null || vendorDB.Vendors == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    var comdata = await vendorDB.Vendors.FirstOrDefaultAsync(x => x.VendorId == id);
-        //    if(comdata == null)
-        //        return NotFound();
-        //    return View(comdata);
-        //}
 
         //Vid #40; displaying data from the database
         private readonly VendorDBContext vendorDB;
         private readonly ContractDBContext contractDB;
-        
         private readonly LocationDBContext locationDB;
         private readonly FileDBContext fileDB;
 
         //private readonly FileDBContext FileDB;
         //CONSTRUCTOR
-        public UserController(VendorDBContext vendorDB, ContractDBContext contractDB, LocationDBContext locationDB,FileDBContext fileDB)
+        public UserController(VendorDBContext vendorDB, ContractDBContext contractDB, LocationDBContext locationDB, FileDBContext fileDB)
         {
             this.vendorDB = vendorDB;
             this.contractDB = contractDB;
@@ -186,13 +129,6 @@ namespace FILESMGMT.Controllers
         //{
         //    this.fileDB = fileDB;
         //}
-
-
-        public IActionResult Locationss()
-        {
-            var locations = locationDB.Locations.ToList();
-            return View(locations);
-        }
         public ActionResult GenerateReport()
         {
             var model = new CombinedModel
@@ -205,33 +141,73 @@ namespace FILESMGMT.Controllers
             return View(model);
         }
 
+
+        //public IActionResult GenerateReport()
+        //{
+        //    var vendorData = vendorDB.Vendors.ToList();
+        //    var contractData = contractDB.Contracts.ToList();  
+        //    return View(vendorData);
+        //}
+
+        //public IActionResult GenerateReport2()
+        //{
+        //    var vendorData = vendorDB.Vendors.ToList();
+        //    var contractData = contractDB.Contracts.ToList();
+        //    return View(contractData);
+        //}
+
+
+        /*public ActionResult ApplyFilters()
+        {
+            var model = new CombinedModel
+            {
+                Vendors = vendorDB.Vendors.ToList(), // Assuming you have a database context 'db'
+                Contracts = contractDB.Contracts.ToList(),
+                //Files= FileDB.File.ToList(),
+            };
+
+            return View(model);
+        }*/
+
+        //public async Task<IActionResult> Details (int id)
+        //{
+        //    if(id == 0 || id==null || vendorDB.Vendors == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    var comdata = await vendorDB.Vendors.FirstOrDefaultAsync(x => x.VendorId == id);
+        //    if(comdata == null)
+        //        return NotFound();
+        //    return View(comdata);
+        //}
+
         /*public IActionResult ApplyFilter()
         {
             VendorModel VendorModel = new VendorModel();
             VendorModel.VendorList = new List<SelectListItem>();
             var data = vendorDB.Vendors.ToList();   //Vendors: from this code in VendorDBContext: public DbSet<Vendor> Vendors { get; set; }
             VendorModel.VendorList.Add(new SelectListItem /*first value*/
-            /*{
-                Text = "Select Vendor Name",
-                Value = ""
-            });
+        /*{
+            Text = "Select Vendor Name",
+            Value = ""
+        });
 
-            VendorModel.VendorAddressList.Add(new SelectListItem
+        VendorModel.VendorAddressList.Add(new SelectListItem
+        {
+            Text = "Select Vendor Address",
+            Value = ""
+        });
+
+        foreach (var item in data)  /*The rest of the values*/
+        /*{
+            VendorModel.VendorList.Add(new SelectListItem
             {
-                Text = "Select Vendor Address",
-                Value = ""
+                Text = item.VendorName,
+                Value = item.VendorId.ToString()
             });
-
-            foreach (var item in data)  /*The rest of the values*/
-            /*{
-                VendorModel.VendorList.Add(new SelectListItem
-                {
-                    Text = item.VendorName,
-                    Value = item.VendorId.ToString()
-                });
-            }
-            return View(VendorModel);
-        }*/
+        }
+        return View(VendorModel);
+    }*/
 
         public IActionResult ApplyFilter()
         {

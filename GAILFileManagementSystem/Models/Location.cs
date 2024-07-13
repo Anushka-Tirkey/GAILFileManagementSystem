@@ -6,6 +6,8 @@ namespace FILESMGMT.Models
 {
     public class Location
     {
+        [Key]
+        public int LId { get; set; }
         public int LocationId { get; set; }
 
         public string LocationName { get; set; } = string.Empty;

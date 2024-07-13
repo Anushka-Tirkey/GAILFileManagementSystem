@@ -5,7 +5,7 @@ namespace FILESMGMT.Models
 {
     public class LocationDBContext : DbContext
     {
-        public LocationDBContext(DbContextOptions options) : base(options)
+        public LocationDBContext(DbContextOptions<LocationDBContext> options) : base(options)
         {
 
         }

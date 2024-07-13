@@ -8,30 +8,33 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace FILESMGMT.Migrations.LocationDB
+namespace GAILFileManagementSystem.Migrations.LocationDB
 {
     [DbContext(typeof(LocationDBContext))]
-    [Migration("20240711055448_LocationDB")]
-    partial class LocationDB
+    [Migration("20240713101113_GAILFMSLocationCreateDB")]
+    partial class GAILFMSLocationCreateDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.21")
+                .HasAnnotation("ProductVersion", "6.0.32")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("GAILFileManagementSystem.Models.Location", b =>
+            modelBuilder.Entity("FILESMGMT.Models.Location", b =>
                 {
-                    b.Property<int>("LocationId")
+                    b.Property<int>("LId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LocationId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LId"), 1L, 1);
 
                     b.Property<int>("GSTN_No")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LocationId")
                         .HasColumnType("int");
 
                     b.Property<string>("LocationName")
@@ -43,7 +46,7 @@ namespace FILESMGMT.Migrations.LocationDB
                     b.Property<string>("SubLocationName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("LocationId");
+                    b.HasKey("LId");
 
                     b.ToTable("Locations");
                 });

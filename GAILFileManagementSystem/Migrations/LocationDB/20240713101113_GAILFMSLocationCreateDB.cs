@@ -2,9 +2,9 @@
 
 #nullable disable
 
-namespace FILESMGMT.Migrations.LocationDB
+namespace GAILFileManagementSystem.Migrations.LocationDB
 {
-    public partial class LocationDB : Migration
+    public partial class GAILFMSLocationCreateDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,8 +12,9 @@ namespace FILESMGMT.Migrations.LocationDB
                 name: "Locations",
                 columns: table => new
                 {
-                    LocationId = table.Column<int>(type: "int", nullable: false)
+                    LId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    LocationId = table.Column<int>(type: "int", nullable: false),
                     LocationName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SubLocationID = table.Column<int>(type: "int", nullable: false),
                     SubLocationName = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -21,7 +22,7 @@ namespace FILESMGMT.Migrations.LocationDB
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Locations", x => x.LocationId);
+                    table.PrimaryKey("PK_Locations", x => x.LId);
                 });
         }
 

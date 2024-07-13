@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace FILESMGMT.Migrations.LocationDB
+namespace GAILFileManagementSystem.Migrations.LocationDB
 {
     [DbContext(typeof(LocationDBContext))]
     partial class LocationDBContextModelSnapshot : ModelSnapshot
@@ -23,13 +23,16 @@ namespace FILESMGMT.Migrations.LocationDB
 
             modelBuilder.Entity("FILESMGMT.Models.Location", b =>
                 {
-                    b.Property<int>("LocationId")
+                    b.Property<int>("LId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LocationId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LId"), 1L, 1);
 
                     b.Property<int>("GSTN_No")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LocationId")
                         .HasColumnType("int");
 
                     b.Property<string>("LocationName")
@@ -41,7 +44,7 @@ namespace FILESMGMT.Migrations.LocationDB
                     b.Property<string>("SubLocationName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("LocationId");
+                    b.HasKey("LId");
 
                     b.ToTable("Locations");
                 });

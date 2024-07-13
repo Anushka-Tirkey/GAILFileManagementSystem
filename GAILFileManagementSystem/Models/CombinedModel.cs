@@ -9,5 +9,7 @@ namespace FILESMGMT.Models
         public IEnumerable<FILESMGMT.Models.Contract> Contracts { get; set; }
         public IEnumerable<FILESMGMT.Models.Files> Files{ get; set; }
 
+        public IEnumerable<FILESMGMT.Models.Location> Locations { get; set; }
+
     }
 }

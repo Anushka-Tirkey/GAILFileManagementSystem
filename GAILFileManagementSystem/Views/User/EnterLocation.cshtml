@@ -1,4 +1,4 @@
-﻿@using FILESMGMT.Models
+﻿@using static FILESMGMT.Models.Location;
 @model FILESMGMT.Models.Location;
 
 @{
@@ -7,6 +7,9 @@
 
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
     <style>
         body {
             margin: 0px;
@@ -195,8 +198,8 @@
         </div>
         <fieldset>
             <legend>Location-Details</legend>
-            <div class="Location-details">
-                <form asp-controller="User" asp-action="LocationDetails" method="post">
+            <div class="location-details">
+                <form asp-controller="User" asp-action="EnterLocation" method="post">
                     <table class="table-form">
                         <tr>
                             <th>Location ID</th>

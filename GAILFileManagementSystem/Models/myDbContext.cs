@@ -9,6 +9,7 @@ namespace GAILFileManagementSystem.Models
         {
 
         }
+        public DbSet<Files> Files { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<Vendor> Vendors { get; set; }
         public DbSet<Contract> Contracts { get; set; }
