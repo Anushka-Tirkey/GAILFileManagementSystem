@@ -181,35 +181,9 @@ namespace FILESMGMT.Controllers
         //    return View(comdata);
         //}
 
-        /*public IActionResult ApplyFilter()
-        {
-            VendorModel VendorModel = new VendorModel();
-            VendorModel.VendorList = new List<SelectListItem>();
-            var data = vendorDB.Vendors.ToList();   //Vendors: from this code in VendorDBContext: public DbSet<Vendor> Vendors { get; set; }
-            VendorModel.VendorList.Add(new SelectListItem /*first value*/
-        /*{
-            Text = "Select Vendor Name",
-            Value = ""
-        });
 
-        VendorModel.VendorAddressList.Add(new SelectListItem
-        {
-            Text = "Select Vendor Address",
-            Value = ""
-        });
 
-        foreach (var item in data)  /*The rest of the values*/
-        /*{
-            VendorModel.VendorList.Add(new SelectListItem
-            {
-                Text = item.VendorName,
-                Value = item.VendorId.ToString()
-            });
-        }
-        return View(VendorModel);
-    }*/
-
-        public IActionResult ApplyFilter()
+        private VendorModel BindDDL()
         {
             VendorModel VendorModel = new VendorModel();
 
@@ -237,7 +211,7 @@ namespace FILESMGMT.Controllers
             {
                 Text = "--Select Contract Type--",
                 Value = ""
-            }); 
+            });
             VendorModel.ContractSubjectList.Add(new SelectListItem
             {
                 Text = "--Select Contract Subject--",
@@ -271,7 +245,7 @@ namespace FILESMGMT.Controllers
 
             //POPULATE THE DROPDOWN LISTS"
             //Populate For Vendors
-            foreach (var item in data)  
+            foreach (var item in data)
             {
                 VendorModel.VendorNameList.Add(new SelectListItem   //Vendor Names
                 {
@@ -295,7 +269,7 @@ namespace FILESMGMT.Controllers
                 {
                     Text = subject.ContractType.ToString(),
                     Value = subject.sno.ToString()
-                }); 
+                });
                 VendorModel.ContractSubjectList.Add(new SelectListItem
                 {
                     Text = subject.ContractSubject,
@@ -330,7 +304,25 @@ namespace FILESMGMT.Controllers
                     Value = fthing.FileId.ToString()
                 });
             }
-            return View(VendorModel);
+            return VendorModel;
+        }
+
+        public IActionResult ApplyFilter()
+        {
+            var det = BindDDL();
+            return View(det);
+        }
+
+        [HttpPost]
+        public IActionResult ApplyFilter(VendorModel v)
+        {
+            var vdetails = vendorDB.Vendors.Where(x=> x.VendorId == v.Id).FirstOrDefault();
+            if (vdetails != null)
+            {
+                ViewBag.SelectedVendorName = vdetails.VendorName;
+            }
+            var det = BindDDL();
+            return View(det);
         }
 
         public IActionResult Details(string vendorName, string vendorAddress, string contractNo, DateTime fopendate, DateTime fclosedate)

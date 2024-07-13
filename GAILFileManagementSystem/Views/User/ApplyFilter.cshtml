@@ -5,6 +5,7 @@
 
 <h1>ApplyFilter</h1>
 
+<form asp-controller="User" asp-action="ApplyFilter">
 <table>
     <tr>
         <td><h4>Apply filters for Vendors</h4></td>
@@ -89,4 +90,18 @@
              </select>
         </td>
     </tr>
+    <tr>
+        <td>
+            <input type="submit" value="Submit" class="btn btn-success" />
+        </td>
+    </tr>
 </table>
+</form>
+
+<br />
+@{
+    if(ViewBag.selectedVendorName != null)
+    {
+        <h2> Select Vendor name: @ViewBag.selectedVendorName</h2>
+    }
+}
