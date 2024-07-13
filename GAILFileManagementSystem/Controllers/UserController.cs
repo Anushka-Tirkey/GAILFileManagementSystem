@@ -215,52 +215,59 @@ namespace FILESMGMT.Controllers
 
             var data = vendorDB.Vendors.ToList(); // Vendors: from this code in VendorDBContext: public DbSet<Vendor> Vendors { get; set; }
             var contractData = contractDB.Contracts.ToList();
-            //var fileData = fileDB.Files.ToList();
+            var fileData = fileDB.Files.ToList();
 
             //THE FIRST/DEFAULT TEXT TO BE DISPLAYED IN DROPDOWNS
             VendorModel.VendorNameList.Add(new SelectListItem
             {
-                Text = "Select Vendor Name",
+                Text = "--Select Vendor Name--",
                 Value = ""
             });
             VendorModel.VendorAddressList.Add(new SelectListItem
             {
-                Text = "Select Vendor Address",
+                Text = "--Select Vendor Address--",
                 Value = ""
             });
+            VendorModel.ContactPersonList.Add(new SelectListItem
+            {
+                Text = "--Select Contact Person--",
+                Value = ""
+            });
+            VendorModel.ContractTypeList.Add(new SelectListItem
+            {
+                Text = "--Select Contract Type--",
+                Value = ""
+            }); 
             VendorModel.ContractSubjectList.Add(new SelectListItem
             {
-                Text = "Select Contract Subject",
+                Text = "--Select Contract Subject--",
                 Value = ""
             });
             VendorModel.ContractStartDateList.Add(new SelectListItem
             {
-                Text = "Select Contact Start Date",
+                Text = "--Select Contact Start Date--",
                 Value = ""
             });
             VendorModel.ContractEndDateList.Add(new SelectListItem
             {
-                Text = "Select Contact End Date",
+                Text = "--Select Contact End Date--",
                 Value = ""
             });
-            //VendorModel.FileTypeList.Add(new SelectListItem
-            //{
-            //    Text = "Select Contract End Date",
-            //    Value = ""
-            //});
-
-            //VendorModel.FileOpenDateList.Add(new SelectListItem
-            //{
-            //    Text = "Select File Open Date",
-            //    Value = ""
-            //});
-            //VendorModel.FileCloseDateList.Add(new SelectListItem
-            //{
-            //    Text = "Select File Close Date",
-            //    Value = ""
-            //});
-
-
+            VendorModel.FileTypeList.Add(new SelectListItem
+            {
+                Text = "--Select File Type--",
+                Value = ""
+            });
+            VendorModel.FileOpenDateList.Add(new SelectListItem
+            {
+                Text = "Select File Open Date",
+                Value = ""
+            });
+            VendorModel.FileCloseDateList.Add(new SelectListItem
+            {
+                Text = "Select File Close Date",
+                Value = ""
+            });
 
             //POPULATE THE DROPDOWN LISTS"
             //Populate For Vendors
@@ -276,9 +283,19 @@ namespace FILESMGMT.Controllers
                     Text = item.VendorAddress,
                     Value = item.VendorId.ToString()
                 });
+                VendorModel.ContactPersonList.Add(new SelectListItem    //Vendr Addresses
+                {
+                    Text = item.ContactPerson,
+                    Value = item.VendorId.ToString()
+                });
             }
             foreach (var subject in contractData)
             {
+                VendorModel.ContractTypeList.Add(new SelectListItem
+                {
+                    Text = subject.ContractType.ToString(),
+                    Value = subject.sno.ToString()
+                }); 
                 VendorModel.ContractSubjectList.Add(new SelectListItem
                 {
                     Text = subject.ContractSubject,
@@ -295,9 +312,24 @@ namespace FILESMGMT.Controllers
                     Value = subject.sno.ToString()
                 });
             }
-
-
-
+            foreach (var fthing in fileData)
+            {
+                VendorModel.FileTypeList.Add(new SelectListItem
+                {
+                    Text = fthing.File_type.ToString(), // Convert DateTime to string\r\n 
+                    Value = fthing.FileId.ToString()
+                });
+                VendorModel.FileCloseDateList.Add(new SelectListItem
+                {
+                    Text = fthing.Open_Date.ToString("yyyy-MM-dd"), // Convert DateTime to string\r\n 
+                    Value = fthing.FileId.ToString()
+                });
+                VendorModel.FileCloseDateList.Add(new SelectListItem
+                {
+                    Text = fthing.Closed_Date.ToString("yyyy-MM-dd"), // Convert DateTime to string\r\n 
+                    Value = fthing.FileId.ToString()
+                });
+            }
             return View(VendorModel);
         }
 

@@ -7,43 +7,57 @@
 
 <table>
     <tr>
-        <td>Select Vendor name</td>
+        <td><h4>Apply filters for Vendors</h4></td>
+    </tr>
+    <tr>
+        <td>Select Vendor Name:</td>
         <td>
             <select asp-for="SelectedVendorName" class="form-control" asp-items="@(new SelectList(Model.VendorNameList, "Value", "Text"))">
                 @* Model.VendorNameList -> accessing VendorNameList that exists in the ApplyFilter.cs model *@
                 @* Second parameter -> value, third parameter -> text *@
             </select>
         </td>
-    </tr>
-    <tr>
-        <td>Select Vendor address</td>
+        <td>Select Vendor Address</td>
         <td>
             <select asp-for="SelectedVendorAddress" class="form-control" asp-items="@(new SelectList(Model.VendorAddressList, "Value", "Text"))">
                 @* Model.VendorAddressList -> accessing VendorAddressList that exists in the ApplyFilter.cs model *@
                 @* Second parameter -> value, third parameter -> text *@
             </select>
         </td>
+        <td>Select Contact Person</td>
+        <td>
+            <select asp-for="SelectedContactPerson" class="form-control" asp-items="@(new SelectList(Model.ContactPersonList, "Value", "Text"))">
+                @* Model.VendorAddressList -> accessing VendorAddressList that exists in the ApplyFilter.cs model *@
+                @* Second parameter -> value, third parameter -> text *@
+            </select>
+        </td>
     </tr>
     <tr>
-        <td>Select Contract Subject</td>
+        <td><h4>Apply filters for Contracts</h4></td>
+    </tr>
+    <tr>
+        <td>Select Contract Type:</td>
+        <td>
+            <select asp-for="SelectedContractType" class="form-control" asp-items="@(new SelectList(Model.ContractTypeList, "Value", "Text"))">
+                @* Model.VendorAddressList -> accessing VendorAddressList that exists in the ApplyFilter.cs model *@
+                @* Second parameter -> value, third parameter -> text *@
+            </select>
+        </td>
+        <td>Select Contract Subject:</td>
         <td>
             <select asp-for="SelectedContractSubject " class="form-control" asp-items="@(new SelectList(Model.ContractSubjectList, "Value", "Text"))">
                 @* Model.VendorAddressList -> accessing VendorAddressList that exists in the ApplyFilter.cs model *@
                 @* Second parameter -> value, third parameter -> text *@
             </select>
         </td>
-    </tr>
-    <tr>
-        <td>Select Contract Start Date</td>
+    <td>Select Contract Start Date:</td>
         <td>
             <select asp-for="SelectedContractStartDate" class="form-control" asp-items="@(new SelectList(Model.ContractStartDateList, "Value", "Text"))">
                 @* Model.VendorAddressList -> accessing VendorAddressList that exists in the ApplyFilter.cs model *@
                 @* Second parameter -> value, third parameter -> text *@
             </select>
         </td>
-    </tr>
-    <tr>
-        <td>Select Contract End Date</td>
+        <td>Select Contract End Date:</td>
         <td>
             <select asp-for="SelectedContractEndDate" class="form-control" asp-items="@(new SelectList(Model.ContractEndDateList, "Value", "Text"))">
                 @* Model.VendorAddressList -> accessing VendorAddressList that exists in the ApplyFilter.cs model *@
@@ -51,5 +65,28 @@
             </select>
         </td>
     </tr>
-
+     <tr><td><h4>Apply filters for Files</h4></td>
+     <tr>
+        <td>Select File Type:</td>
+        <td>
+            <select asp-for="SelectedFileType" class="form-control" asp-items="@(new SelectList(Model.FileTypeList, "Value", "Text"))">
+                    @* Model.VendorAddressList -> accessing VendorAddressList that exists in the ApplyFilter.cs model *@
+                    @* Second parameter -> value, third parameter -> text *@
+            </select>
+        </td>
+        <td>Select File Open Date:</td>
+        <td>
+            <select asp-for="SelectedFileOpenDate" class="form-control" asp-items="@(new SelectList(Model.FileOpenDateList, "Value", "Text"))">
+                @* Model.VendorAddressList -> accessing VendorAddressList that exists in the ApplyFilter.cs model *@
+                @* Second parameter -> value, third parameter -> text *@
+            </select>
+        </td>
+        <td>Select File Close Date:</td>
+        <td>
+            <select asp-for="SelectedFileCloseDate" class="form-control" asp-items="@(new SelectList(Model.FileCloseDateList, "Value", "Text"))"> 
+                @* Model.VendorAddressList -> accessing VendorAddressList that exists in the ApplyFilter.cs model *@
+                @* Second parameter -> value, third parameter -> text *@
+             </select>
+        </td>
+    </tr>
 </table>

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GAILFileManagementSystem.Migrations
 {
     [DbContext(typeof(FileDBContext))]
-    [Migration("20240713100705_GAILFMSFileCreateDB")]
+    [Migration("20240713095902_GAILFMSFileCreateDB")]
     partial class GAILFMSFileCreateDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
