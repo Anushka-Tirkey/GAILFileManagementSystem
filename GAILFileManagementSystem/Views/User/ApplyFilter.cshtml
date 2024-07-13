@@ -1,26 +1,4 @@
-﻿@* @model GAILFileManagementSystem.Models.VendorModel
-@{
-    ViewData["Title"] = "ApplyFilter";
-}
-
-<h1>ApplyFilter</h1>
-
-
-
-<table>
-    <tr>
-        <td>Select Vendor name</td>
-        <td>
-            <select asp-for="Id" class="form-control" asp-items="@(new SelectList(Model.VendorList,"Value","Text"))">
-                @* Model.VendorList-> accessing VendorList that exists in the ApplyFilter.cs model *@
-                @* Second parameter -> value, third parameter -> text *@
-            @*</select>
-        </td>
-    </tr>
-</table>
- *@
-
- @model GAILFileManagementSystem.Models.VendorModel
+﻿@model GAILFileManagementSystem.Models.VendorModel
 @{
     ViewData["Title"] = "ApplyFilter";
 }
@@ -46,4 +24,32 @@
             </select>
         </td>
     </tr>
+    <tr>
+        <td>Select Contract Subject</td>
+        <td>
+            <select asp-for="SelectedContractSubject " class="form-control" asp-items="@(new SelectList(Model.ContractSubjectList, "Value", "Text"))">
+                @* Model.VendorAddressList -> accessing VendorAddressList that exists in the ApplyFilter.cs model *@
+                @* Second parameter -> value, third parameter -> text *@
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>Select Contract Start Date</td>
+        <td>
+            <select asp-for="SelectedContractStartDate" class="form-control" asp-items="@(new SelectList(Model.ContractStartDateList, "Value", "Text"))">
+                @* Model.VendorAddressList -> accessing VendorAddressList that exists in the ApplyFilter.cs model *@
+                @* Second parameter -> value, third parameter -> text *@
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>Select Contract End Date</td>
+        <td>
+            <select asp-for="SelectedContractEndDate" class="form-control" asp-items="@(new SelectList(Model.ContractEndDateList, "Value", "Text"))">
+                @* Model.VendorAddressList -> accessing VendorAddressList that exists in the ApplyFilter.cs model *@
+                @* Second parameter -> value, third parameter -> text *@
+            </select>
+        </td>
+    </tr>
+
 </table>
