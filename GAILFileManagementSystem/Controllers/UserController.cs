@@ -46,7 +46,7 @@ namespace FILESMGMT.Controllers
                 {
                     Console.WriteLine("User not added.");
                 }
-                return RedirectToAction("Filesss","User");
+                return RedirectToAction("EnterFiles","User");
             }
             
             return View(f);
