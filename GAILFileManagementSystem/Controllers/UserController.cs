@@ -25,6 +25,8 @@ namespace FILESMGMT.Controllers
             Warranty=2, 
             AMC=3
         }
+
+
         public IActionResult EnterFiles()
         {
             return View();
@@ -192,36 +194,7 @@ namespace FILESMGMT.Controllers
             VendorModel.VendorList = new List<SelectListItem>();
             var data = vendorDB.Vendors.ToList();   //Vendors: from this code in VendorDBContext: public DbSet<Vendor> Vendors { get; set; }
             VendorModel.VendorList.Add(new SelectListItem /*first value*/
-        /*{
-            Text = "Select Vendor Name",
-            Value = ""
-        });
-
-        VendorModel.VendorAddressList.Add(new SelectListItem
-        {
-            Text = "Select Vendor Address",
-            Value = ""
-        });
-
-        foreach (var item in data)  /*The rest of the values*/
-        /*{
-            VendorModel.VendorList.Add(new SelectListItem
-            {
-                Text = item.VendorName,
-                Value = item.VendorId.ToString()
-            });
-        }
-        return View(VendorModel);
-    }*/
-
-        public IActionResult ApplyFilter()
-        {
-            VendorModel VendorModel = new VendorModel();
-
-            var data = vendorDB.Vendors.ToList(); // Vendors: from this code in VendorDBContext: public DbSet<Vendor> Vendors { get; set; }
-
-            VendorModel.VendorNameList.Add(new SelectListItem
-            {
+            /*{
                 Text = "Select Vendor Name",
                 Value = ""
             });
@@ -232,24 +205,108 @@ namespace FILESMGMT.Controllers
                 Value = ""
             });
 
-            foreach (var item in data)
-            {
-                VendorModel.VendorNameList.Add(new SelectListItem
+            foreach (var item in data)  /*The rest of the values*/
+            /*{
+                VendorModel.VendorList.Add(new SelectListItem
                 {
                     Text = item.VendorName,
                     Value = item.VendorId.ToString()
                 });
+            }
+            return View(VendorModel);
+        }*/
 
-                VendorModel.VendorAddressList.Add(new SelectListItem
+        public IActionResult ApplyFilter()
+        {
+            VendorModel VendorModel = new VendorModel();
+
+            var data = vendorDB.Vendors.ToList(); // Vendors: from this code in VendorDBContext: public DbSet<Vendor> Vendors { get; set; }
+            var contractData = contractDB.Contracts.ToList();
+            //var fileData = fileDB.Files.ToList();
+
+            //THE FIRST/DEFAULT TEXT TO BE DISPLAYED IN DROPDOWNS
+            VendorModel.VendorNameList.Add(new SelectListItem
+            {
+                Text = "Select Vendor Name",
+                Value = ""
+            });
+            VendorModel.VendorAddressList.Add(new SelectListItem
+            {
+                Text = "Select Vendor Address",
+                Value = ""
+            });
+            VendorModel.ContractSubjectList.Add(new SelectListItem
+            {
+                Text = "Select Contract Subject",
+                Value = ""
+            });
+            VendorModel.ContractStartDateList.Add(new SelectListItem
+            {
+                Text = "Select Contact Start Date",
+                Value = ""
+            });
+            VendorModel.ContractEndDateList.Add(new SelectListItem
+            {
+                Text = "Select Contact End Date",
+                Value = ""
+            });
+            //VendorModel.FileTypeList.Add(new SelectListItem
+            //{
+            //    Text = "Select Contract End Date",
+            //    Value = ""
+            //});
+
+            //VendorModel.FileOpenDateList.Add(new SelectListItem
+            //{
+            //    Text = "Select File Open Date",
+            //    Value = ""
+            //});
+            //VendorModel.FileCloseDateList.Add(new SelectListItem
+            //{
+            //    Text = "Select File Close Date",
+            //    Value = ""
+            //});
+
+
+
+            //POPULATE THE DROPDOWN LISTS"
+            //Populate For Vendors
+            foreach (var item in data)  
+            {
+                VendorModel.VendorNameList.Add(new SelectListItem   //Vendor Names
+                {
+                    Text = item.VendorName,
+                    Value = item.VendorId.ToString()
+                });
+                VendorModel.VendorAddressList.Add(new SelectListItem    //Vendr Addresses
                 {
                     Text = item.VendorAddress,
                     Value = item.VendorId.ToString()
                 });
             }
+            foreach (var subject in contractData)
+            {
+                VendorModel.ContractSubjectList.Add(new SelectListItem
+                {
+                    Text = subject.ContractSubject,
+                    Value = subject.sno.ToString()
+                });
+                VendorModel.ContractStartDateList.Add(new SelectListItem
+                {
+                    Text = subject.StartDate.ToString("yyyy-MM-dd"), // Convert DateTime to string
+                    Value = subject.sno.ToString()
+                });
+                VendorModel.ContractEndDateList.Add(new SelectListItem
+                {
+                    Text = subject.EndDate.ToString("yyyy-MM-dd"), // Convert DateTime to string
+                    Value = subject.sno.ToString()
+                });
+            }
+
+
 
             return View(VendorModel);
         }
-
 
         public IActionResult Details(string vendorName, string vendorAddress, string contractNo, DateTime fopendate, DateTime fclosedate)
         {
