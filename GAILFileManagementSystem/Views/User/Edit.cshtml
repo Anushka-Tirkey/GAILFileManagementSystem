@@ -1,0 +1,83 @@
+﻿@model FILESMGMT.Models.Files
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Files</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="FileId" />
+            <div class="form-group">
+                <label asp-for="FileName" class="control-label"></label>
+                <input asp-for="FileName" class="form-control" />
+                <span asp-validation-for="FileName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="File_type" class="control-label"></label>
+                @Html.DropDownList(
+                             "FileType",
+                             Html.GetEnumSelectList<File_type>(),
+                             "--SELECT--",
+                             new { @class = "form-control" }
+                             )
+                    @* <select asp-for="File_type" class="form-control" asp-items="Html.GetEnumSelectList<File_type>()">
+                    <option value="--select--">--select--</option>
+                    </select> *@
+                @* <select asp-for="File_type" class="form-control"></select> *@
+                <span asp-validation-for="File_type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Open_Date" class="control-label"></label>
+                <input asp-for="Open_Date" class="form-control" />
+                <span asp-validation-for="Open_Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Closed_Date" class="control-label"></label>
+                <input asp-for="Closed_Date" class="form-control" />
+                <span asp-validation-for="Closed_Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contract_No" class="control-label"></label>
+                <input asp-for="Contract_No" class="form-control" />
+                <span asp-validation-for="Contract_No" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Vendor_name" class="control-label"></label>
+                <input asp-for="Vendor_name" class="form-control" />
+                <span asp-validation-for="Vendor_name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Vendor_address" class="control-label"></label>
+                <input asp-for="Vendor_address" class="form-control" />
+                <span asp-validation-for="Vendor_address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
