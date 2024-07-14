@@ -29,6 +29,9 @@ builder.Services.AddDbContext<ContractDBContext>(options =>
     options.UseSqlServer(config.GetConnectionString("dbcs")));
 builder.Services.AddDbContext<LocationDBContext>(options =>
     options.UseSqlServer(config.GetConnectionString("dbcs")));
+builder.Services.AddDbContext<VendorModelDBContext>(options =>
+    options.UseSqlServer(config.GetConnectionString("dbcs")));
+
 
 
 var app = builder.Build();

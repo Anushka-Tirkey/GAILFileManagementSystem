@@ -109,15 +109,17 @@ namespace FILESMGMT.Controllers
         private readonly ContractDBContext contractDB;
         private readonly LocationDBContext locationDB;
         private readonly FileDBContext fileDB;
+        private readonly VendorModelDBContext vendorModelDB;
 
         //private readonly FileDBContext FileDB;
         //CONSTRUCTOR
-        public UserController(VendorDBContext vendorDB, ContractDBContext contractDB, LocationDBContext locationDB, FileDBContext fileDB)
+        public UserController(VendorDBContext vendorDB, ContractDBContext contractDB, LocationDBContext locationDB, FileDBContext fileDB, VendorModelDBContext vendorModelDB)
         {
             this.vendorDB = vendorDB;
             this.contractDB = contractDB;
             this.locationDB = locationDB;
             this.fileDB = fileDB;
+            this.vendorModelDB = vendorModelDB;
         }
         public IActionResult Filesss()
         {
@@ -125,10 +127,6 @@ namespace FILESMGMT.Controllers
             return View(filesdata);
         }
 
-        //public UserController(FileDBContext fileDB)
-        //{
-        //    this.fileDB = fileDB;
-        //}
         public ActionResult GenerateReport()
         {
             var model = new CombinedModel
@@ -190,7 +188,7 @@ namespace FILESMGMT.Controllers
             var data = vendorDB.Vendors.ToList(); // Vendors: from this code in VendorDBContext: public DbSet<Vendor> Vendors { get; set; }
             var contractData = contractDB.Contracts.ToList();
             var fileData = fileDB.Files.ToList();
-
+            
             //THE FIRST/DEFAULT TEXT TO BE DISPLAYED IN DROPDOWNS
             VendorModel.VendorNameList.Add(new SelectListItem
             {
@@ -335,6 +333,37 @@ namespace FILESMGMT.Controllers
             };
 
             return View(model);
+        }
+
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if(id == null)
+            {
+                return NotFound();
+            }
+            var fdata = await fileDB.Files.FirstOrDefaultAsync(x => x.FileId == id);
+            if(fdata == null)
+            {
+                return NotFound();
+            }
+            return View(fdata);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int? id, Files files)
+        {
+            if (id != files.FileId)
+            {
+                NotFound();
+            }
+            if(ModelState.IsValid)
+            {
+                fileDB.Files.Update(files);
+                await fileDB.SaveChangesAsync();
+                return RedirectToAction("Index", "User");
+
+            }
+            return View(); 
         }
     }
 }
