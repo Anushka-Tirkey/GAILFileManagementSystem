@@ -1,4 +1,4 @@
-﻿@model FILESMGMT.Models.Vendor
+﻿@model FILESMGMT.Models.Files
 
 @{
     ViewData["Title"] = "Details";
@@ -7,42 +7,66 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Vendor</h4>
+    <h4>Files</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.VendorName)
+            @Html.DisplayNameFor(model => model.FileName)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.VendorName)
+            @Html.DisplayFor(model => model.FileName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.VendorAddress)
+            @Html.DisplayNameFor(model => model.File_type)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.VendorAddress)
+            @Html.DisplayFor(model => model.File_type)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ContactPerson)
+            @Html.DisplayNameFor(model => model.Description)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ContactPerson)
+            @Html.DisplayFor(model => model.Description)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ContactNumber)
+            @Html.DisplayNameFor(model => model.Open_Date)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ContactNumber)
+            @Html.DisplayFor(model => model.Open_Date)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ContactEmailId)
+            @Html.DisplayNameFor(model => model.Closed_Date)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ContactEmailId)
+            @Html.DisplayFor(model => model.Closed_Date)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Contract_No)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Contract_No)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Vendor_name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Vendor_name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Vendor_address)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Vendor_address)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Status)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.VendorId">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model?.FileId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

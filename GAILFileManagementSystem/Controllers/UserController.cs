@@ -323,17 +323,17 @@ namespace FILESMGMT.Controllers
             return View(det);
         }
 
-        public IActionResult Details(string vendorName, string vendorAddress, string contractNo, DateTime fopendate, DateTime fclosedate)
-        {
-            var model = new CombinedModel
-            {
-                Vendors = vendorDB.Vendors.Where(x => x.VendorName == vendorName && x.VendorAddress == vendorAddress).ToList(),
-                Contracts = contractDB.Contracts.Where(x => x.ContractNumber == contractNo).ToList(),
-                Files = fileDB.Files.Where(x => x.Open_Date == fopendate && x.Closed_Date == fclosedate).ToList(),
-            };
+        //public IActionResult Details(string vendorName, string vendorAddress, string contractNo, DateTime fopendate, DateTime fclosedate)
+        //{
+        //    var model = new CombinedModel
+        //    {
+        //        Vendors = vendorDB.Vendors.Where(x => x.VendorName == vendorName && x.VendorAddress == vendorAddress).ToList(),
+        //        Contracts = contractDB.Contracts.Where(x => x.ContractNumber == contractNo).ToList(),
+        //        Files = fileDB.Files.Where(x => x.Open_Date == fopendate && x.Closed_Date == fclosedate).ToList(),
+        //    };
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
 
         public async Task<IActionResult> Edit(int? id)
         {
@@ -364,6 +364,19 @@ namespace FILESMGMT.Controllers
 
             }
             return View(); 
+        }
+        public async Task<IActionResult> Details(int? id)
+        {
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
+            var fdata = await fileDB.Files.FirstOrDefaultAsync(x => x.FileId == id);
+            //if (fdata == null)
+            //{
+            //    return NotFound();
+            //}
+            return View(fdata);
         }
     }
 }
