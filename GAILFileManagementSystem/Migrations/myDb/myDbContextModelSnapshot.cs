@@ -22,7 +22,7 @@ namespace GAILFileManagementSystem.Migrations.myDb
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("FILESMGMT.Models.Contract", b =>
+            modelBuilder.Entity("GAILFileManagementSystem.Models.Contract", b =>
                 {
                     b.Property<int>("sno")
                         .ValueGeneratedOnAdd()
@@ -54,7 +54,7 @@ namespace GAILFileManagementSystem.Migrations.myDb
                     b.ToTable("Contracts", (string)null);
                 });
 
-            modelBuilder.Entity("FILESMGMT.Models.Files", b =>
+            modelBuilder.Entity("GAILFileManagementSystem.Models.Files", b =>
                 {
                     b.Property<int>("FileId")
                         .ValueGeneratedOnAdd()
@@ -120,7 +120,7 @@ namespace GAILFileManagementSystem.Migrations.myDb
                     b.ToTable("Files", (string)null);
                 });
 
-            modelBuilder.Entity("FILESMGMT.Models.Location", b =>
+            modelBuilder.Entity("GAILFileManagementSystem.Models.Location", b =>
                 {
                     b.Property<int>("LId")
                         .ValueGeneratedOnAdd()
@@ -148,7 +148,7 @@ namespace GAILFileManagementSystem.Migrations.myDb
                     b.ToTable("Locations", (string)null);
                 });
 
-            modelBuilder.Entity("FILESMGMT.Models.Vendor", b =>
+            modelBuilder.Entity("GAILFileManagementSystem.Models.Vendor", b =>
                 {
                     b.Property<int>("VendorId")
                         .ValueGeneratedOnAdd()
@@ -185,13 +185,13 @@ namespace GAILFileManagementSystem.Migrations.myDb
                     b.ToTable("Vendors", (string)null);
                 });
 
-            modelBuilder.Entity("FILESMGMT.Models.Files", b =>
+            modelBuilder.Entity("GAILFileManagementSystem.Models.Files", b =>
                 {
-                    b.HasOne("FILESMGMT.Models.Contract", "Contract")
+                    b.HasOne("GAILFileManagementSystem.Models.Contract", "Contract")
                         .WithMany("Files")
                         .HasForeignKey("Contractsno");
 
-                    b.HasOne("FILESMGMT.Models.Vendor", "Vendor")
+                    b.HasOne("GAILFileManagementSystem.Models.Vendor", "Vendor")
                         .WithMany("Files")
                         .HasForeignKey("VendorId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -202,12 +202,12 @@ namespace GAILFileManagementSystem.Migrations.myDb
                     b.Navigation("Vendor");
                 });
 
-            modelBuilder.Entity("FILESMGMT.Models.Contract", b =>
+            modelBuilder.Entity("GAILFileManagementSystem.Models.Contract", b =>
                 {
                     b.Navigation("Files");
                 });
 
-            modelBuilder.Entity("FILESMGMT.Models.Vendor", b =>
+            modelBuilder.Entity("GAILFileManagementSystem.Models.Vendor", b =>
                 {
                     b.Navigation("Files");
                 });

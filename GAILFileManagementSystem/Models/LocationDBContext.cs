@@ -1,7 +1,7 @@
-﻿using FILESMGMT.Models;
+﻿using GAILFileManagementSystem.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace FILESMGMT.Models
+namespace GAILFileManagementSystem.Models
 {
     public class LocationDBContext : DbContext
     {

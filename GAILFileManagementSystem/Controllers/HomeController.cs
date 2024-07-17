@@ -1,9 +1,9 @@
-using FILESMGMT.Models;
+using GAILFileManagementSystem.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Linq;
 
-namespace FILESMGMT.Controllers
+namespace GAILFileManagementSystem.Controllers
 {
     public class HomeController : Controller
     {

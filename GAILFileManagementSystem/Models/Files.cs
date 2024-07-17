@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FILESMGMT.Models
+namespace GAILFileManagementSystem.Models
 {
     public class Files
     {

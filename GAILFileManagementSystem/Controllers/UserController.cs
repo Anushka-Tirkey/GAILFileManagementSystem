@@ -1,4 +1,4 @@
-﻿using FILESMGMT.Models; //Files Model is defined in this namespace
+﻿using GAILFileManagementSystem.Models; //Files Model is defined in this namespace
 using GAILFileManagementSystem.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FILESMGMT.Controllers
+namespace GAILFileManagementSystem.Controllers
 {
     public class UserController : Controller
     {

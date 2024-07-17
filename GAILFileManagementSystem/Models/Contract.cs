@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 
-namespace FILESMGMT.Models
+namespace GAILFileManagementSystem.Models
 {
     public class Contract
     {

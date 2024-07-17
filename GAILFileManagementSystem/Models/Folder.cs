@@ -1,7 +1,7 @@
 ﻿// Folder.cs
 using System;
 
-namespace FILESMGMT.Models
+namespace GAILFileManagementSystem.Models
 {
     public class Folder
     {

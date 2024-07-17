@@ -1,4 +1,4 @@
-﻿using FILESMGMT.Models;
+﻿using GAILFileManagementSystem.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace GAILFileManagementSystem.Models

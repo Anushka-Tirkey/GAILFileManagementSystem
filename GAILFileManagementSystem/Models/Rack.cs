@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FILESMGMT.Models
+namespace GAILFileManagementSystem.Models
 {
     public class Rack
     {

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GAILFileManagementSystem.Migrations.myDb
 {
     [DbContext(typeof(myDbContext))]
-    [Migration("20240717115406_AddFKFilesInVendor")]
-    partial class AddFKFilesInVendor
+    [Migration("20240717172831_CreateFileTableWithFKsfromVendorandContract")]
+    partial class CreateFileTableWithFKsfromVendorandContract
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

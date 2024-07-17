@@ -1,4 +1,4 @@
-﻿/*using FILESMGMT.Models;
+﻿/*using GAILFileManagementSystem.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace GAILFileManagementSystem.Models
@@ -16,10 +16,10 @@ namespace GAILFileManagementSystem.Models
         //the name of our database will be 'Students'
     }
 } */
-using FILESMGMT.Models;
+using GAILFileManagementSystem.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace FILESMGMT.Models
+namespace GAILFileManagementSystem.Models
 {
     public class VendorDBContext : DbContext  //DbContext class -> Used to interact with our data and the database
     {
