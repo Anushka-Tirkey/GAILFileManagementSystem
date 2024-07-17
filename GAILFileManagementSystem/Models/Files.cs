@@ -9,10 +9,10 @@ namespace FILESMGMT.Models
         [Key]
         public int FileId { get; set; }
 
-        [Column("FileName", TypeName = "varchar(255)")]
+        [Column("File_Name", TypeName = "varchar(255)")]
         public string FileName { get; set; }
 
-        [Column("File Type", TypeName = "varchar(20)")]
+        [Column("File_Type", TypeName = "varchar(20)")]
         public File_type File_type { get; set; }
 
         [Column("Description", TypeName = "varchar(100)")]
@@ -27,17 +27,52 @@ namespace FILESMGMT.Models
         [Required(ErrorMessage = "Closed Date is required.")]
         public DateTime Closed_Date { get; set; }
 
-        [Column("Contract_No", TypeName = "int")]
-        [Required(ErrorMessage = "Contract number is required.")]
-        public int Contract_No { get; set; }
+        /*Two ways pf creating foreign kets:
+        1. Navigation Properties
+        2. Entity Framework API emthods*/
 
-        [Column("Vendor_name", TypeName = "varchar(100)")]
+
+        // Foreign key for Contract
+        //public int Contract_Id { get; set; }
+        public int sno { get; set; }
+        public Contract Contract { get; set; }  //Ref nav property; reference to Contract table;
+        // MANY-TO-ONE -> multiple Files may belong to same Contract
+
+        // Foreign key for Vendor
+        public int VendorId { get; set; } // Unique identifier for the vendor
+        public Vendor Vendor { get; set; }      //Ref nav property; reference to Vendor table; one-to-many
+        //MANY-TO-ONE -> multiple Files may belong to same Vendor
+
+
+        /*[Column("ContractNumber", TypeName = "int")]
+        [Required(ErrorMessage = "Contract number is required.")]*/
+        [Required(ErrorMessage = "Contract Number is required.")]
+        public string ContractNumber { get; set; }
+        //public int ContractNumber { get; set; }
+
+        //[Column("VendorName", TypeName = "varchar(100)")]
+        //[StringLength(15, MinimumLength = 3, ErrorMessage = "Vendor name must be between 3 and 15 characters.")]
+        //public string VendorName { get; set; }
+
+        /*[Column("vendorname", TypeName = "varchar(100)")]
         [StringLength(15, MinimumLength = 3, ErrorMessage = "Vendor name must be between 3 and 15 characters.")]
-        public string Vendor_name { get; set; }
+        public string VendorName { get; set; } // Name of the vendor
 
-        [Column("Vendor_address", TypeName = "varchar(100)")]
+
+        //[Column("VendorAddress", TypeName = "varchar(100)")]
+        //[Required]
+        //public string VendorAddress { get; set; }
+        [Column("vendoraddress", TypeName = "varchar(200)")]
         [Required]
-        public string Vendor_address { get; set; }
+        public string VendorAddress { get; set; }*/
+
+        [Column("vendorname", TypeName = "varchar(100)")]
+        [Required(ErrorMessage = "Vendor name is required")]
+        [MinLength(5, ErrorMessage = "Vendor name should contain at least 5 characters")]
+        public string VendorName { get; set; } // Name of the vendor
+
+        [Column("vendoraddress", TypeName = "varchar(200)")]
+        public string VendorAddress { get; set; }
 
         [Required(ErrorMessage = "Status is required.")]
         [Column("Status", TypeName = "varchar(100)")]
@@ -45,7 +80,7 @@ namespace FILESMGMT.Models
 
         public void SetFileName()
         {
-            FileName = $"{File_type.ToString().Substring(0, 3)}/{Open_Date:yyyy-MM-dd}/{Vendor_name}/{Contract_No}/{FileId}";
+            FileName = $"{File_type.ToString().Substring(0, 3)}/{Open_Date:yyyy-MM-dd}/{VendorName}/{ContractNumber}/{FileId}";
         }
     }
 

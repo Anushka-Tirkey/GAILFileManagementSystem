@@ -55,7 +55,7 @@ namespace FILESMGMT.Migrations
 
                     b.HasKey("VendorId");
 
-                    b.ToTable("Vendors");
+                    b.ToTable("Vendors", (string)null);
                 });
 #pragma warning restore 612, 618
         }

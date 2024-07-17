@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -32,6 +33,8 @@ namespace FILESMGMT.Models
         [Required(ErrorMessage = "Contact Email is required")] // Provide a meaningful error message here
         [EmailAddress]  // not much preferred because Eg: adil123@gmail will be accepted as valid email
         public string ContactEmailId { get; set; }
+
+        public List<Files> Files { get; set; }
 
         //[Column("ContactEmailId", TypeName = "varchar(100)")] 
         //public string Status { get; set; }

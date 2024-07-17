@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 
@@ -18,7 +19,9 @@ namespace FILESMGMT.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public CType ContractType { get; set; }
-
+        
+        public List<Files> Files { get; set; }
+        
         public enum CType
         {
             Local, Centralised

@@ -18,7 +18,7 @@ var provider = builder.Services.BuildServiceProvider();
 var config = provider.GetRequiredService<IConfiguration>();
 
 // Add the DbContext with the connection string from the configuration
-//builder.Services.AddDbContext<myDbContext>(options =>
+//builder.Services.AddDbContext<myDbContext>(options =>               /*Dependency Injection*/
 //    options.UseSqlServer(config.GetConnectionString("dbcs")));
 builder.Services.AddDbContext<VendorDBContext>(options =>
     options.UseSqlServer(config.GetConnectionString("dbcs")));
