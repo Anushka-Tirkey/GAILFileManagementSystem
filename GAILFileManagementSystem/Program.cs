@@ -20,16 +20,16 @@ var config = provider.GetRequiredService<IConfiguration>();
 // Add the DbContext with the connection string from the configuration
 //builder.Services.AddDbContext<myDbContext>(options =>               /*Dependency Injection*/
 //    options.UseSqlServer(config.GetConnectionString("dbcs")));
-builder.Services.AddDbContext<VendorDBContext>(options =>
+builder.Services.AddDbContext<myDbContext>(options =>
     options.UseSqlServer(config.GetConnectionString("dbcs")));
-builder.Services.AddDbContext<FileDBContext>(options =>
+builder.Services.AddDbContext<myDbContext>(options =>
     options.UseSqlServer(config.GetConnectionString("dbcs")).EnableSensitiveDataLogging()
                .LogTo(Console.WriteLine));
-builder.Services.AddDbContext<ContractDBContext>(options =>
+builder.Services.AddDbContext<myDbContext>(options =>
     options.UseSqlServer(config.GetConnectionString("dbcs")));
-builder.Services.AddDbContext<LocationDBContext>(options =>
+builder.Services.AddDbContext<myDbContext>(options =>
     options.UseSqlServer(config.GetConnectionString("dbcs")));
-builder.Services.AddDbContext<VendorModelDBContext>(options =>
+builder.Services.AddDbContext<myDbContext>(options =>
     options.UseSqlServer(config.GetConnectionString("dbcs")));
 
 

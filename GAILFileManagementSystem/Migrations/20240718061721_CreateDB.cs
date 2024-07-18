@@ -3,12 +3,48 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace GAILFileManagementSystem.Migrations.myDb
+namespace GAILFileManagementSystem.Migrations
 {
-    public partial class CreateFileTableWithFKsfromVendorandContract : Migration
+    public partial class CreateDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "ConsolidatedReportViewModel",
+                columns: table => new
+                {
+                    FileId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FileType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OpenDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ClosedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FileStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VendorId = table.Column<int>(type: "int", nullable: false),
+                    VendorName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VendorAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ContactPerson = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ContactNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ContactEmailId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ContractId = table.Column<int>(type: "int", nullable: false),
+                    ContractNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ContractSubject = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ContractDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ContractStartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ContractEndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ContractType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LocationId = table.Column<int>(type: "int", nullable: false),
+                    LocationName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SubLocationId = table.Column<int>(type: "int", nullable: false),
+                    SubLocationName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    GSTN_No = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ConsolidatedReportViewModel", x => x.FileId);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Contracts",
                 columns: table => new
@@ -75,6 +111,7 @@ namespace GAILFileManagementSystem.Migrations.myDb
                     sno = table.Column<int>(type: "int", nullable: false),
                     Contractsno = table.Column<int>(type: "int", nullable: true),
                     VendorId = table.Column<int>(type: "int", nullable: false),
+                    LocationId = table.Column<int>(type: "int", nullable: false),
                     ContractNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     vendorname = table.Column<string>(type: "varchar(100)", nullable: false),
                     vendoraddress = table.Column<string>(type: "varchar(200)", nullable: true),
@@ -89,6 +126,12 @@ namespace GAILFileManagementSystem.Migrations.myDb
                         principalTable: "Contracts",
                         principalColumn: "sno");
                     table.ForeignKey(
+                        name: "FK_Files_Locations_LocationId",
+                        column: x => x.LocationId,
+                        principalTable: "Locations",
+                        principalColumn: "LId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_Files_Vendors_VendorId",
                         column: x => x.VendorId,
                         principalTable: "Vendors",
@@ -102,6 +145,11 @@ namespace GAILFileManagementSystem.Migrations.myDb
                 column: "Contractsno");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Files_LocationId",
+                table: "Files",
+                column: "LocationId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Files_VendorId",
                 table: "Files",
                 column: "VendorId");
@@ -110,13 +158,16 @@ namespace GAILFileManagementSystem.Migrations.myDb
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "ConsolidatedReportViewModel");
+
+            migrationBuilder.DropTable(
                 name: "Files");
 
             migrationBuilder.DropTable(
-                name: "Locations");
+                name: "Contracts");
 
             migrationBuilder.DropTable(
-                name: "Contracts");
+                name: "Locations");
 
             migrationBuilder.DropTable(
                 name: "Vendors");

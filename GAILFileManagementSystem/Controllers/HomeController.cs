@@ -7,7 +7,7 @@ namespace GAILFileManagementSystem.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly FileDBContext fileDB;
+        private readonly myDbContext fileDB;
 
         //private readonly ILogger<HomeController> _logger;
 
@@ -24,7 +24,7 @@ namespace GAILFileManagementSystem.Controllers
         //}
 
         
-        public HomeController(FileDBContext fileDB)
+        public HomeController(myDbContext fileDB)
         {
             this.fileDB = fileDB;
         }
