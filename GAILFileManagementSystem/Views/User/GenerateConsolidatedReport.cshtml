@@ -1,0 +1,173 @@
+﻿@model IEnumerable<GAILFileManagementSystem.Models.ConsolidatedReportViewModel>
+
+@{
+    ViewData["Title"] = "GenerateConsolidatedReport";
+}
+
+<h1>GenerateConsolidatedReport</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FileName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FileType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpenDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClosedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FileStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VendorId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VendorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VendorAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactPerson)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactEmailId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContractId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContractNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContractSubject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContractDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContractStartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContractEndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContractType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LocationId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LocationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubLocationId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubLocationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GSTN_No)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OpenDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClosedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VendorId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VendorName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VendorAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactPerson)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactEmailId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContractId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContractNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContractSubject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContractDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContractStartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContractEndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContractType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocationId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubLocationId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubLocationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GSTN_No)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.FileId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.FileId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.FileId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

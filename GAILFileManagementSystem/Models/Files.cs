@@ -43,11 +43,16 @@ namespace GAILFileManagementSystem.Models
         public Vendor Vendor { get; set; }      //Ref nav property; reference to Vendor table; one-to-many
         //MANY-TO-ONE -> multiple Files may belong to same Vendor
 
+        // Foreign key for Location
+        public int LocationId { get; set; } // Unique identifier for the vendor
+        public Location Location { get; set; }      //Ref nav property; reference to Location table; one-to-many
+        //MANY-TO-ONE -> multiple Files may reside in the same location
 
         /*[Column("ContractNumber", TypeName = "int")]
         [Required(ErrorMessage = "Contract number is required.")]*/
         [Required(ErrorMessage = "Contract Number is required.")]
         public string ContractNumber { get; set; }
+
         //public int ContractNumber { get; set; }
 
         //[Column("VendorName", TypeName = "varchar(100)")]

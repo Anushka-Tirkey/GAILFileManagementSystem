@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace GAILFileManagementSystem.Migrations.myDb
+namespace GAILFileManagementSystem.Migrations
 {
     [DbContext(typeof(myDbContext))]
-    [Migration("20240717115406_AddFKFilesInVendor")]
-    partial class AddFKFilesInVendor
+    [Migration("20240718061721_CreateDB")]
+    partial class CreateDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,91 @@ namespace GAILFileManagementSystem.Migrations.myDb
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("GAILFileManagementSystem.Models.ConsolidatedReportViewModel", b =>
+                {
+                    b.Property<int>("FileId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FileId"), 1L, 1);
+
+                    b.Property<DateTime>("ClosedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ContactEmailId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactPerson")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContractDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ContractEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ContractId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ContractNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ContractStartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ContractSubject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContractType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("GSTN_No")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LocationId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LocationName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("OpenDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("SubLocationId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SubLocationName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VendorAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("VendorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("VendorName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("FileId");
+
+                    b.ToTable("ConsolidatedReportViewModel");
+                });
 
             modelBuilder.Entity("GAILFileManagementSystem.Models.Contract", b =>
                 {
@@ -89,6 +174,9 @@ namespace GAILFileManagementSystem.Migrations.myDb
                         .HasColumnType("varchar(20)")
                         .HasColumnName("File_Type");
 
+                    b.Property<int>("LocationId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Open_Date")
                         .HasColumnType("datetime")
                         .HasColumnName("Open_Date");
@@ -116,6 +204,8 @@ namespace GAILFileManagementSystem.Migrations.myDb
                     b.HasKey("FileId");
 
                     b.HasIndex("Contractsno");
+
+                    b.HasIndex("LocationId");
 
                     b.HasIndex("VendorId");
 
@@ -193,6 +283,12 @@ namespace GAILFileManagementSystem.Migrations.myDb
                         .WithMany("Files")
                         .HasForeignKey("Contractsno");
 
+                    b.HasOne("GAILFileManagementSystem.Models.Location", "Location")
+                        .WithMany("Files")
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("GAILFileManagementSystem.Models.Vendor", "Vendor")
                         .WithMany("Files")
                         .HasForeignKey("VendorId")
@@ -201,10 +297,17 @@ namespace GAILFileManagementSystem.Migrations.myDb
 
                     b.Navigation("Contract");
 
+                    b.Navigation("Location");
+
                     b.Navigation("Vendor");
                 });
 
             modelBuilder.Entity("GAILFileManagementSystem.Models.Contract", b =>
+                {
+                    b.Navigation("Files");
+                });
+
+            modelBuilder.Entity("GAILFileManagementSystem.Models.Location", b =>
                 {
                     b.Navigation("Files");
                 });

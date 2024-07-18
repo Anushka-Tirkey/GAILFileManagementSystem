@@ -13,5 +13,6 @@ namespace GAILFileManagementSystem.Models
         public DbSet<Location> Locations { get; set; }
         public DbSet<Vendor> Vendors { get; set; }
         public DbSet<Contract> Contracts { get; set; }
+        public DbSet<GAILFileManagementSystem.Models.ConsolidatedReportViewModel> ConsolidatedReportViewModel { get; set; }
     }
 }
