@@ -255,6 +255,13 @@
                     <a asp-controller="Home" asp-action="Vendor">Enter new Vendor</a>
                     <table class="table-form">
                         <tr>
+                            <th>Vendor ID</th>
+                            <td>
+                                <input asp-for="VendorId" class="form-control" placeholder="Enter Vendor ID" required>
+                                <span asp-validation-for="VendorId" style="color:red;"></span>
+                            </td>
+                        </tr>
+                        <tr>
                             <th>Vendor name</th>
                             <td>
                                 <input asp-for="VendorName" class="form-control" placeholder="Enter Vendor Name" required>
@@ -266,6 +273,21 @@
                             <td>
                                 <textarea asp-for="VendorAddress" placeholder="Enter Vendor Address" class="form-control" rows="2"></textarea>
                                 <span asp-validation-for="VendorAddress" style="color:red;"></span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Location-Details</legend>
+                <div class="location-details">
+                    <a asp-controller="Home" asp-action="Location">Enter New Location</a>
+                    <table class="table-form">
+                        <tr>
+                            <th>Location ID</th>
+                            <td>
+                                <input asp-for="LocationId" class="form-control" placeholder="Enter Location ID" required>
+                                <span asp-validation-for="LocationId" style="color:red;"></span>
                             </td>
                         </tr>
                     </table>
