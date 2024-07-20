@@ -105,7 +105,7 @@ namespace GAILFileManagementSystem.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     File_Name = table.Column<string>(type: "varchar(255)", nullable: true),
                     File_Type = table.Column<string>(type: "varchar(20)", nullable: false),
-                    Description = table.Column<string>(type: "varchar(100)", nullable: false),
+                    Description = table.Column<string>(type: "varchar(100)", nullable: true),
                     Open_Date = table.Column<DateTime>(type: "datetime", nullable: false),
                     Closed_Date = table.Column<DateTime>(type: "datetime", nullable: false),
                     sno = table.Column<int>(type: "int", nullable: false),

@@ -16,7 +16,6 @@ namespace GAILFileManagementSystem.Models
         public File_type File_type { get; set; }
 
         [Column("Description", TypeName = "varchar(100)")]
-        [Required(ErrorMessage = "File description is required.")]
         public string Description { get; set; }
 
         [Column("Open_Date", TypeName = "datetime")]

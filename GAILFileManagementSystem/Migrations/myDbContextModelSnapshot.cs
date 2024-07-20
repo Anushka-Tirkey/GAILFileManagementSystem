@@ -159,7 +159,6 @@ namespace GAILFileManagementSystem.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("varchar(100)")
                         .HasColumnName("Description");
 

@@ -41,12 +41,12 @@ namespace FILESMGMT.Controllers
         [HttpPost]
         public async Task<IActionResult> EnterFiles(Files f)
         {
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 await dbContext.Files.AddAsync(f);
                 await dbContext.SaveChangesAsync();
                 return RedirectToAction("EnterFiles", "User");
-            }
+            //}
 
             return View(f);
         }

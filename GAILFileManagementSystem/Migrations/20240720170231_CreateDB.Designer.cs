@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GAILFileManagementSystem.Migrations
 {
     [DbContext(typeof(myDbContext))]
-    [Migration("20240718061721_CreateDB")]
+    [Migration("20240720170231_CreateDB")]
     partial class CreateDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -161,7 +161,6 @@ namespace GAILFileManagementSystem.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("varchar(100)")
                         .HasColumnName("Description");
 
