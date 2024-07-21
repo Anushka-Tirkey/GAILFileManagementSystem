@@ -5,6 +5,8 @@ namespace GAILFileManagementSystem.Models
 {
     public class ConsolidatedReportViewModel
     {
+        //File details
+        public Files Files { get; set; }
         [Key] public int FileId { get; set; }
         public string FileName { get; set; }
         public string FileType { get; set; }
@@ -14,6 +16,7 @@ namespace GAILFileManagementSystem.Models
         public string FileStatus { get; set; }
 
         // Vendor Details
+        public Vendor Vendor { get; set; }
         public int VendorId { get; set; }
         public string VendorName { get; set; }
         public string VendorAddress { get; set; }
@@ -22,6 +25,7 @@ namespace GAILFileManagementSystem.Models
         public string ContactEmailId { get; set; }
 
         // Contract Details
+        public Contract Contract { get; set; }
         public int ContractId { get; set; }
         public string ContractNumber { get; set; }
         public string ContractSubject { get; set; }
@@ -31,6 +35,7 @@ namespace GAILFileManagementSystem.Models
         public string ContractType { get; set; }
 
         // Location Details
+        public Location Location { get; set; } 
         public int LocationId { get; set; }
         public string LocationName { get; set; }
         public int SubLocationId { get; set; }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -6,6 +7,9 @@ namespace GAILFileManagementSystem.Models
 {
     public class Files
     {
+
+        //FILE DETAILS
+
         [Key]
         public int FileId { get; set; }
 
@@ -26,7 +30,15 @@ namespace GAILFileManagementSystem.Models
         [Required(ErrorMessage = "Closed Date is required.")]
         public DateTime Closed_Date { get; set; }
 
-        /*Two ways pf creating foreign kets:
+        [Required(ErrorMessage = "Status is required.")]
+        [Column("Status", TypeName = "varchar(100)")]
+        public string Status { get; set; }
+
+        public void SetFileName()
+        {
+            FileName = $"{File_type.ToString().Substring(0, 3)}/{Open_Date:yyyy-MM-dd}/{VendorName}/{ContractNumber}/{FileId}";
+        }
+        /*Two ways of creating foreign kets:
         1. Navigation Properties
         2. Entity Framework API emthods*/
 
@@ -37,38 +49,26 @@ namespace GAILFileManagementSystem.Models
         public Contract Contract { get; set; }  //Ref nav property; reference to Contract table;
         // MANY-TO-ONE -> multiple Files may belong to same Contract
 
+        //CONTRACT DETAILS:
+        [Required(ErrorMessage = "Contract Number is required.")]
+        public string ContractNumber { get; set; }
+
+        public string ContractSubject { get; set; }    //? -> It may contain null values
+        public string ContractDescription { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public CType ContractType { get; set; }
+        public enum CType
+        {
+            Local, Centralised
+        }
+
         // Foreign key for Vendor
         public int VendorId { get; set; } // Unique identifier for the vendor
         public Vendor Vendor { get; set; }      //Ref nav property; reference to Vendor table; one-to-many
         //MANY-TO-ONE -> multiple Files may belong to same Vendor
 
-        // Foreign key for Location
-        public int LocationId { get; set; } // Unique identifier for the vendor
-        public Location Location { get; set; }      //Ref nav property; reference to Location table; one-to-many
-        //MANY-TO-ONE -> multiple Files may reside in the same location
-
-        /*[Column("ContractNumber", TypeName = "int")]
-        [Required(ErrorMessage = "Contract number is required.")]*/
-        [Required(ErrorMessage = "Contract Number is required.")]
-        public string ContractNumber { get; set; }
-
-        //public int ContractNumber { get; set; }
-
-        //[Column("VendorName", TypeName = "varchar(100)")]
-        //[StringLength(15, MinimumLength = 3, ErrorMessage = "Vendor name must be between 3 and 15 characters.")]
-        //public string VendorName { get; set; }
-
-        /*[Column("vendorname", TypeName = "varchar(100)")]
-        [StringLength(15, MinimumLength = 3, ErrorMessage = "Vendor name must be between 3 and 15 characters.")]
-        public string VendorName { get; set; } // Name of the vendor
-
-
-        //[Column("VendorAddress", TypeName = "varchar(100)")]
-        //[Required]
-        //public string VendorAddress { get; set; }
-        [Column("vendoraddress", TypeName = "varchar(200)")]
-        [Required]
-        public string VendorAddress { get; set; }*/
+        //VENDOR DETAILS
 
         [Column("vendorname", TypeName = "varchar(100)")]
         [Required(ErrorMessage = "Vendor name is required")]
@@ -78,14 +78,25 @@ namespace GAILFileManagementSystem.Models
         [Column("vendoraddress", TypeName = "varchar(200)")]
         public string VendorAddress { get; set; }
 
-        [Required(ErrorMessage = "Status is required.")]
-        [Column("Status", TypeName = "varchar(100)")]
-        public string Status { get; set; }
+        [Column("contactperson", TypeName = "varchar(100)")]
+        public string ContactPerson { get; set; } // Contact person at the vendor
 
-        public void SetFileName()
-        {
-            FileName = $"{File_type.ToString().Substring(0, 3)}/{Open_Date:yyyy-MM-dd}/{VendorName}/{ContractNumber}/{FileId}";
-        }
+        [Column("contactno", TypeName = "varchar(100)")]
+        public string ContactNumber { get; set; } // Contact number of the vendor
+
+        [Column("contactemail", TypeName = "varchar(100)")]
+        public string ContactEmailId { get; set; }
+
+        // Foreign key for Location
+        public int LocationId { get; set; } // Unique identifier for the vendor
+        public Location Location { get; set; }      //Ref nav property; reference to Location table; one-to-many
+                                                    //MANY-TO-ONE -> multiple Files may reside in the same location
+
+        //LOCATION DETAILS
+        public string LocationName { get; set; } = string.Empty;
+        public int SubLocationID { get; set; }
+        public string SubLocationName { get; set; } = string.Empty;
+        public int GSTN_No { get; set; }
     }
 
     public enum File_type
