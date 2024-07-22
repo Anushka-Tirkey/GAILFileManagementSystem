@@ -259,23 +259,23 @@ namespace GAILFileManagementSystem.Controllers
             return View(v);
         }
 
-        public IActionResult Filesss()
-        {
-            var filesdata = dbContext.Files.ToList();
-            return View(filesdata);
-        }
+        //public IActionResult Filesss()
+        //{
+        //    var filesdata = dbContext.Files.ToList();
+        //    return View(filesdata);
+        //}
 
-        public ActionResult GenerateReport()
-        {
-            var model = new CombinedModel
-            {
-                Vendors = dbContext.Vendors.ToList(),
-                Contracts = dbContext.Contracts.ToList(),
-                Files = dbContext.Files.ToList(),
-            };
+        //public ActionResult GenerateReport()
+        //{
+        //    var model = new CombinedModel
+        //    {
+        //        Vendors = dbContext.Vendors.ToList(),
+        //        Contracts = dbContext.Contracts.ToList(),
+        //        Files = dbContext.Files.ToList(),
+        //    };
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
 
         private VendorModel BindDDL()
         {
@@ -400,25 +400,39 @@ namespace GAILFileManagementSystem.Controllers
             return VendorModel;
         }
 
-        public IActionResult ApplyFilter()
+        //CREATE
+        public IActionResult Create()
         {
-            var det = BindDDL();
-            return View(det);
+            return View();
         }
 
         [HttpPost]
-        public IActionResult ApplyFilter(VendorModel v)
+        public async Task<IActionResult> Create(Files f)
         {
-            var vdetails = dbContext.Vendors.FirstOrDefault(x => x.VendorId == v.Id);
-            if (vdetails != null)
+            //Inserting data into the database
+            if(ModelState.IsValid == true)
             {
-                ViewBag.SelectedVendorName = vdetails.VendorName;
+                await dbContext.Files.AddAsync(f);
+                await dbContext.SaveChangesAsync();
+                return RedirectToAction("GenerateConsolidatedReport", "User");
             }
-            var det = BindDDL();
-            return View(det);
+            return View(f);
         }
 
+        //DETAILS
+        public async Task<IActionResult> Details(int? id)
+        {
+            if(id == null || dbContext.Files == null)
+            {
+                return NotFound();
+            }
+            var fdata = await dbContext.Files.FirstOrDefaultAsync(x => x.FileId == id); 
+            if(fdata != null)
+                return NotFound();
+            return View(fdata);
+        }
 
+        //EDIT
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -444,23 +458,66 @@ namespace GAILFileManagementSystem.Controllers
             {
                 dbContext.Files.Update(files);
                 await dbContext.SaveChangesAsync();
-                return RedirectToAction("Index", "User");
+                return RedirectToAction("GenerateConsolidatedReport", "User");
             }
             return View();
         }
 
-        public async Task<IActionResult> Details(int? id)
+        //DELETE
+        public async Task<IActionResult> Delete(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
             var fdata = await dbContext.Files.FirstOrDefaultAsync(x => x.FileId == id);
+            if (fdata == null)
+            {
+                return NotFound();
+            }
             return View(fdata);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int? id)
+        {
+            var fdata = await dbContext.Files.FindAsync(id);
+            if(fdata != null)
+            {
+                dbContext.Files.Remove(fdata);
+            }
+            await dbContext.SaveChangesAsync();
+            return RedirectToAction("GenerateConsolidatedReport", "User");
+        }
+
+        public IActionResult ApplyFilter()
+        {
+            var det = BindDDL();
+            return View(det);
+        }
+
+        [HttpPost]
+        public IActionResult ApplyFilter(VendorModel v)
+        {
+            var vdetails = dbContext.Vendors.FirstOrDefault(x => x.VendorId == v.Id);
+            if (vdetails != null)
+            {
+                ViewBag.SelectedVendorName = vdetails.VendorName;
+            }
+            var det = BindDDL();
+            return View(det);
         }
 
         public IActionResult GenerateConsolidatedReport()
         {
             var reportData = (from file in dbContext.Files
-                              join vendor in dbContext.Vendors on file.VendorName equals vendor.VendorName /*file.VendorId equals vendor.VendorId*/
+                              join vendor in dbContext.Vendors 
+                                    on new { file.VendorName, file.VendorAddress }
+                                    equals new { vendor.VendorName, vendor.VendorAddress }
                               join contract in dbContext.Contracts on file.ContractNumber equals contract.ContractNumber
-                              join location in dbContext.Locations on file.LocationId equals location.LocationId
+                              join location in dbContext.Locations
+                                    on new { file.Location.LocationName, file.Location.SubLocationName}
+                                    equals new { location.LocationName, location.SubLocationName }
                               select new ConsolidatedReportViewModel
                               {
                                   FileId = file.FileId,
