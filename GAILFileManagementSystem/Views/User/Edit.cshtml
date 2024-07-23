@@ -20,7 +20,16 @@
             </div>
             <div class="form-group">
                 <label asp-for="File_type" class="control-label"></label>
-                <select asp-for="File_type" class="form-control"></select>
+                @Html.DropDownList(
+                             "FileType",
+                             Html.GetEnumSelectList<File_type>(),
+                             "--SELECT--",
+                             new { @class = "form-control" }
+                             )
+                    @* <select asp-for="File_type" class="form-control" asp-items="Html.GetEnumSelectList<File_type>()">
+                    <option value="--select--">--select--</option>
+                    </select> *@
+                @* <select asp-for="File_type" class="form-control"></select> *@
                 <span asp-validation-for="File_type" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -39,49 +48,9 @@
                 <span asp-validation-for="Closed_Date" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="sno" class="control-label"></label>
-                <input asp-for="sno" class="form-control" />
-                <span asp-validation-for="sno" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="ContractNumber" class="control-label"></label>
                 <input asp-for="ContractNumber" class="form-control" />
                 <span asp-validation-for="ContractNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ContractSubject" class="control-label"></label>
-                <input asp-for="ContractSubject" class="form-control" />
-                <span asp-validation-for="ContractSubject" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ContractDescription" class="control-label"></label>
-                <input asp-for="ContractDescription" class="form-control" />
-                <span asp-validation-for="ContractDescription" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="StartDate" class="control-label"></label>
-                <input asp-for="StartDate" class="form-control" />
-                <span asp-validation-for="StartDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EndDate" class="control-label"></label>
-                <input asp-for="EndDate" class="form-control" />
-                <span asp-validation-for="EndDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ContractType" class="control-label"></label>
-                <select asp-for="ContractType" class="form-control"></select>
-                <span asp-validation-for="ContractType" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="VendorId" class="control-label"></label>
-                <select asp-for="VendorId" class="form-control" asp-items="ViewBag.VendorId"></select>
-                <span asp-validation-for="VendorId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="VendorName" class="control-label"></label>
@@ -94,44 +63,9 @@
                 <span asp-validation-for="VendorAddress" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ContactPerson" class="control-label"></label>
-                <input asp-for="ContactPerson" class="form-control" />
-                <span asp-validation-for="ContactPerson" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ContactNumber" class="control-label"></label>
-                <input asp-for="ContactNumber" class="form-control" />
-                <span asp-validation-for="ContactNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ContactEmailId" class="control-label"></label>
-                <input asp-for="ContactEmailId" class="form-control" />
-                <span asp-validation-for="ContactEmailId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LocationId" class="control-label"></label>
-                <select asp-for="LocationId" class="form-control" asp-items="ViewBag.LocationId"></select>
-                <span asp-validation-for="LocationId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LocationName" class="control-label"></label>
-                <input asp-for="LocationName" class="form-control" />
-                <span asp-validation-for="LocationName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SubLocationID" class="control-label"></label>
-                <input asp-for="SubLocationID" class="form-control" />
-                <span asp-validation-for="SubLocationID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SubLocationName" class="control-label"></label>
-                <input asp-for="SubLocationName" class="form-control" />
-                <span asp-validation-for="SubLocationName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="GSTN_No" class="control-label"></label>
-                <input asp-for="GSTN_No" class="form-control" />
-                <span asp-validation-for="GSTN_No" class="text-danger"></span>
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
