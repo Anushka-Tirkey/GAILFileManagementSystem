@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GAILFileManagementSystem.Migrations
 {
     [DbContext(typeof(myDbContext))]
-    [Migration("20240721072840_UpdatedFilesModelToFitAllFileDetails")]
-    partial class UpdatedFilesModelToFitAllFileDetails
+    [Migration("20240724141808_CreateDB")]
+    partial class CreateDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,302 +26,317 @@ namespace GAILFileManagementSystem.Migrations
 
             modelBuilder.Entity("GAILFileManagementSystem.Models.ConsolidatedReportViewModel", b =>
                 {
-                    b.Property<int>("FileId")
+                    b.Property<int>("FILE_ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FileId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FILE_ID"), 1L, 1);
 
-                    b.Property<DateTime>("ClosedDate")
+                    b.Property<DateTime>("CLOSED_DATE")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ContactEmailId")
+                    b.Property<string>("CONTACT_EMAIL")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ContactNumber")
+                    b.Property<string>("CONTACT_NUMBER")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ContactPerson")
+                    b.Property<string>("CONTACT_PERSON")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ContractDescription")
+                    b.Property<string>("CONTRACT_DESCRIPTION")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("ContractEndDate")
+                    b.Property<DateTime>("CONTRACT_END_DATE")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ContractId")
+                    b.Property<int>("CONTRACT_ID")
                         .HasColumnType("int");
 
-                    b.Property<string>("ContractNumber")
+                    b.Property<string>("CONTRACT_NUMBER")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("ContractStartDate")
+                    b.Property<DateTime>("CONTRACT_START_DATE")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ContractSubject")
+                    b.Property<string>("CONTRACT_SUBJECT")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ContractType")
+                    b.Property<string>("CONTRACT_TYPE")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FileName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FileStatus")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FileType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("FilesFileId")
+                    b.Property<int?>("ContractSNO")
                         .HasColumnType("int");
 
-                    b.Property<int>("GSTN_No")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LocationId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("LocationName")
+                    b.Property<string>("DESCRIPTION")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("OpenDate")
+                    b.Property<string>("FILE_NAME")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FILE_STATUS")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FILE_TYPE")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("FilesFILE_ID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GSTN_NO")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LOCATION_ID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LOCATION_NAME")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("LocationL_ID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("OPEN_DATE")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("SubLocationId")
+                    b.Property<int>("SUBLOCATION_ID")
                         .HasColumnType("int");
 
-                    b.Property<string>("SubLocationName")
+                    b.Property<string>("SUBLOCATION_NAME")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("VendorAddress")
+                    b.Property<string>("VENDOR_ADDRESS")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("VendorId")
+                    b.Property<int>("VENDOR_ID")
                         .HasColumnType("int");
 
-                    b.Property<string>("VendorName")
+                    b.Property<int?>("VENDOR_ID1")
+                        .HasColumnType("int");
+
+                    b.Property<string>("VENDOR_NAME")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("FileId");
+                    b.HasKey("FILE_ID");
 
-                    b.HasIndex("ContractId");
+                    b.HasIndex("ContractSNO");
 
-                    b.HasIndex("FilesFileId");
+                    b.HasIndex("FilesFILE_ID");
 
-                    b.HasIndex("LocationId");
+                    b.HasIndex("LocationL_ID");
 
-                    b.HasIndex("VendorId");
+                    b.HasIndex("VENDOR_ID1");
 
                     b.ToTable("ConsolidatedReportViewModel");
                 });
 
             modelBuilder.Entity("GAILFileManagementSystem.Models.Contract", b =>
                 {
-                    b.Property<int>("sno")
+                    b.Property<int>("SNO")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("sno"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SNO"), 1L, 1);
 
-                    b.Property<string>("ContractDescription")
+                    b.Property<string>("CONTRACT_DESCRIPTION")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ContractNumber")
+                    b.Property<string>("CONTRACT_NUMBER")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ContractSubject")
+                    b.Property<string>("CONTRACT_SUBJECT")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ContractType")
+                    b.Property<int>("CONTRACT_TYPE")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("EndDate")
+                    b.Property<DateTime>("END_DATE")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("StartDate")
+                    b.Property<DateTime>("START_DATE")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("sno");
+                    b.HasKey("SNO");
 
                     b.ToTable("Contracts");
                 });
 
             modelBuilder.Entity("GAILFileManagementSystem.Models.Files", b =>
                 {
-                    b.Property<int>("FileId")
+                    b.Property<int>("FILE_ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FileId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FILE_ID"), 1L, 1);
 
-                    b.Property<DateTime>("Closed_Date")
+                    b.Property<DateTime>("CLOSED_DATE")
                         .HasColumnType("datetime")
-                        .HasColumnName("Closed_Date");
+                        .HasColumnName("CLOSED_DATE");
 
-                    b.Property<string>("ContactEmailId")
+                    b.Property<string>("CONTACT_EMAIL")
                         .HasColumnType("varchar(100)")
-                        .HasColumnName("contactemail");
+                        .HasColumnName("CONTACT_EMAIL");
 
-                    b.Property<string>("ContactNumber")
+                    b.Property<string>("CONTACT_NUMBER")
                         .HasColumnType("varchar(100)")
-                        .HasColumnName("contactno");
+                        .HasColumnName("CONTACT_NUMBER");
 
-                    b.Property<string>("ContactPerson")
+                    b.Property<string>("CONTACT_PERSON")
                         .HasColumnType("varchar(100)")
-                        .HasColumnName("contactperson");
+                        .HasColumnName("CONTACT_PERSON");
 
-                    b.Property<string>("ContractDescription")
+                    b.Property<string>("CONTRACT_DESCRIPTION")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ContractNumber")
+                    b.Property<string>("CONTRACT_NUMBER")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ContractSubject")
+                    b.Property<string>("CONTRACT_SUBJECT")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ContractType")
+                    b.Property<int>("CONTRACT_TYPE")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Contractsno")
+                    b.Property<int?>("ContractSNO")
                         .HasColumnType("int");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("DESCRIPTION")
                         .HasColumnType("varchar(100)")
-                        .HasColumnName("Description");
+                        .HasColumnName("DESCRIPTION");
 
-                    b.Property<DateTime>("EndDate")
+                    b.Property<DateTime>("END_DATE")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("FileName")
+                    b.Property<string>("FILE_NAME")
                         .HasColumnType("varchar(255)")
-                        .HasColumnName("File_Name");
+                        .HasColumnName("FILE_NAME");
 
-                    b.Property<string>("File_type")
+                    b.Property<string>("FILE_TYPE")
                         .IsRequired()
                         .HasColumnType("varchar(20)")
-                        .HasColumnName("File_Type");
+                        .HasColumnName("FILE_TYPE");
 
-                    b.Property<int>("GSTN_No")
+                    b.Property<int>("GSTN_NO")
                         .HasColumnType("int");
 
-                    b.Property<int>("LocationId")
+                    b.Property<int>("LOCATION_ID")
                         .HasColumnType("int");
 
-                    b.Property<string>("LocationName")
+                    b.Property<string>("LOCATION_NAME")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Open_Date")
-                        .HasColumnType("datetime")
-                        .HasColumnName("Open_Date");
+                    b.Property<int?>("LocationL_ID")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("StartDate")
+                    b.Property<DateTime>("OPEN_DATE")
+                        .HasColumnType("datetime")
+                        .HasColumnName("OPEN_DATE");
+
+                    b.Property<int>("SNO")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("START_DATE")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Status")
+                    b.Property<string>("STATUS")
                         .IsRequired()
                         .HasColumnType("varchar(100)")
-                        .HasColumnName("Status");
+                        .HasColumnName("STATUS");
 
-                    b.Property<int>("SubLocationID")
+                    b.Property<int>("SUBLOCATION_ID")
                         .HasColumnType("int");
 
-                    b.Property<string>("SubLocationName")
+                    b.Property<string>("SUBLOCATION_NAME")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("VendorAddress")
+                    b.Property<string>("VENDOR_ADDRESS")
                         .HasColumnType("varchar(200)")
-                        .HasColumnName("vendoraddress");
+                        .HasColumnName("VENDOR_ADDRESS");
 
-                    b.Property<int>("VendorId")
+                    b.Property<int>("VENDOR_ID")
                         .HasColumnType("int");
 
-                    b.Property<string>("VendorName")
+                    b.Property<int?>("VENDOR_ID1")
+                        .HasColumnType("int");
+
+                    b.Property<string>("VENDOR_NAME")
                         .IsRequired()
                         .HasColumnType("varchar(100)")
-                        .HasColumnName("vendorname");
+                        .HasColumnName("VENDOR_NAME");
 
-                    b.Property<int>("sno")
-                        .HasColumnType("int");
+                    b.HasKey("FILE_ID");
 
-                    b.HasKey("FileId");
+                    b.HasIndex("ContractSNO");
 
-                    b.HasIndex("Contractsno");
+                    b.HasIndex("LocationL_ID");
 
-                    b.HasIndex("LocationId");
-
-                    b.HasIndex("VendorId");
+                    b.HasIndex("VENDOR_ID1");
 
                     b.ToTable("Files");
                 });
 
             modelBuilder.Entity("GAILFileManagementSystem.Models.Location", b =>
                 {
-                    b.Property<int>("LId")
+                    b.Property<int>("L_ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("L_ID"), 1L, 1);
 
-                    b.Property<int>("GSTN_No")
+                    b.Property<int>("GSTN_NO")
                         .HasColumnType("int");
 
-                    b.Property<int>("LocationId")
+                    b.Property<int>("LOCATION_ID")
                         .HasColumnType("int");
 
-                    b.Property<string>("LocationName")
+                    b.Property<string>("LOCATION_NAME")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SubLocationID")
+                    b.Property<int>("SUBLOCATION_ID")
                         .HasColumnType("int");
 
-                    b.Property<string>("SubLocationName")
+                    b.Property<string>("SUBLOCATION_NAME")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("LId");
+                    b.HasKey("L_ID");
 
                     b.ToTable("Locations");
                 });
 
             modelBuilder.Entity("GAILFileManagementSystem.Models.Vendor", b =>
                 {
-                    b.Property<int>("VendorId")
+                    b.Property<int>("VENDOR_ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VendorId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VENDOR_ID"), 1L, 1);
 
-                    b.Property<string>("ContactEmailId")
+                    b.Property<string>("CONTACT_EMAIL")
                         .IsRequired()
                         .HasColumnType("varchar(100)")
-                        .HasColumnName("contactemail");
+                        .HasColumnName("CONTACT_EMAIL");
 
-                    b.Property<string>("ContactNumber")
+                    b.Property<string>("CONTACT_NUMBER")
                         .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("varchar(10)")
-                        .HasColumnName("contactno");
+                        .HasColumnName("CONTACT_NUMBER");
 
-                    b.Property<string>("ContactPerson")
+                    b.Property<string>("CONTACT_PERSON")
                         .HasColumnType("varchar(100)")
-                        .HasColumnName("contactperson");
+                        .HasColumnName("CONTACT_PERSON");
 
-                    b.Property<string>("VendorAddress")
+                    b.Property<string>("VENDOR_ADDRESS")
                         .HasColumnType("varchar(200)")
-                        .HasColumnName("vendoraddress");
+                        .HasColumnName("VENDOR_ADDRESS");
 
-                    b.Property<string>("VendorName")
+                    b.Property<string>("VENDOR_NAME")
                         .IsRequired()
                         .HasColumnType("varchar(100)")
-                        .HasColumnName("vendorname");
+                        .HasColumnName("VENDOR_NAME");
 
-                    b.HasKey("VendorId");
+                    b.HasKey("VENDOR_ID");
 
                     b.ToTable("Vendors");
                 });
@@ -330,25 +345,19 @@ namespace GAILFileManagementSystem.Migrations
                 {
                     b.HasOne("GAILFileManagementSystem.Models.Contract", "Contract")
                         .WithMany()
-                        .HasForeignKey("ContractId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ContractSNO");
 
                     b.HasOne("GAILFileManagementSystem.Models.Files", "Files")
                         .WithMany()
-                        .HasForeignKey("FilesFileId");
+                        .HasForeignKey("FilesFILE_ID");
 
                     b.HasOne("GAILFileManagementSystem.Models.Location", "Location")
                         .WithMany()
-                        .HasForeignKey("LocationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LocationL_ID");
 
                     b.HasOne("GAILFileManagementSystem.Models.Vendor", "Vendor")
                         .WithMany()
-                        .HasForeignKey("VendorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("VENDOR_ID1");
 
                     b.Navigation("Contract");
 
@@ -363,19 +372,15 @@ namespace GAILFileManagementSystem.Migrations
                 {
                     b.HasOne("GAILFileManagementSystem.Models.Contract", "Contract")
                         .WithMany("Files")
-                        .HasForeignKey("Contractsno");
+                        .HasForeignKey("ContractSNO");
 
                     b.HasOne("GAILFileManagementSystem.Models.Location", "Location")
                         .WithMany("Files")
-                        .HasForeignKey("LocationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LocationL_ID");
 
                     b.HasOne("GAILFileManagementSystem.Models.Vendor", "Vendor")
                         .WithMany("Files")
-                        .HasForeignKey("VendorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("VENDOR_ID1");
 
                     b.Navigation("Contract");
 

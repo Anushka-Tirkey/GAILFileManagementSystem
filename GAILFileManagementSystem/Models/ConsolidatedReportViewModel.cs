@@ -7,39 +7,39 @@ namespace GAILFileManagementSystem.Models
     {
         //File details
         public Files Files { get; set; }
-        [Key] public int FileId { get; set; }
-        public string FileName { get; set; }
-        public string FileType { get; set; }
-        public string Description { get; set; }
-        public DateTime OpenDate { get; set; }
-        public DateTime ClosedDate { get; set; }
-        public string FileStatus { get; set; }
+        [Key] public int FILE_ID { get; set; }
+        public string FILE_NAME { get; set; }
+        public string FILE_TYPE { get; set; }
+        public string DESCRIPTION { get; set; }
+        public DateTime OPEN_DATE { get; set; }
+        public DateTime CLOSED_DATE { get; set; }
+        public string FILE_STATUS { get; set; }
 
         // Vendor Details
         public Vendor Vendor { get; set; }
-        public int VendorId { get; set; }
-        public string VendorName { get; set; }
-        public string VendorAddress { get; set; }
-        public string ContactPerson { get; set; }
-        public string ContactNumber { get; set; }
-        public string ContactEmailId { get; set; }
+        public int VENDOR_ID { get; set; }
+        public string VENDOR_NAME { get; set; }
+        public string VENDOR_ADDRESS { get; set; }
+        public string CONTACT_PERSON { get; set; }
+        public string CONTACT_NUMBER { get; set; }
+        public string CONTACT_EMAIL { get; set; }
 
         // Contract Details
         public Contract Contract { get; set; }
-        public int ContractId { get; set; }
-        public string ContractNumber { get; set; }
-        public string ContractSubject { get; set; }
-        public string ContractDescription { get; set; }
-        public DateTime ContractStartDate { get; set; }
-        public DateTime ContractEndDate { get; set; }
-        public string ContractType { get; set; }
+        public int CONTRACT_ID { get; set; }
+        public string CONTRACT_NUMBER { get; set; }
+        public string CONTRACT_SUBJECT { get; set; }
+        public string CONTRACT_DESCRIPTION { get; set; }
+        public DateTime CONTRACT_START_DATE { get; set; }
+        public DateTime CONTRACT_END_DATE { get; set; }
+        public string CONTRACT_TYPE { get; set; }
 
         // Location Details
         public Location Location { get; set; } 
-        public int LocationId { get; set; }
-        public string LocationName { get; set; }
-        public int SubLocationId { get; set; }
-        public string SubLocationName { get; set; }
-        public int GSTN_No { get; set; }
+        public int LOCATION_ID { get; set; }
+        public string LOCATION_NAME { get; set; }
+        public int SUBLOCATION_ID { get; set; }
+        public string SUBLOCATION_NAME { get; set; }
+        public int GSTN_NO { get; set; }
     }
 }

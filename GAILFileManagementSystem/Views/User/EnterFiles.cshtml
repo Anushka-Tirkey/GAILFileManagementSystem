@@ -197,28 +197,28 @@
                             <th>File Type</th>
                             <td>
                                 @Html.DropDownList(
-                                         "FileType",
-                                         Html.GetEnumSelectList<File_type>(),
+                                         "FILE_TYPE",
+                                         Html.GetEnumSelectList<FILE_TYPE>(),
                                          "--SELECT--",
                                          new { @class = "form-control" }
                                 )
-                                 @* <select asp-for="File_type" class="form-control" asp-items="Html.GetEnumSelectList<File_type>()">
+                                 @* <select asp-for="FILE_TYPE" class="form-control" asp-items="Html.GetEnumSelectList<FILE_TYPE>()">
                                      <option value="--select--">--select--</option>
                                  </select> *@
                             </td>
                         </tr>
                         <tr>
-                            <th>File Description</th>
-                            <td><textarea asp-for="Description" placeholder="Enter file description" class="form-control" rows="2"></textarea>
-                                <span asp-validation-for="Description" style="color:red;"></span>
+                            <th>File DESCRIPTION</th>
+                            <td><textarea asp-for="DESCRIPTION" placeholder="Enter file description" class="form-control" rows="2"></textarea>
+                                <span asp-validation-for="DESCRIPTION" style="color:red;"></span>
                             </td>
                         </tr>
                         <tr>
                             <th>File Open Date</th>
                             <td>
                                 <div class="input-container">
-                                    <input asp-for="Open_Date" class="form-control" type="date" value="date"><i class="icon">📅</i>
-                                    <span asp-validation-for="Open_Date" style="color:red;"></span>
+                                    <input asp-for="OPEN_DATE" class="form-control" type="date" value="date"><i class="icon">📅</i>
+                                    <span asp-validation-for="OPEN_DATE" style="color:red;"></span>
                                 </div>
                             </td>
                         </tr>
@@ -226,8 +226,8 @@
                             <th>File Close Date</th>
                             <td>
                                 <div class="input-container">
-                                    <input asp-for="Closed_Date" class="form-control" type="date" value="date"><i class="icon">📅</i>
-                                    <span asp-validation-for="Closed_Date" style="color:red;"></span>
+                                    <input asp-for="CLOSED_DATE" class="form-control" type="date" value="date"><i class="icon">📅</i>
+                                    <span asp-validation-for="CLOSED_DATE" style="color:red;"></span>
                                 </div>
                             </td>
                         </tr>
@@ -242,8 +242,8 @@
                         <tr>
                             <th>Contract Number</th>
                             <td>
-                                <input asp-for="ContractNumber" class="form-control" placeholder="Enter Contract No." required>
-                                <span asp-validation-for="ContractNumber" style="color:red;"></span>
+                                <input asp-for="CONTRACT_NUMBER" class="form-control" placeholder="Enter Contract No." required>
+                                <span asp-validation-for="CONTRACT_NUMBER" style="color:red;"></span>
                             </td>
                         </tr>
                     </table>
@@ -254,25 +254,25 @@
                 <div class="vendor-details">
                     <a asp-controller="Home" asp-action="Vendor">Enter new Vendor</a>
                     <table class="table-form">
-                        <tr>
+                        @* <tr>
                             <th>Vendor ID</th>
                             <td>
-                                <input asp-for="VendorId" class="form-control" placeholder="Enter Vendor ID" required>
-                                <span asp-validation-for="VendorId" style="color:red;"></span>
+                                <input asp-for="VENDOR_ID" class="form-control" placeholder="Enter Vendor ID" required>
+                                <span asp-validation-for="VENDOR_ID" style="color:red;"></span>
                             </td>
-                        </tr>
+                        </tr> *@
                         <tr>
                             <th>Vendor name</th>
                             <td>
-                                <input asp-for="VendorName" class="form-control" placeholder="Enter Vendor Name" required>
-                                <span asp-validation-for="VendorName" style="color:red;"></span>
+                                <input asp-for="VENDOR_NAME" class="form-control" placeholder="Enter Vendor Name" required>
+                                <span asp-validation-for="VENDOR_NAME" style="color:red;"></span>
                             </td>
                         </tr>
                         <tr>
                             <th>Vendor Address</th>
                             <td>
-                                <textarea asp-for="VendorAddress" placeholder="Enter Vendor Address" class="form-control" rows="2"></textarea>
-                                <span asp-validation-for="VendorAddress" style="color:red;"></span>
+                                <textarea asp-for="VENDOR_ADDRESS" placeholder="Enter Vendor Address" class="form-control" rows="2"></textarea>
+                                <span asp-validation-for="VENDOR_ADDRESS" style="color:red;"></span>
                             </td>
                         </tr>
                     </table>
@@ -286,15 +286,15 @@
                         <tr>
                             <th>Location</th>
                             <td>
-                                <input asp-for="LocationName" class="form-control" placeholder="Enter Location" required>
-                                <span asp-validation-for="LocationName" style="color:red;"></span>
+                                <input asp-for="LOCATION_NAME" class="form-control" placeholder="Enter Location" required>
+                                <span asp-validation-for="LOCATION_NAME" style="color:red;"></span>
                             </td>
                         </tr>
                         <tr>
                             <th>Sub-Location</th>
                             <td>
-                                <input asp-for="SubLocationName" class="form-control" placeholder="Enter Sub-Location" required>
-                                <span asp-validation-for="SubLocationName" style="color:red;"></span>
+                                <input asp-for="SUBLOCATION_NAME" class="form-control" placeholder="Enter Sub-Location" required>
+                                <span asp-validation-for="SUBLOCATION_NAME" style="color:red;"></span>
                             </td>
                         </tr>
                     </table>
@@ -305,17 +305,17 @@
                 <div class="other-details">
                     <table class="table-form">
                         <tr>
-                            <th>Status</th>
+                            <th>STATUS</th>
                             <td>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" asp-for="Status" value="Open">
+                                    <input class="form-check-input" type="radio" asp-for="STATUS" value="Open">
                                     <label class="form-check-label" for="flexRadioDefault1">Open</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" asp-for="Status" value="Closed">
+                                    <input class="form-check-input" type="radio" asp-for="STATUS" value="Closed">
                                     <label class="form-check-label" for="flexRadioDefault2">Closed</label>
                                 </div>
-                                <span asp-validation-for="Status" style="color:red;"></span>
+                                <span asp-validation-for="STATUS" style="color:red;"></span>
                             </td>
                         </tr>
                         <tr>

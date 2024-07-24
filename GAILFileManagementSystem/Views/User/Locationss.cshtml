@@ -13,19 +13,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.LocationId)
+                @Html.DisplayNameFor(model => model.LOCATION_ID)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LocationName)
+                @Html.DisplayNameFor(model => model.LOCATION_NAME)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SubLocationID)
+                @Html.DisplayNameFor(model => model.SUBLOCATION_ID)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SubLocationName)
+                @Html.DisplayNameFor(model => model.SUBLOCATION_NAME)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.GSTN_No)
+                @Html.DisplayNameFor(model => model.GSTN_NO)
             </th>
             <th></th>
         </tr>
@@ -34,24 +34,24 @@
 @foreach (var item in Model) {
         <tr>
                 <td>
-                @Html.DisplayFor(modelItem => item.LocationId)
+                @Html.DisplayFor(modelItem => item.LOCATION_ID)
                 </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LocationName)
+                @Html.DisplayFor(modelItem => item.LOCATION_NAME)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SubLocationID)
+                @Html.DisplayFor(modelItem => item.SUBLOCATION_ID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SubLocationName)
+                @Html.DisplayFor(modelItem => item.SUBLOCATION_NAME)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.GSTN_No)
+                @Html.DisplayFor(modelItem => item.GSTN_NO)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.LocationId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.LocationId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.LocationId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.LOCATION_ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.LOCATION_ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.LOCATION_ID">Delete</a>
             </td>
         </tr>
 }

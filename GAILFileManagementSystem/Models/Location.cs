@@ -8,13 +8,13 @@ namespace GAILFileManagementSystem.Models
     public class Location
     {
         [Key]
-        public int LId { get; set; }
-        public int LocationId { get; set; }
+        public int L_ID { get; set; }
+        public int LOCATION_ID { get; set; }
 
-        public string LocationName { get; set; } = string.Empty;
-        public int SubLocationID { get; set; }
-        public string SubLocationName { get; set;} = string.Empty;
+        public string LOCATION_NAME { get; set; } = string.Empty;
+        public int SUBLOCATION_ID { get; set; }
+        public string SUBLOCATION_NAME { get; set;} = string.Empty;
         public List<Files> Files { get; set; }
-        public int GSTN_No { get; set; }
+        public int GSTN_NO { get; set; }
     }
 }

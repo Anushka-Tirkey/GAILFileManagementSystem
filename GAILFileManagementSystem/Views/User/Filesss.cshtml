@@ -13,28 +13,28 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.File_type)
+                @Html.DisplayNameFor(model => model.FILE_TYPE)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                @Html.DisplayNameFor(model => model.DESCRIPTION)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Open_Date)
+                @Html.DisplayNameFor(model => model.OPEN_DATE)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Closed_Date)
+                @Html.DisplayNameFor(model => model.CLOSED_DATE)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ContractNumber)
+                @Html.DisplayNameFor(model => model.CONTRACT_NUMBER)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.VendorName)
+                @Html.DisplayNameFor(model => model.VENDOR_NAME)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.VendorAddress)
+                @Html.DisplayNameFor(model => model.VENDOR_ADDRESS)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Status)
+                @Html.DisplayNameFor(model => model.STATUS)
             </th>
             <th></th>
         </tr>
@@ -43,33 +43,33 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.File_type)
+                @Html.DisplayFor(modelItem => item.FILE_TYPE)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
+                @Html.DisplayFor(modelItem => item.DESCRIPTION)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Open_Date)
+                @Html.DisplayFor(modelItem => item.OPEN_DATE)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Closed_Date)
+                @Html.DisplayFor(modelItem => item.CLOSED_DATE)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ContractNumber)
+                @Html.DisplayFor(modelItem => item.CONTRACT_NUMBER)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.VendorName)
+                @Html.DisplayFor(modelItem => item.VENDOR_NAME)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.VendorAddress)
+                @Html.DisplayFor(modelItem => item.VENDOR_ADDRESS)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Status)
+                @Html.DisplayFor(modelItem => item.STATUS)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.FileId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.FileId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.FileId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.FILE_ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.FILE_ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.FILE_ID">Delete</a>
             </td>
         </tr>
 }

@@ -25,11 +25,11 @@ namespace GAILFileManagementSystem.Controllers
             return View();
         }
 
-        public enum File_type
+        public enum FILE_TYPE
         {
-            Miscellaneous = 0,
-            Approval = 1,
-            Warranty = 2,
+            MISCELLANEOUS = 0,
+            APPROVAL = 1,
+            WARRANTY = 2,
             AMC = 3
         }
 
@@ -39,53 +39,6 @@ namespace GAILFileManagementSystem.Controllers
         }
 
         [HttpPost]
-        /*public async Task<IActionResult> EnterFiles(Files f)
-        {
-            //if (ModelState.IsValid)
-            //{
-            //Checking for vendors
-            var existingVendor = dbContext.Vendors
-                    .FirstOrDefault(v => v.VendorName == f.VendorName && v.VendorAddress == f.VendorAddress);
-
-            if (existingVendor != null)
-            {
-                // Map the existing vendor details to the Files model
-                f.VendorId = existingVendor.VendorId;
-                f.Vendor = existingVendor;
-                f.ContactPerson = existingVendor.ContactPerson;
-                f.ContactNumber = existingVendor.ContactNumber;
-                f.ContactEmailId = existingVendor.ContactEmailId;
-            }
-
-            //checking for CONTRACTS
-            var existingContract = dbContext.Contracts
-                    .FirstOrDefault(v => v.ContractNumber == f.ContractNumber);
-
-            if (existingContract != null)
-            {
-                // Map the existing CONTRACT details to the Files model
-                f.ContractSubject= existingContract.ContractSubject;
-                f.ContractDescription= existingContract.ContractDescription;    
-                f.StartDate = existingContract.StartDate;   
-                f.EndDate = existingContract.EndDate;
-                //f.ContractType = Enum.Parse<CType>(existingContract.ContractType.ToString());
-            }
-
-            //CHECKING FOR LOCATION
-            var existingLocation = dbContext.Locations.FirstOrDefault(v => v.LocationId == f.LocationId);
-            if (existingLocation != null)
-            {
-                f.SubLocationID = existingLocation.SubLocationID;
-                f.GSTN_No = existingLocation.GSTN_No;
-            }
-
-                await dbContext.Files.AddAsync(f);
-                await dbContext.SaveChangesAsync();
-                //EnterFilesIntoConsolidatedFileReport(f);
-                return RedirectToAction("EnterFiles", "User");
-                return View(f);
-        }*/
-
         public async Task<IActionResult> EnterFiles(Files f)
         {
             // Check if the model state is valid
@@ -96,16 +49,16 @@ namespace GAILFileManagementSystem.Controllers
 
             // Checking for vendors
             var existingVendor = dbContext.Vendors
-                .FirstOrDefault(v => v.VendorName == f.VendorName && v.VendorAddress == f.VendorAddress);
+                .FirstOrDefault(v => v.VENDOR_NAME == f.VENDOR_NAME && v.VENDOR_ADDRESS == f.VENDOR_ADDRESS);
 
             if (existingVendor != null)
             {
                 // Map the existing vendor details to the Files model
-                f.VendorId = existingVendor.VendorId;
+                f.VENDOR_ID = existingVendor.VENDOR_ID;
                 f.Vendor = existingVendor;
-                f.ContactPerson = existingVendor.ContactPerson;
-                f.ContactNumber = existingVendor.ContactNumber;
-                f.ContactEmailId = existingVendor.ContactEmailId;
+                f.CONTACT_PERSON = existingVendor.CONTACT_PERSON;
+                f.CONTACT_NUMBER = existingVendor.CONTACT_NUMBER;
+                f.CONTACT_EMAIL = existingVendor.CONTACT_EMAIL;
             }
             else
             {
@@ -116,16 +69,16 @@ namespace GAILFileManagementSystem.Controllers
 
             // Checking for contracts
             var existingContract = dbContext.Contracts
-                .FirstOrDefault(v => v.ContractNumber == f.ContractNumber);
+                .FirstOrDefault(v => v.CONTRACT_NUMBER == f.CONTRACT_NUMBER);
 
             if (existingContract != null)
             {
                 // Map the existing contract details to the Files model
-                f.ContractSubject = existingContract.ContractSubject;
-                f.ContractDescription = existingContract.ContractDescription;
-                f.StartDate = existingContract.StartDate;
-                f.EndDate = existingContract.EndDate;
-                //f.ContractType = existingContract.ContractType;
+                f.CONTRACT_SUBJECT = existingContract.CONTRACT_SUBJECT;
+                f.CONTRACT_DESCRIPTION = existingContract.CONTRACT_DESCRIPTION;
+                f.START_DATE = existingContract.START_DATE;
+                f.END_DATE = existingContract.END_DATE;
+                //f.CONTRACT_TYPE = existingContract.CONTRACT_TYPE;
             }
             else
             {
@@ -135,12 +88,12 @@ namespace GAILFileManagementSystem.Controllers
             }
 
             // Checking for location
-            var existingLocation = dbContext.Locations.FirstOrDefault(v => v.LocationId == f.LocationId);
+            var existingLocation = dbContext.Locations.FirstOrDefault(v => v.LOCATION_ID == f.LOCATION_ID);
 
             if (existingLocation != null)
             {
-                f.SubLocationID = existingLocation.SubLocationID;
-                f.GSTN_No = existingLocation.GSTN_No;
+                f.SUBLOCATION_ID = existingLocation.SUBLOCATION_ID;
+                f.GSTN_NO = existingLocation.GSTN_NO;
             }
             else
             {
@@ -164,39 +117,39 @@ namespace GAILFileManagementSystem.Controllers
         {
             var consolidatedReport = new ConsolidatedReportViewModel
             {
-                FileId = f.FileId,
-                FileName = f.FileName,
-                FileType = f.File_type.ToString(),
-                Description = f.Description,
-                OpenDate = f.Open_Date,
-                ClosedDate = f.Closed_Date,
-                FileStatus = f.Status,
+                FILE_ID = f.FILE_ID,
+                FILE_NAME = f.FILE_NAME,
+                FILE_TYPE = f.FILE_TYPE.ToString(),
+                DESCRIPTION = f.DESCRIPTION,
+                OPEN_DATE = f.OPEN_DATE,
+                CLOSED_DATE = f.CLOSED_DATE,
+                FILE_STATUS = f.STATUS,
                 // Add other properties as needed
 
                 // Vendor Details
-                VendorId = f.VendorId,
-                VendorName = f.VendorName,
-                VendorAddress = f.VendorAddress,
-                ContactPerson = f.Vendor.ContactPerson,
-                ContactNumber = f.ContactPerson,
-                ContactEmailId = f.ContactEmailId,
+                VENDOR_ID = f.VENDOR_ID,
+                VENDOR_NAME = f.VENDOR_NAME,
+                VENDOR_ADDRESS = f.VENDOR_ADDRESS,
+                CONTACT_PERSON = f.Vendor.CONTACT_PERSON,
+                CONTACT_NUMBER = f.CONTACT_PERSON,
+                CONTACT_EMAIL = f.CONTACT_EMAIL,
 
-                //public int ContractId { get; set; }
-                ContractNumber = f.ContractNumber,
-                //ContractSubject { get; set; }
-                //ContractDescription { get; set; }
-                //ContractStartDate 
-                //ContractEndDate
-                //ContractType
+                //public int CONTRACT_ID { get; set; }
+                CONTRACT_NUMBER = f.CONTRACT_NUMBER,
+                //CONTRACT_SUBJECT { get; set; }
+                //CONTRACT_DESCRIPTION { get; set; }
+                //CONTRACT_START_DATE 
+                //CONTRACT_END_DATE
+                //CONTRACT_TYPE
 
                 // Location Details
-                LocationId = f.LocationId,
+                LOCATION_ID = f.LOCATION_ID,
                 //Location 
-                //LocationId 
-                //LocationName 
-                //SubLocationId 
-                //SubLocationName 
-                //GSTN_No 
+                //LOCATION_ID 
+                //LOCATION_NAME 
+                //SUBLOCATION_ID 
+                //SUBLOCATION_NAME 
+                //GSTN_NO 
             };
             return consolidatedReport;
         }*/
@@ -342,59 +295,59 @@ namespace GAILFileManagementSystem.Controllers
             {
                 VendorModel.VendorNameList.Add(new SelectListItem   //Vendor Names
                 {
-                    Text = item.VendorName,
-                    Value = item.VendorId.ToString()
+                    Text = item.VENDOR_NAME,
+                    Value = item.VENDOR_ID.ToString()
                 });
                 VendorModel.VendorAddressList.Add(new SelectListItem    //Vendr Addresses
                 {
-                    Text = item.VendorAddress,
-                    Value = item.VendorId.ToString()
+                    Text = item.VENDOR_ADDRESS,
+                    Value = item.VENDOR_ID.ToString()
                 });
                 VendorModel.ContactPersonList.Add(new SelectListItem    //Vendr Addresses
                 {
-                    Text = item.ContactPerson,
-                    Value = item.VendorId.ToString()
+                    Text = item.CONTACT_PERSON,
+                    Value = item.VENDOR_ID.ToString()
                 });
             }
             foreach (var subject in contractData)
             {
                 VendorModel.ContractTypeList.Add(new SelectListItem
                 {
-                    Text = subject.ContractType.ToString(),
-                    Value = subject.sno.ToString()
+                    Text = subject.CONTRACT_TYPE.ToString(),
+                    Value = subject.SNO.ToString()
                 });
                 VendorModel.ContractSubjectList.Add(new SelectListItem
                 {
-                    Text = subject.ContractSubject,
-                    Value = subject.sno.ToString()
+                    Text = subject.CONTRACT_SUBJECT,
+                    Value = subject.SNO.ToString()
                 });
                 VendorModel.ContractStartDateList.Add(new SelectListItem
                 {
-                    Text = subject.StartDate.ToString("yyyy-MM-dd"), // Convert DateTime to string
-                    Value = subject.sno.ToString()
+                    Text = subject.START_DATE.ToString("yyyy-MM-dd"), // Convert DateTime to string
+                    Value = subject.SNO.ToString()
                 });
                 VendorModel.ContractEndDateList.Add(new SelectListItem
                 {
-                    Text = subject.EndDate.ToString("yyyy-MM-dd"), // Convert DateTime to string
-                    Value = subject.sno.ToString()
+                    Text = subject.END_DATE.ToString("yyyy-MM-dd"), // Convert DateTime to string
+                    Value = subject.SNO.ToString()
                 });
             }
             foreach (var fthing in fileData)
             {
                 VendorModel.FileTypeList.Add(new SelectListItem
                 {
-                    Text = fthing.File_type.ToString(), // Convert DateTime to string\r\n 
-                    Value = fthing.FileId.ToString()
+                    Text = fthing.FILE_TYPE.ToString(), // Convert DateTime to string\r\n 
+                    Value = fthing.FILE_ID.ToString()
                 });
                 VendorModel.FileCloseDateList.Add(new SelectListItem
                 {
-                    Text = fthing.Open_Date.ToString("yyyy-MM-dd"), // Convert DateTime to string\r\n 
-                    Value = fthing.FileId.ToString()
+                    Text = fthing.OPEN_DATE.ToString("yyyy-MM-dd"), // Convert DateTime to string\r\n 
+                    Value = fthing.FILE_ID.ToString()
                 });
                 VendorModel.FileCloseDateList.Add(new SelectListItem
                 {
-                    Text = fthing.Closed_Date.ToString("yyyy-MM-dd"), // Convert DateTime to string\r\n 
-                    Value = fthing.FileId.ToString()
+                    Text = fthing.CLOSED_DATE.ToString("yyyy-MM-dd"), // Convert DateTime to string\r\n 
+                    Value = fthing.FILE_ID.ToString()
                 });
             }
             return VendorModel;
@@ -426,7 +379,7 @@ namespace GAILFileManagementSystem.Controllers
             {
                 return NotFound();
             }
-            var fdata = await dbContext.Files.FirstOrDefaultAsync(x => x.FileId == id); 
+            var fdata = await dbContext.Files.FirstOrDefaultAsync(x => x.FILE_ID == id); 
             if(fdata != null)
                 return NotFound();
             return View(fdata);
@@ -439,7 +392,7 @@ namespace GAILFileManagementSystem.Controllers
             {
                 return NotFound();
             }
-            var fdata = await dbContext.Files.FirstOrDefaultAsync(x => x.FileId == id);
+            var fdata = await dbContext.Files.FirstOrDefaultAsync(x => x.FILE_ID == id);
             if (fdata == null)
             {
                 return NotFound();
@@ -450,7 +403,7 @@ namespace GAILFileManagementSystem.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(int? id, Files files)
         {
-            if (id != files.FileId)
+            if (id != files.FILE_ID)
             {
                 NotFound();
             }
@@ -470,7 +423,7 @@ namespace GAILFileManagementSystem.Controllers
             {
                 return NotFound();
             }
-            var fdata = await dbContext.Files.FirstOrDefaultAsync(x => x.FileId == id);
+            var fdata = await dbContext.Files.FirstOrDefaultAsync(x => x.FILE_ID == id);
             if (fdata == null)
             {
                 return NotFound();
@@ -499,10 +452,10 @@ namespace GAILFileManagementSystem.Controllers
         [HttpPost]
         public IActionResult ApplyFilter(VendorModel v)
         {
-            var vdetails = dbContext.Vendors.FirstOrDefault(x => x.VendorId == v.Id);
+            var vdetails = dbContext.Vendors.FirstOrDefault(x => x.VENDOR_ID == v.Id);
             if (vdetails != null)
             {
-                ViewBag.SelectedVendorName = vdetails.VendorName;
+                ViewBag.SelectedVendorName = vdetails.VENDOR_NAME;
             }
             var det = BindDDL();
             return View(det);
@@ -510,47 +463,58 @@ namespace GAILFileManagementSystem.Controllers
 
         public IActionResult GenerateConsolidatedReport()
         {
-            var reportData = (from file in dbContext.Files
-                              join vendor in dbContext.Vendors 
-                                    on new { file.VendorName, file.VendorAddress }
-                                    equals new { vendor.VendorName, vendor.VendorAddress }
-                              join contract in dbContext.Contracts on file.ContractNumber equals contract.ContractNumber
-                              join location in dbContext.Locations
-                                    on new { file.Location.LocationName, file.Location.SubLocationName}
-                                    equals new { location.LocationName, location.SubLocationName }
-                              select new ConsolidatedReportViewModel
-                              {
-                                  FileId = file.FileId,
-                                  FileName = file.FileName,
-                                  FileType = file.File_type.ToString(),
-                                  Description = file.Description,
-                                  OpenDate = file.Open_Date,
-                                  ClosedDate = file.Closed_Date,
-                                  FileStatus = file.Status,
+            var files = dbContext.Files
+                .Include(f => f.Vendor)
+                .Include(f => f.Contract)
+                .Include(f => f.Location)
+                .ToList();
 
-                                  VendorId = vendor.VendorId,
-                                  VendorName = vendor.VendorName,
-                                  VendorAddress = vendor.VendorAddress,
-                                  ContactPerson = vendor.ContactPerson,
-                                  ContactNumber = vendor.ContactNumber,
-                                  ContactEmailId = vendor.ContactEmailId,
-
-                                  ContractId = contract.sno,
-                                  ContractNumber = contract.ContractNumber,
-                                  ContractSubject = contract.ContractSubject,
-                                  ContractDescription = contract.ContractDescription,
-                                  ContractStartDate = contract.StartDate,
-                                  ContractEndDate = contract.EndDate,
-                                  ContractType = contract.ContractType.ToString(),
-
-                                  LocationId = location.LocationId,
-                                  LocationName = location.LocationName,
-                                  SubLocationId = location.SubLocationID,
-                                  SubLocationName = location.SubLocationName,
-                                  GSTN_No = location.GSTN_No
-                              }).ToList();
-
-            return View(reportData);
+            return View(files);
         }
+
+        //public IActionResult GenerateConsolidatedReport()
+        //{
+        //    var reportData = (from file in dbContext.Files
+        //                      join vendor in dbContext.Vendors 
+        //                            on new { file.VENDOR_NAME, file.VENDOR_ADDRESS }
+        //                            equals new { vendor.VENDOR_NAME, vendor.VENDOR_ADDRESS }
+        //                      join contract in dbContext.Contracts on file.CONTRACT_NUMBER equals contract.CONTRACT_NUMBER
+        //                      join location in dbContext.Locations
+        //                            on new { file.Location.LOCATION_NAME, file.Location.SUBLOCATION_NAME}
+        //                            equals new { location.LOCATION_NAME, location.SUBLOCATION_NAME }
+        //                      select new ConsolidatedReportViewModel
+        //                      {
+        //                          FILE_ID = file.FILE_ID,
+        //                          FILE_NAME = file.FILE_NAME,
+        //                          FILE_TYPE = file.FILE_TYPE.ToString(),
+        //                          DESCRIPTION = file.DESCRIPTION,
+        //                          OPEN_DATE = file.OPEN_DATE,
+        //                          CLOSED_DATE = file.CLOSED_DATE,
+        //                          FILE_STATUS = file.STATUS,
+
+        //                          VENDOR_ID = vendor.VENDOR_ID,
+        //                          VENDOR_NAME = vendor.VENDOR_NAME,
+        //                          VENDOR_ADDRESS = vendor.VENDOR_ADDRESS,
+        //                          CONTACT_PERSON = vendor.CONTACT_PERSON,
+        //                          CONTACT_NUMBER = vendor.CONTACT_NUMBER,
+        //                          CONTACT_EMAIL = vendor.CONTACT_EMAIL,
+
+        //                          CONTRACT_ID = contract.SNO,
+        //                          CONTRACT_NUMBER = contract.CONTRACT_NUMBER,
+        //                          CONTRACT_SUBJECT = contract.CONTRACT_SUBJECT,
+        //                          CONTRACT_DESCRIPTION = contract.CONTRACT_DESCRIPTION,
+        //                          CONTRACT_START_DATE = contract.START_DATE,
+        //                          CONTRACT_END_DATE = contract.END_DATE,
+        //                          CONTRACT_TYPE = contract.CONTRACT_TYPE.ToString(),
+
+        //                          LOCATION_ID = location.LOCATION_ID,
+        //                          LOCATION_NAME = location.LOCATION_NAME,
+        //                          SUBLOCATION_ID = location.SUBLOCATION_ID,
+        //                          SUBLOCATION_NAME = location.SUBLOCATION_NAME,
+        //                          GSTN_NO = location.GSTN_NO
+        //                      }).ToList();
+
+        //    return View(reportData);
+        //}
     }
 }

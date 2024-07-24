@@ -18,37 +18,37 @@
     <thead>
         <tr>
             @* <th>
-                @Html.DisplayNameFor(model => model.Files.First().FileId)
+                @Html.DisplayNameFor(model => model.Files.First().FILE_ID)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Files.First().FileName)
+                @Html.DisplayNameFor(model => model.Files.First().FILE_NAME)
             </th> *@
             <th>
-                @Html.DisplayNameFor(model => model.Vendors.First().VendorName)
+                @Html.DisplayNameFor(model => model.Vendors.First().VENDOR_NAME)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vendors.First().VendorAddress)
+                @Html.DisplayNameFor(model => model.Vendors.First().VENDOR_ADDRESS)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vendors.First().ContactPerson)
+                @Html.DisplayNameFor(model => model.Vendors.First().CONTACT_PERSON)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vendors.First().ContactNumber)
+                @Html.DisplayNameFor(model => model.Vendors.First().CONTACT_NUMBER)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vendors.First().ContactEmailId)
+                @Html.DisplayNameFor(model => model.Vendors.First().CONTACT_EMAIL)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Contracts.First().sno)
+                @Html.DisplayNameFor(model => model.Contracts.First().SNO)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Contracts.First().ContractNumber)
+                @Html.DisplayNameFor(model => model.Contracts.First().CONTRACT_NUMBER)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Contracts.First().ContractSubject)
+                @Html.DisplayNameFor(model => model.Contracts.First().CONTRACT_SUBJECT)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Contracts.First().ContractDescription)
+                @Html.DisplayNameFor(model => model.Contracts.First().CONTRACT_DESCRIPTION)
             </th>
         </tr>
     </thead>
@@ -57,45 +57,45 @@
             @* @foreach (var file in Model.Files)
             {
                 <td>
-                    @Html.DisplayNameFor(model => model.Files.First().FileId)
+                    @Html.DisplayNameFor(model => model.Files.First().FILE_ID)
                 </td>
                 <td>
-                    @Html.DisplayFor(model => model.Files.First().FileName)
+                    @Html.DisplayFor(model => model.Files.First().FILE_NAME)
                 </td>
             } *@
         @foreach (var vendor in Model.Vendors)
         {
                 <td>
-                    @Html.DisplayFor(modelItem => vendor.VendorName)
+                    @Html.DisplayFor(modelItem => vendor.VENDOR_NAME)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => vendor.VendorAddress)
+                    @Html.DisplayFor(modelItem => vendor.VENDOR_ADDRESS)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => vendor.ContactPerson)
+                    @Html.DisplayFor(modelItem => vendor.CONTACT_PERSON)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => vendor.ContactNumber)
+                    @Html.DisplayFor(modelItem => vendor.CONTACT_NUMBER)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => vendor.ContactEmailId)
+                    @Html.DisplayFor(modelItem => vendor.CONTACT_EMAIL)
                 </td>
         }
         @foreach (var contract in Model.Contracts)
         {
                 <td>
-                    @Html.DisplayFor(modelItem => contract.ContractNumber)
+                    @Html.DisplayFor(modelItem => contract.CONTRACT_NUMBER)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => contract.ContractSubject)
+                    @Html.DisplayFor(modelItem => contract.CONTRACT_SUBJECT)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => contract.ContractDescription)
+                    @Html.DisplayFor(modelItem => contract.CONTRACT_DESCRIPTION)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@contract.sno">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@contract.sno">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@contract.sno">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@contract.SNO">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@contract.SNO">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@contract.SNO">Delete</a>
                 </td>
         }
         </tr>
@@ -121,19 +121,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Vendors.First().VendorName)
+                @Html.DisplayNameFor(model => model.Vendors.First().VENDOR_NAME)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vendors.First().VendorAddress)
+                @Html.DisplayNameFor(model => model.Vendors.First().VENDOR_ADDRESS)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vendors.First().ContactPerson)
+                @Html.DisplayNameFor(model => model.Vendors.First().CONTACT_PERSON)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vendors.First().ContactNumber)
+                @Html.DisplayNameFor(model => model.Vendors.First().CONTACT_NUMBER)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vendors.First().ContactEmailId)
+                @Html.DisplayNameFor(model => model.Vendors.First().CONTACT_EMAIL)
             </th>
             <th></th>
         </tr>
@@ -142,24 +142,24 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.VendorName)
+                @Html.DisplayFor(modelItem => item.VENDOR_NAME)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.VendorAddress)
+                @Html.DisplayFor(modelItem => item.VENDOR_ADDRESS)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ContactPerson)
+                @Html.DisplayFor(modelItem => item.CONTACT_PERSON)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ContactNumber)
+                @Html.DisplayFor(modelItem => item.CONTACT_NUMBER)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ContactEmailId)
+                @Html.DisplayFor(modelItem => item.CONTACT_EMAIL)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.VendorId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.VendorId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.VendorId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.VENDOR_ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.VENDOR_ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.VENDOR_ID">Delete</a>
             </td>
         </tr>
 }

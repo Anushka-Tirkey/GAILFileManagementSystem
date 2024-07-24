@@ -204,28 +204,28 @@
                         <tr>
                             <th>Contract No.</th>
                             <td>
-                                <input asp-for="ContractNumber" class="form-control" placeholder="Enter Contract Number" />
-                                <span asp-validation-for="ContractNumber" style="color:red;"></span>
+                                <input asp-for="CONTRACT_NUMBER" class="form-control" placeholder="Enter Contract Number" />
+                                <span asp-validation-for="CONTRACT_NUMBER" style="color:red;"></span>
                             </td>
                         </tr>
                         <tr>
                             <th>Contract Subject</th>
                             <td>
-                                <input asp-for="ContractSubject" class="form-control" placeholder="Enter Contract Subject" />
-                                <span asp-validation-for="ContractSubject" style="color:red;"></span>
+                                <input asp-for="CONTRACT_SUBJECT" class="form-control" placeholder="Enter Contract Subject" />
+                                <span asp-validation-for="CONTRACT_SUBJECT" style="color:red;"></span>
                             </td>
                         </tr>
                         <tr>
-                            <th>Contract Description</th>
+                            <th>Contract DESCRIPTION</th>
                             <td>
-                                <textarea asp-for="ContractDescription" class="form-control" placeholder="Enter Contract Description"></textarea>
+                                <textarea asp-for="CONTRACT_DESCRIPTION" class="form-control" placeholder="Enter Contract DESCRIPTION"></textarea>
                             </td>
                         </tr>
                         <tr>
                             <th>Contract Start Date</th>
                             <td>
                                 <div class="input-container">
-                                    <input asp-for="StartDate" type="date" class="form-control" />
+                                    <input asp-for="START_DATE" type="date" class="form-control" />
                                     <i class="icon">📅</i>
                                 </div>
                             </td>
@@ -234,7 +234,7 @@
                             <th>Contract End date</th>
                             <td>
                                 <div class="input-container">
-                                    <input asp-for="EndDate" type="date" class="form-control" />
+                                    <input asp-for="END_DATE" type="date" class="form-control" />
                                     <i class="icon">📅</i>
                                 </div>
                             </td>
@@ -243,7 +243,7 @@
                             @* <th>Contract Type</th>
                             <td>
                                  @Html.DropDownList(
-                                         "ContractType",
+                                         "CONTRACT_TYPE",
                                          Html.GetEnumSelectList<CType>(),
                                          "Select Contract Type",
                                          new { @class = "form-control" }
@@ -251,7 +251,7 @@
                                 @* GetEnumSelectList method directly returns a SelectList that you can use without needing to specify "Value" and "Text" fields: *@
 
                                 @* @Html.DropDownList(
-                                         "ContractType",
+                                         "CONTRACT_TYPE",
                                          new SelectList(Html.GetEnumSelectList<CType>(), "Value", "Text"),
                                          "--Select Contract Type--",
                                          new { @class = "form-control" }
@@ -260,7 +260,7 @@
                                 <tr>
                                 <th>Contract Type</th>
                                 <td>
-                                <select asp-for="ContractType" class="form-control" asp-items="Html.GetEnumSelectList<CType>()">
+                                <select asp-for="CONTRACT_TYPE" class="form-control" asp-items="Html.GetEnumSelectList<CType>()">
                                 <option value="">--Select Contract Type--</option>
                                 </select>
                                 </td>
