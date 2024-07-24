@@ -213,24 +213,6 @@ namespace GAILFileManagementSystem.Controllers
             return View(v);
         }
 
-        //public IActionResult Filesss()
-        //{
-        //    var filesdata = dbContext.Files.ToList();
-        //    return View(filesdata);
-        //}
-
-        //public ActionResult GenerateReport()
-        //{
-        //    var model = new CombinedModel
-        //    {
-        //        Vendors = dbContext.Vendors.ToList(),
-        //        Contracts = dbContext.Contracts.ToList(),
-        //        Files = dbContext.Files.ToList(),
-        //    };
-
-        //    return View(model);
-        //}
-
         private VendorModel BindDDL()
         {
             VendorModel VendorModel = new VendorModel();
@@ -472,50 +454,5 @@ namespace GAILFileManagementSystem.Controllers
 
             return View(files);
         }
-
-        //public IActionResult GenerateConsolidatedReport()
-        //{
-        //    var reportData = (from file in dbContext.Files
-        //                      join vendor in dbContext.Vendors 
-        //                            on new { file.VENDOR_NAME, file.VENDOR_ADDRESS }
-        //                            equals new { vendor.VENDOR_NAME, vendor.VENDOR_ADDRESS }
-        //                      join contract in dbContext.Contracts on file.CONTRACT_NUMBER equals contract.CONTRACT_NUMBER
-        //                      join location in dbContext.Locations
-        //                            on new { file.Location.LOCATION_NAME, file.Location.SUBLOCATION_NAME}
-        //                            equals new { location.LOCATION_NAME, location.SUBLOCATION_NAME }
-        //                      select new ConsolidatedReportViewModel
-        //                      {
-        //                          FILE_ID = file.FILE_ID,
-        //                          FILE_NAME = file.FILE_NAME,
-        //                          FILE_TYPE = file.FILE_TYPE.ToString(),
-        //                          DESCRIPTION = file.DESCRIPTION,
-        //                          OPEN_DATE = file.OPEN_DATE,
-        //                          CLOSED_DATE = file.CLOSED_DATE,
-        //                          FILE_STATUS = file.STATUS,
-
-        //                          VENDOR_ID = vendor.VENDOR_ID,
-        //                          VENDOR_NAME = vendor.VENDOR_NAME,
-        //                          VENDOR_ADDRESS = vendor.VENDOR_ADDRESS,
-        //                          CONTACT_PERSON = vendor.CONTACT_PERSON,
-        //                          CONTACT_NUMBER = vendor.CONTACT_NUMBER,
-        //                          CONTACT_EMAIL = vendor.CONTACT_EMAIL,
-
-        //                          CONTRACT_ID = contract.SNO,
-        //                          CONTRACT_NUMBER = contract.CONTRACT_NUMBER,
-        //                          CONTRACT_SUBJECT = contract.CONTRACT_SUBJECT,
-        //                          CONTRACT_DESCRIPTION = contract.CONTRACT_DESCRIPTION,
-        //                          CONTRACT_START_DATE = contract.START_DATE,
-        //                          CONTRACT_END_DATE = contract.END_DATE,
-        //                          CONTRACT_TYPE = contract.CONTRACT_TYPE.ToString(),
-
-        //                          LOCATION_ID = location.LOCATION_ID,
-        //                          LOCATION_NAME = location.LOCATION_NAME,
-        //                          SUBLOCATION_ID = location.SUBLOCATION_ID,
-        //                          SUBLOCATION_NAME = location.SUBLOCATION_NAME,
-        //                          GSTN_NO = location.GSTN_NO
-        //                      }).ToList();
-
-        //    return View(reportData);
-        //}
     }
 }
