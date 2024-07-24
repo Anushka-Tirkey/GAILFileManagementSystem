@@ -358,13 +358,15 @@ namespace GAILFileManagementSystem.Controllers
         //DETAILS
         public async Task<IActionResult> Details(int? id)
         {
-            if(id == null || dbContext.Files == null)
+            if (id == null)
             {
                 return NotFound();
             }
-            var fdata = await dbContext.Files.FirstOrDefaultAsync(x => x.FILE_ID == id); 
-            if(fdata != null)
+            var fdata = await dbContext.Files.FirstOrDefaultAsync(x => x.FILE_ID == id);
+            if (fdata == null)
+            {
                 return NotFound();
+            }
             return View(fdata);
         }
 
