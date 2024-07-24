@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GAILFileManagementSystem.Models
 {
@@ -11,10 +10,23 @@ namespace GAILFileManagementSystem.Models
         public int L_ID { get; set; }
         public int LOCATION_ID { get; set; }
 
-        public string LOCATION_NAME { get; set; } = string.Empty;
+        private string _locationName;
+        public string LOCATION_NAME
+        {
+            get => _locationName;
+            set => _locationName = value?.ToUpper() ?? string.Empty;
+        }
+
         public int SUBLOCATION_ID { get; set; }
-        public string SUBLOCATION_NAME { get; set;} = string.Empty;
-        public List<Files> Files { get; set; }
+
+        private string _sublocationName;
+        public string SUBLOCATION_NAME
+        {
+            get => _sublocationName;
+            set => _sublocationName = value?.ToUpper() ?? string.Empty;
+        }
         public int GSTN_NO { get; set; }
+        public List<Files> Files { get; set; }
+
     }
 }

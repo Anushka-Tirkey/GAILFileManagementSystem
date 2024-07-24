@@ -24,7 +24,6 @@ namespace GAILFileManagementSystem.Controllers
         {
             return View();
         }
-
         public enum FILE_TYPE
         {
             MISCELLANEOUS = 0,
@@ -41,11 +40,10 @@ namespace GAILFileManagementSystem.Controllers
         [HttpPost]
         public async Task<IActionResult> EnterFiles(Files f)
         {
-            // Check if the model state is valid
-            if (!ModelState.IsValid)
-            {
-                return View(f);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(f);
+            //}
 
             // Checking for vendors
             var existingVendor = dbContext.Vendors
@@ -55,7 +53,8 @@ namespace GAILFileManagementSystem.Controllers
             {
                 // Map the existing vendor details to the Files model
                 f.VENDOR_ID = existingVendor.VENDOR_ID;
-                f.Vendor = existingVendor;
+                f.VENDOR_NAME = existingVendor.VENDOR_NAME;
+                f.VENDOR_ADDRESS = existingVendor.VENDOR_ADDRESS;
                 f.CONTACT_PERSON = existingVendor.CONTACT_PERSON;
                 f.CONTACT_NUMBER = existingVendor.CONTACT_NUMBER;
                 f.CONTACT_EMAIL = existingVendor.CONTACT_EMAIL;
@@ -69,11 +68,12 @@ namespace GAILFileManagementSystem.Controllers
 
             // Checking for contracts
             var existingContract = dbContext.Contracts
-                .FirstOrDefault(v => v.CONTRACT_NUMBER == f.CONTRACT_NUMBER);
+                .FirstOrDefault(c => c.CONTRACT_NUMBER == f.CONTRACT_NUMBER);
 
             if (existingContract != null)
             {
                 // Map the existing contract details to the Files model
+                f.CONTACT_NUMBER = existingContract.CONTRACT_NUMBER;
                 f.CONTRACT_SUBJECT = existingContract.CONTRACT_SUBJECT;
                 f.CONTRACT_DESCRIPTION = existingContract.CONTRACT_DESCRIPTION;
                 f.START_DATE = existingContract.START_DATE;
@@ -88,11 +88,14 @@ namespace GAILFileManagementSystem.Controllers
             }
 
             // Checking for location
-            var existingLocation = dbContext.Locations.FirstOrDefault(v => v.LOCATION_ID == f.LOCATION_ID);
+            var existingLocation = dbContext.Locations.FirstOrDefault(v => v.LOCATION_NAME == f.LOCATION_NAME && v.SUBLOCATION_NAME == f.SUBLOCATION_NAME);
 
             if (existingLocation != null)
             {
+                f.LOCATION_ID = existingLocation.LOCATION_ID;
+                f.LOCATION_NAME = existingLocation.LOCATION_NAME;
                 f.SUBLOCATION_ID = existingLocation.SUBLOCATION_ID;
+                f.SUBLOCATION_NAME = existingLocation.SUBLOCATION_NAME;
                 f.GSTN_NO = existingLocation.GSTN_NO;
             }
             else
@@ -103,15 +106,13 @@ namespace GAILFileManagementSystem.Controllers
             }
 
             // Add the Files object to the database
-            await dbContext.Files.AddAsync(f);
-            await dbContext.SaveChangesAsync();
+            dbContext.Files.Add(f);
 
-            // Optionally call a method to handle the consolidated report
-            // EnterFilesIntoConsolidatedFileReport(f);
+            // Save the changes to the database
+            await dbContext.SaveChangesAsync();
 
             return RedirectToAction("EnterFiles", "User");
         }
-
 
         /*public ConsolidatedReportViewModel EnterFilesIntoConsolidatedFileReport(Files f)
         {

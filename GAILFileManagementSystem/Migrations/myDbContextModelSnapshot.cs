@@ -139,7 +139,6 @@ namespace GAILFileManagementSystem.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CONTRACT_NUMBER")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CONTRACT_SUBJECT")
@@ -172,22 +171,20 @@ namespace GAILFileManagementSystem.Migrations
                         .HasColumnName("CLOSED_DATE");
 
                     b.Property<string>("CONTACT_EMAIL")
+                        .IsRequired()
                         .HasColumnType("varchar(100)")
                         .HasColumnName("CONTACT_EMAIL");
 
                     b.Property<string>("CONTACT_NUMBER")
-                        .HasColumnType("varchar(100)")
-                        .HasColumnName("CONTACT_NUMBER");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CONTACT_PERSON")
-                        .HasColumnType("varchar(100)")
-                        .HasColumnName("CONTACT_PERSON");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CONTRACT_DESCRIPTION")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CONTRACT_NUMBER")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CONTRACT_SUBJECT")
@@ -224,6 +221,9 @@ namespace GAILFileManagementSystem.Migrations
                     b.Property<string>("LOCATION_NAME")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("L_ID")
+                        .HasColumnType("int");
+
                     b.Property<int?>("LocationL_ID")
                         .HasColumnType("int");
 
@@ -249,8 +249,7 @@ namespace GAILFileManagementSystem.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("VENDOR_ADDRESS")
-                        .HasColumnType("varchar(200)")
-                        .HasColumnName("VENDOR_ADDRESS");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("VENDOR_ID")
                         .HasColumnType("int");
@@ -259,9 +258,7 @@ namespace GAILFileManagementSystem.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("VENDOR_NAME")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)")
-                        .HasColumnName("VENDOR_NAME");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("FILE_ID");
 
@@ -316,23 +313,16 @@ namespace GAILFileManagementSystem.Migrations
                         .HasColumnName("CONTACT_EMAIL");
 
                     b.Property<string>("CONTACT_NUMBER")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("varchar(10)")
-                        .HasColumnName("CONTACT_NUMBER");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CONTACT_PERSON")
-                        .HasColumnType("varchar(100)")
-                        .HasColumnName("CONTACT_PERSON");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("VENDOR_ADDRESS")
-                        .HasColumnType("varchar(200)")
-                        .HasColumnName("VENDOR_ADDRESS");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("VENDOR_NAME")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)")
-                        .HasColumnName("VENDOR_NAME");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("VENDOR_ID");
 

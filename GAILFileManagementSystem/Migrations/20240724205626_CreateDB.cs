@@ -15,7 +15,7 @@ namespace GAILFileManagementSystem.Migrations
                 {
                     SNO = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CONTRACT_NUMBER = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CONTRACT_NUMBER = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CONTRACT_SUBJECT = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CONTRACT_DESCRIPTION = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     START_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -50,10 +50,10 @@ namespace GAILFileManagementSystem.Migrations
                 {
                     VENDOR_ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    VENDOR_NAME = table.Column<string>(type: "varchar(100)", nullable: false),
-                    VENDOR_ADDRESS = table.Column<string>(type: "varchar(200)", nullable: true),
-                    CONTACT_PERSON = table.Column<string>(type: "varchar(100)", nullable: true),
-                    CONTACT_NUMBER = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: false),
+                    VENDOR_NAME = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VENDOR_ADDRESS = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CONTACT_PERSON = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CONTACT_NUMBER = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CONTACT_EMAIL = table.Column<string>(type: "varchar(100)", nullable: false)
                 },
                 constraints: table =>
@@ -75,7 +75,7 @@ namespace GAILFileManagementSystem.Migrations
                     STATUS = table.Column<string>(type: "varchar(100)", nullable: false),
                     SNO = table.Column<int>(type: "int", nullable: false),
                     ContractSNO = table.Column<int>(type: "int", nullable: true),
-                    CONTRACT_NUMBER = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CONTRACT_NUMBER = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CONTRACT_SUBJECT = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CONTRACT_DESCRIPTION = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     START_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -83,13 +83,14 @@ namespace GAILFileManagementSystem.Migrations
                     CONTRACT_TYPE = table.Column<int>(type: "int", nullable: false),
                     VENDOR_ID = table.Column<int>(type: "int", nullable: false),
                     VENDOR_ID1 = table.Column<int>(type: "int", nullable: true),
-                    VENDOR_NAME = table.Column<string>(type: "varchar(100)", nullable: false),
-                    VENDOR_ADDRESS = table.Column<string>(type: "varchar(200)", nullable: true),
-                    CONTACT_PERSON = table.Column<string>(type: "varchar(100)", nullable: true),
-                    CONTACT_NUMBER = table.Column<string>(type: "varchar(100)", nullable: true),
-                    CONTACT_EMAIL = table.Column<string>(type: "varchar(100)", nullable: true),
-                    LOCATION_ID = table.Column<int>(type: "int", nullable: false),
+                    VENDOR_NAME = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VENDOR_ADDRESS = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CONTACT_PERSON = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CONTACT_NUMBER = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CONTACT_EMAIL = table.Column<string>(type: "varchar(100)", nullable: false),
+                    L_ID = table.Column<int>(type: "int", nullable: false),
                     LocationL_ID = table.Column<int>(type: "int", nullable: true),
+                    LOCATION_ID = table.Column<int>(type: "int", nullable: false),
                     LOCATION_NAME = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SUBLOCATION_ID = table.Column<int>(type: "int", nullable: false),
                     SUBLOCATION_NAME = table.Column<string>(type: "nvarchar(max)", nullable: true),
