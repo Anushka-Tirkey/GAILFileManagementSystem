@@ -284,10 +284,17 @@
                     <a asp-controller="Home" asp-action="Location">Enter New Location</a>
                     <table class="table-form">
                         <tr>
-                            <th>Location ID</th>
+                            <th>Location</th>
                             <td>
-                                <input asp-for="LocationId" class="form-control" placeholder="Enter Location ID" required>
-                                <span asp-validation-for="LocationId" style="color:red;"></span>
+                                <input asp-for="LocationName" class="form-control" placeholder="Enter Location" required>
+                                <span asp-validation-for="LocationName" style="color:red;"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Sub-Location</th>
+                            <td>
+                                <input asp-for="SubLocationName" class="form-control" placeholder="Enter Sub-Location" required>
+                                <span asp-validation-for="SubLocationName" style="color:red;"></span>
                             </td>
                         </tr>
                     </table>
