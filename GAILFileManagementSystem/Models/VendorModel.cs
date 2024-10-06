@@ -8,6 +8,9 @@ namespace GAILFileManagementSystem.Models
     {
         [Key]
         public int Id { get; set; }
+        public List<string> VendorNames { get; set; }
+        public List<Files> FilteredFiles { get; set; }
+
         public List<SelectListItem> VendorNameList { get; set; } = new List<SelectListItem>();  //This is a VendorNameList property of type List<SelectListItem>. It is initialized as a new List<SelectListItem>. This property will hold a list of vendor names that can be used to populate a dropdown list in a view.
         public List<SelectListItem> VendorAddressList { get; set; } = new List<SelectListItem>();
         public List<SelectListItem> ContactPersonList{ get; set; } = new List<SelectListItem>();
