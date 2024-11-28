@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace GAILFileManagementSystem.Controllers
 {
@@ -22,8 +23,20 @@ namespace GAILFileManagementSystem.Controllers
         [Route("")]
         public IActionResult Index()
         {
+            HttpContext.Session.SetString("MyKey", "Programentor");
             return View();
         }
+
+        public IActionResult About()
+        {
+            if(HttpContext.Session.GetString("MyKey") != null)
+            {
+                ViewBag.Data = HttpContext.Session.GetString("MyKey").ToString();  
+            }
+            return View();
+            //accesibe at the link: https://localhost:7060/GAILRanchi/User/About 
+        }
+
         public enum FILE_TYPE
         {
             MISCELLANEOUS = 0,

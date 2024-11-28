@@ -32,6 +32,8 @@ builder.Services.AddDbContext<myDbContext>(options =>
 builder.Services.AddDbContext<myDbContext>(options =>
     options.UseSqlServer(config.GetConnectionString("dbcs")));
 
+builder.Services.AddSession();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -43,6 +45,7 @@ if (!app.Environment.IsDevelopment())       //If the app is not in the developme
 }
 
 //Middlewares
+app.UseSession();
 app.UseHttpsRedirection();  //Redirects HTTP requests to HTTPS.
 app.UseStaticFiles();       //Serves static files like CSS, JavaScript, and images.
 app.UseRouting();           //Enables routing for the application.
